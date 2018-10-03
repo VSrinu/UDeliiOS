@@ -9,6 +9,7 @@
 import UIKit
 import Material
 import Toast_Swift
+import GooglePlaces
 
 class UDSignUpViewController: UIViewController {
     @IBOutlet weak var firstNameTxt: ErrorTextField!
@@ -139,5 +140,52 @@ extension UDSignUpViewController:UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return false
+    }
+    
+    /*func textFieldDidBeginEditing(_ textField: UITextField) {
+        let acController = GMSAutocompleteViewController()
+        acController.delegate = self
+        self.present(acController, animated: true, completion: nil)
+    }*/
+}
+
+// MARK:- GMSAutocompleteViewControllerDelegate
+extension UDSignUpViewController: GMSAutocompleteViewControllerDelegate {
+    internal func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(place.name)")
+        print("Place address: \(place.formattedAddress ?? "null")")
+        // Get the address components.
+        if let addressLines = place.addressComponents {
+            // Populate all of the address fields we can find.
+            for field in addressLines {
+                switch field.type {
+                case kGMSPlaceTypeStreetNumber:
+                    print(field.name)
+                case kGMSPlaceTypeRoute:
+                    print(field.name)
+                case kGMSPlaceTypeLocality:
+                    print(field.name)
+                case kGMSPlaceTypeCountry:
+                    print(field.name)
+                case kGMSPlaceTypePostalCode:
+                    print(field.name)
+                default:
+                    print("Type: \(field.type), Name: \(field.name)")
+                }
+            }
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    internal func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        //        print("Error: \(error.description)")
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // User canceled the operation.
+    internal func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        print("Autocomplete was cancelled.")
+        self.dismiss(animated: true, completion: nil)
     }
 }

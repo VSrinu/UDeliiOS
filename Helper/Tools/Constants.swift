@@ -11,8 +11,9 @@ import MicrosoftAzureMobile
 
 public var userInfoDictionary = NSDictionary()
 
- // MARK:- Twilio Key
+ // MARK:- API Keys
 public var twilioAPIKey = "ZP10uzqGKbOF6L9yix58eg7hznwhy91f"
+public var googlePlaceAPIKey = "AIzaSyBOfkyB6Nrj1Pc5c0a18FglqZQstCDh1eQ"
 
  // MARK:- APPURL
 public var msClientURL = MSClient(applicationURLString: "https://udelimobileapp.azurewebsites.net")

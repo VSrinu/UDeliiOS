@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setStatusBarBackgroundColor(color: appColor)
         ConstantTools.sharedConstantTool.prepareDeviceInformation()
         ConstantTools.sharedConstantTool.getCurrentLocation()
+        setUpGoogleMaps()
         var navViewController: UIViewController?
         let isLoginStatus: Bool = UserDefaults.standard.bool(forKey: "login")
         if isLoginStatus {
@@ -187,6 +188,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }))
         topWindow?.makeKeyAndVisible()
         topWindow?.rootViewController?.present(alert, animated: true)
+    }
+    
+    func setUpGoogleMaps() {
+        GMSPlacesClient.provideAPIKey(googlePlaceAPIKey)
     }
     
 }
