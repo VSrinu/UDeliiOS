@@ -23,6 +23,17 @@ class UDSignUpViewController: UIViewController {
     @IBOutlet weak var sateTxt: ErrorTextField!
     @IBOutlet weak var countryTxt: ErrorTextField!
     var phoneNumber = String()
+    
+    // Declare variables to hold address form values.
+    var street_number: String = ""
+    var route: String = ""
+    var neighborhood: String = ""
+    var locality: String = ""
+    var administrative_area_level_1: String = ""
+    var country: String = ""
+    var postal_code: String = ""
+    var postal_code_suffix: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadInitialData()
@@ -54,6 +65,19 @@ class UDSignUpViewController: UIViewController {
     func setDeviceDetails() {
         let userData = UserDefaults.standard.object(forKey:"userInfo") as? Data
         userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: userData!) as! NSMutableDictionary?)!
+    }
+    
+    // Populate the address form fields.
+    func fillAddressForm() {
+        addressTxt.text = street_number + " " + route
+        cityTxt.text = locality
+        sateTxt.text = administrative_area_level_1
+        if postal_code_suffix != "" {
+            postalCodeTxt.text = postal_code + "-" + postal_code_suffix
+        } else {
+            postalCodeTxt.text = postal_code
+        }
+        countryTxt.text = country
     }
     
     func validateSigUpData() {
@@ -137,7 +161,13 @@ class UDSignUpViewController: UIViewController {
     }
     
     @IBAction func tapToSearchAddress(_ sender: Any) {
-        
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        // Set a filter to return only addresses.
+        let addressFilter = GMSAutocompleteFilter()
+        addressFilter.type = .address
+        autocompleteController.autocompleteFilter = addressFilter
+        present(autocompleteController, animated: true, completion: nil)
     }
 }
 
@@ -155,39 +185,47 @@ extension UDSignUpViewController:UITextFieldDelegate {
         }
         return false
     }
-    
-    /*func textFieldDidBeginEditing(_ textField: UITextField) {
-        let acController = GMSAutocompleteViewController()
-        acController.delegate = self
-        self.present(acController, animated: true, completion: nil)
-    }*/
 }
 
 // MARK:- GMSAutocompleteViewControllerDelegate
 extension UDSignUpViewController: GMSAutocompleteViewControllerDelegate {
     internal func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        // Print place info to the console.
         print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress ?? "null")")
+        print("Place address: \(String(describing: place.formattedAddress))")
+        print("Place attributions: \(String(describing: place.attributions))")
+        
         // Get the address components.
         if let addressLines = place.addressComponents {
             // Populate all of the address fields we can find.
             for field in addressLines {
                 switch field.type {
                 case kGMSPlaceTypeStreetNumber:
-                    print(field.name)
+                    street_number = field.name
                 case kGMSPlaceTypeRoute:
-                    print(field.name)
+                    route = field.name
+                case kGMSPlaceTypeNeighborhood:
+                    neighborhood = field.name
                 case kGMSPlaceTypeLocality:
-                    print(field.name)
+                    locality = field.name
+                case kGMSPlaceTypeAdministrativeAreaLevel1:
+                    administrative_area_level_1 = field.name
                 case kGMSPlaceTypeCountry:
-                    print(field.name)
+                    country = field.name
                 case kGMSPlaceTypePostalCode:
-                    print(field.name)
+                    postal_code = field.name
+                case kGMSPlaceTypePostalCodeSuffix:
+                    postal_code_suffix = field.name
+                // Print the items we aren't using.
                 default:
                     print("Type: \(field.type), Name: \(field.name)")
                 }
             }
         }
+        // Call custom function to populate the address form.
+        fillAddressForm()
+        
+        // Close the autocomplete widget.
         self.dismiss(animated: true, completion: nil)
     }
     
