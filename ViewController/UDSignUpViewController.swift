@@ -17,6 +17,11 @@ class UDSignUpViewController: UIViewController {
     @IBOutlet weak var emailIdTxt: ErrorTextField!
     @IBOutlet weak var passwordTxt: ErrorTextField!
     @IBOutlet weak var confirmPassword: ErrorTextField!
+    @IBOutlet weak var addressTxt: ErrorTextField!
+     @IBOutlet weak var postalCodeTxt: ErrorTextField!
+    @IBOutlet weak var cityTxt: ErrorTextField!
+    @IBOutlet weak var sateTxt: ErrorTextField!
+    @IBOutlet weak var countryTxt: ErrorTextField!
     var phoneNumber = String()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +44,11 @@ class UDSignUpViewController: UIViewController {
         ConstantTools.sharedConstantTool.setTextFieldColor(textField: emailIdTxt)
         ConstantTools.sharedConstantTool.setTextFieldColor(textField: passwordTxt)
         ConstantTools.sharedConstantTool.setTextFieldColor(textField: confirmPassword)
+        ConstantTools.sharedConstantTool.setTextFieldColor(textField: addressTxt)
+        ConstantTools.sharedConstantTool.setTextFieldColor(textField: postalCodeTxt)
+        ConstantTools.sharedConstantTool.setTextFieldColor(textField: cityTxt)
+        ConstantTools.sharedConstantTool.setTextFieldColor(textField: sateTxt)
+        ConstantTools.sharedConstantTool.setTextFieldColor(textField: countryTxt)
     }
     
     func setDeviceDetails() {
@@ -124,6 +134,10 @@ class UDSignUpViewController: UIViewController {
     
     @IBAction func tapToSignUP(_ sender: Any) {
         validateSigUpData()
+    }
+    
+    @IBAction func tapToSearchAddress(_ sender: Any) {
+        
     }
 }
 

@@ -524,12 +524,15 @@
                                                 <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="tapToSearchAddress:" destination="8ou-Yv-bFq" eventType="touchUpInside" id="uBB-fQ-Ikg"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Yz-vs-k9C" customClass="ErrorTextField" customModule="Material">
                                         <rect key="frame" x="16" y="332" width="343" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="street-address"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
                                                 <real key="value" value="10"/>
@@ -547,7 +550,7 @@
                                         <rect key="frame" x="16" y="377" width="343" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="postal-code"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
                                                 <real key="value" value="10"/>
@@ -565,7 +568,7 @@
                                         <rect key="frame" x="16" y="422" width="343" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-level2"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="City"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
@@ -583,7 +586,7 @@
                                         <rect key="frame" x="16" y="467" width="343" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-level1"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="State"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
@@ -601,7 +604,7 @@
                                         <rect key="frame" x="16" y="512" width="343" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="country-name"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Country"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
@@ -712,10 +715,15 @@
                     </view>
                     <connections>
                         <outlet property="LastNameTxt" destination="nA7-XB-EKF" id="1UA-xC-l0z"/>
+                        <outlet property="addressTxt" destination="0Yz-vs-k9C" id="8Dj-FQ-Q2F"/>
+                        <outlet property="cityTxt" destination="RWl-bO-aGV" id="cg1-Om-jx1"/>
                         <outlet property="confirmPassword" destination="0bJ-sN-dL9" id="lsj-MX-RUx"/>
+                        <outlet property="countryTxt" destination="cWG-iO-5m6" id="ruL-CO-g1V"/>
                         <outlet property="emailIdTxt" destination="nbb-XG-kux" id="cUY-0M-u0I"/>
                         <outlet property="firstNameTxt" destination="15e-Lq-dHj" id="MtW-rH-NFS"/>
                         <outlet property="passwordTxt" destination="6O4-cr-eYE" id="uKB-Wb-NeF"/>
+                        <outlet property="postalCodeTxt" destination="lNV-Vu-lV0" id="IZx-5d-ySI"/>
+                        <outlet property="sateTxt" destination="B6L-mt-qw3" id="V6C-AJ-Xzp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OKN-32-XZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
