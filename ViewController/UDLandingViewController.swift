@@ -27,6 +27,7 @@ class UDLandingViewController: UIViewController {
     var distancefromstore = Double()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
         loadInitialData()
         setupSideMenu()
     }
@@ -43,6 +44,10 @@ class UDLandingViewController: UIViewController {
         distancefromstore = Double(userInfoDictionary.object(forKey: "distancefromstore") as? Int ?? 0)
         checkProfileUpdate()
         getJobList()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     func loadInitialData() {

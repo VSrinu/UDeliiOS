@@ -16,12 +16,17 @@ class UDCountryCodeViewController: UIViewController {
     var filterCountryArr = NSArray()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
         loadInitialData()
     }
 
     // MARK:- View Lifecycle
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     func loadInitialData() {

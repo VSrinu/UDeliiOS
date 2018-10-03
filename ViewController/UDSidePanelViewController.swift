@@ -16,12 +16,17 @@ class UDSidePanelViewController: UIViewController {
     var settingsArray = NSArray()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
         loadTableView()
     }
     
     // MARK:- View Lifecycle
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewWillAppear(_ animated: Bool) {

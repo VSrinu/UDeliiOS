@@ -18,12 +18,17 @@ class UDMyOrdersViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
         self.loadInitialData()
     }
     
     // MARK:- View Lifecycle
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewWillAppear(_ animated: Bool) {

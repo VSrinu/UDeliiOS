@@ -14,12 +14,17 @@ class UDMerchantSelectionViewController: UIViewController {
     var merchantSelection = NSDictionary()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
         loadInitialData()
     }
 
     // MARK:- View Lifecycle
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     func loadInitialData() {

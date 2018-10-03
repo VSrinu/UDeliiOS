@@ -15,12 +15,17 @@ class UDMobileVerificationViewController: UIViewController {
     var phoneNumber = String()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
         loadInitialData()
     }
     
     // MARK:- View Lifecycle
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     func loadInitialData() {
