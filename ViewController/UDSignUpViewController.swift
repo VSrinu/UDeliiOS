@@ -18,7 +18,7 @@ class UDSignUpViewController: UIViewController {
     @IBOutlet weak var passwordTxt: ErrorTextField!
     @IBOutlet weak var confirmPassword: ErrorTextField!
     @IBOutlet weak var addressTxt: ErrorTextField!
-     @IBOutlet weak var postalCodeTxt: ErrorTextField!
+    @IBOutlet weak var postalCodeTxt: ErrorTextField!
     @IBOutlet weak var cityTxt: ErrorTextField!
     @IBOutlet weak var sateTxt: ErrorTextField!
     @IBOutlet weak var countryTxt: ErrorTextField!
@@ -131,8 +131,44 @@ class UDSignUpViewController: UIViewController {
             return
         }
         
+        // MARK:- Address
+        let address = (addressTxt.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+        if(address.count == 0) {
+            self.view.makeToast("Enter your Address", position: .top)
+            return
+        }
+        
+        // MARK:- postalCode
+        let postalCode = (postalCodeTxt.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+        if(postalCode.count == 0) {
+            self.view.makeToast("Enter your Postal Code", position: .top)
+            return
+        }
+        
+        // MARK:- city
+        let city = (cityTxt.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+        if(city.count == 0) {
+            self.view.makeToast("Enter your City", position: .top)
+            return
+        }
+        
+        // MARK:- State
+        let state = (sateTxt.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+        if(state.count == 0) {
+            self.view.makeToast("Enter your State", position: .top)
+            return
+        }
+        
+        // MARK:- Country
+        let country = (countryTxt.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+        if(country.count == 0) {
+            self.view.makeToast("Enter your Country", position: .top)
+            return
+        }
+        print(country)
+        
         ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view)
-        SignUpModel.signUp(fName: fName, lName: lName, phoneNumber: phoneNumber, password: confirmPassword, emailId: emailIdTxt.text!, address: userInfoDictionary.object(forKey: "location") as? String ?? "", city: userInfoDictionary.object(forKey: "cityLocation") as? String ?? "", state: userInfoDictionary.object(forKey: "stateLocation") as? String ?? "", zip: userInfoDictionary.object(forKey: "postalCodeLocation") as? String ?? "", userDetails: userInfoDictionary, devicePlatform: userInfoDictionary.object(forKey: "systemname") as? String ?? "iOS", deviceToken: userInfoDictionary.object(forKey: "devicetoken") as? String ?? "", deviceUuid: userInfoDictionary.object(forKey: "deviceid") as? String ?? "", deviceVersion: userInfoDictionary.object(forKey: "systemversion") as! String, deviceName: userInfoDictionary.object(forKey: "name") as? String ?? "", deviceModel: userInfoDictionary.object(forKey: "model") as? String ?? "", appVersion: userInfoDictionary.object(forKey: "appVersion") as? String ?? "") { connectionResult in
+        SignUpModel.signUp(fName: fName, lName: lName, phoneNumber: phoneNumber, password: confirmPassword, emailId: emailIdTxt.text!, address: address, city: city, state: state, zip: postalCode, userDetails: userInfoDictionary, devicePlatform: userInfoDictionary.object(forKey: "systemname") as? String ?? "iOS", deviceToken: userInfoDictionary.object(forKey: "devicetoken") as? String ?? "", deviceUuid: userInfoDictionary.object(forKey: "deviceid") as? String ?? "", deviceVersion: userInfoDictionary.object(forKey: "systemversion") as! String, deviceName: userInfoDictionary.object(forKey: "name") as? String ?? "", deviceModel: userInfoDictionary.object(forKey: "model") as? String ?? "", appVersion: userInfoDictionary.object(forKey: "appVersion") as? String ?? "") { connectionResult in
             DispatchQueue.main.async(execute: {() -> Void in
                 ConstantTools.sharedConstantTool.hideMRIndicatorView()
                 switch connectionResult {
@@ -190,11 +226,6 @@ extension UDSignUpViewController:UITextFieldDelegate {
 // MARK:- GMSAutocompleteViewControllerDelegate
 extension UDSignUpViewController: GMSAutocompleteViewControllerDelegate {
     internal func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        // Print place info to the console.
-        print("Place name: \(place.name)")
-        print("Place address: \(String(describing: place.formattedAddress))")
-        print("Place attributions: \(String(describing: place.attributions))")
-        
         // Get the address components.
         if let addressLines = place.addressComponents {
             // Populate all of the address fields we can find.

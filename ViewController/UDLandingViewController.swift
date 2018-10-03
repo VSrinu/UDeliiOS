@@ -73,8 +73,7 @@ class UDLandingViewController: UIViewController {
     
     func checkProfileUpdate() {
         let merchantId = userInfoDictionary.object(forKey: "merchantid") as? Int ?? 0
-        let profilestatus = userInfoDictionary.object(forKey: "profilestatus") as? String ?? ""
-        if merchantId == 0 || profilestatus == "null" {
+        if merchantId == 0 {
             getAlert()
         }
     }

@@ -24,7 +24,7 @@ struct SignUpModel {
                             completion(.failure("This Mobile Number is Already Registered. Please use another Mobile Number to Register"))
                         } else {
                             // Insert user details
-                            let itemToInsert = ["firstname": fName, "lastname": lName, "phonenumber": phoneNumber, "plaintextpass": password, "emailid": emailId, "address": address, "city": city, "state": state, "zip": zip, "latitude": userDetails.object(forKey: "latitude") ?? "", "longitude": userDetails.object(forKey: "longitude") ?? "", "deviceplatform": devicePlatform, "devicetoken": deviceToken, "deviceuuid": deviceUuid, "deviceversion": deviceVersion, "devicename": deviceName, "devicemodel": deviceModel, "appversion": appVersion] as [String : Any]
+                            let itemToInsert = ["firstname": fName, "lastname": lName, "phonenumber": phoneNumber, "plaintextpass": password, "emailid": emailId, "address": address, "city": city, "state": state, "zip": zip, "latitude": userDetails.object(forKey: "latitude") ?? "", "longitude": userDetails.object(forKey: "longitude") ?? "", "deviceplatform": devicePlatform, "devicetoken": deviceToken, "deviceuuid": deviceUuid, "deviceversion": deviceVersion, "devicename": deviceName, "devicemodel": deviceModel, "profilestatus":1, "appversion": appVersion] as [String : Any]
                             tCarrier.insert(itemToInsert) { (result, error) in
                                 if let err = error {
                                     completion(.failure(err.localizedDescription))
