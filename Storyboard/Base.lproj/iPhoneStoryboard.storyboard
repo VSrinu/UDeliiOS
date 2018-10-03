@@ -685,11 +685,9 @@
                                     <constraint firstItem="RWl-bO-aGV" firstAttribute="top" secondItem="lNV-Vu-lV0" secondAttribute="bottom" constant="15" id="zd2-g5-HIl"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FtW-Vc-IEn" customClass="RaisedButton" customModule="Material">
-                                <rect key="frame" x="1" y="27" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="C1B-Wj-Mge"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FtW-Vc-IEn" customClass="RaisedButton" customModule="Material">
+                                <rect key="frame" x="1" y="27" width="49" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -703,12 +701,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.72549019609999998" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fT3-5W-Lua" firstAttribute="trailing" secondItem="FtW-Vc-IEn" secondAttribute="trailing" constant="324" id="3cg-76-oZU"/>
-                            <constraint firstItem="SmT-Fo-PVa" firstAttribute="top" secondItem="FtW-Vc-IEn" secondAttribute="bottom" constant="1" id="5Es-Yf-x13"/>
                             <constraint firstItem="SmT-Fo-PVa" firstAttribute="leading" secondItem="gtv-4k-tok" secondAttribute="leading" id="A38-x8-EIh"/>
                             <constraint firstAttribute="trailing" secondItem="SmT-Fo-PVa" secondAttribute="trailing" id="ENO-MT-DUz"/>
-                            <constraint firstItem="FtW-Vc-IEn" firstAttribute="top" secondItem="fT3-5W-Lua" secondAttribute="top" constant="7" id="I6w-tw-9VK"/>
-                            <constraint firstItem="FtW-Vc-IEn" firstAttribute="leading" secondItem="fT3-5W-Lua" secondAttribute="leading" constant="1" id="YQe-T3-Bos"/>
+                            <constraint firstItem="SmT-Fo-PVa" firstAttribute="top" secondItem="fT3-5W-Lua" secondAttribute="top" constant="58" id="P5o-Cw-IkM"/>
                             <constraint firstItem="SmT-Fo-PVa" firstAttribute="bottom" secondItem="fT3-5W-Lua" secondAttribute="bottom" id="f9W-LU-RVu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fT3-5W-Lua"/>

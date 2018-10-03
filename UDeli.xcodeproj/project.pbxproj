@@ -9,6 +9,19 @@
 /* Begin PBXBuildFile section */
 		4FE00EA3FA018208B3DEFF14 /* Pods_UDeliUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7431641FDE90ECAFA4026927 /* Pods_UDeliUITests.framework */; };
 		74B3B8DB8D0D141C41ED9736 /* Pods_UDeliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3CA2331CF379E67D532213 /* Pods_UDeliTests.framework */; };
+		97AEF03F2164D2B200867943 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF03E2164D2B200867943 /* SystemConfiguration.framework */; };
+		97AEF0412164D2C100867943 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0402164D2C100867943 /* UIKit.framework */; };
+		97AEF0432164D2CC00867943 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0422164D2CC00867943 /* Security.framework */; };
+		97AEF0452164D2D700867943 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0442164D2D700867943 /* MessageUI.framework */; };
+		97AEF0472164D2E200867943 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0462164D2E200867943 /* EventKit.framework */; };
+		97AEF0492164D2F100867943 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0482164D2F100867943 /* CoreMotion.framework */; };
+		97AEF04B2164D30100867943 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF04A2164D30100867943 /* CoreLocation.framework */; };
+		97AEF04D2164D32400867943 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF04C2164D32400867943 /* CoreGraphics.framework */; };
+		97AEF04F2164D32D00867943 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF04E2164D32D00867943 /* CFNetwork.framework */; };
+		97AEF0512164D33900867943 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0502164D33800867943 /* AddressBook.framework */; };
+		97AEF0532164D35300867943 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0522164D35300867943 /* libz.tbd */; };
+		97AEF0552164D36C00867943 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0542164D36C00867943 /* libc++.tbd */; };
+		97AEF0592164D3D600867943 /* EnRouteApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0582164D3D600867943 /* EnRouteApi.framework */; };
 		97CB645B215A761700168FF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CB645A215A761700168FF7 /* AppDelegate.swift */; };
 		97CB6460215A761700168FF7 /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97CB645E215A761700168FF7 /* iPhoneStoryboard.storyboard */; };
 		97CB6463215A761700168FF7 /* UDeli.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97CB6461215A761700168FF7 /* UDeli.xcdatamodeld */; };
@@ -79,6 +92,19 @@
 		7431641FDE90ECAFA4026927 /* Pods_UDeliUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UDeliUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80579EF9371065446D9069DE /* Pods_UDeli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UDeli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FCADB78D6A075C72F80C804 /* Pods-UDeli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UDeli.release.xcconfig"; path = "Pods/Target Support Files/Pods-UDeli/Pods-UDeli.release.xcconfig"; sourceTree = "<group>"; };
+		97AEF03E2164D2B200867943 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		97AEF0402164D2C100867943 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		97AEF0422164D2CC00867943 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		97AEF0442164D2D700867943 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		97AEF0462164D2E200867943 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		97AEF0482164D2F100867943 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		97AEF04A2164D30100867943 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		97AEF04C2164D32400867943 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		97AEF04E2164D32D00867943 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		97AEF0502164D33800867943 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		97AEF0522164D35300867943 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		97AEF0542164D36C00867943 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		97AEF0582164D3D600867943 /* EnRouteApi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnRouteApi.framework; sourceTree = "<group>"; };
 		97CB6457215A761700168FF7 /* UDeli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDeli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CB645A215A761700168FF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97CB645F215A761700168FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
@@ -139,6 +165,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97AEF0552164D36C00867943 /* libc++.tbd in Frameworks */,
+				97AEF0532164D35300867943 /* libz.tbd in Frameworks */,
+				97AEF0512164D33900867943 /* AddressBook.framework in Frameworks */,
+				97AEF04F2164D32D00867943 /* CFNetwork.framework in Frameworks */,
+				97AEF0592164D3D600867943 /* EnRouteApi.framework in Frameworks */,
+				97AEF04D2164D32400867943 /* CoreGraphics.framework in Frameworks */,
+				97AEF04B2164D30100867943 /* CoreLocation.framework in Frameworks */,
+				97AEF0492164D2F100867943 /* CoreMotion.framework in Frameworks */,
+				97AEF0472164D2E200867943 /* EventKit.framework in Frameworks */,
+				97AEF0452164D2D700867943 /* MessageUI.framework in Frameworks */,
+				97AEF0432164D2CC00867943 /* Security.framework in Frameworks */,
+				97AEF0412164D2C100867943 /* UIKit.framework in Frameworks */,
+				97AEF03F2164D2B200867943 /* SystemConfiguration.framework in Frameworks */,
 				B8EFED5A474B4A9CEF799DAB /* Pods_UDeli.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +395,19 @@
 		E4EFD53C93A688AF8CD10856 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97AEF0582164D3D600867943 /* EnRouteApi.framework */,
+				97AEF0542164D36C00867943 /* libc++.tbd */,
+				97AEF0522164D35300867943 /* libz.tbd */,
+				97AEF0502164D33800867943 /* AddressBook.framework */,
+				97AEF04E2164D32D00867943 /* CFNetwork.framework */,
+				97AEF04C2164D32400867943 /* CoreGraphics.framework */,
+				97AEF04A2164D30100867943 /* CoreLocation.framework */,
+				97AEF0482164D2F100867943 /* CoreMotion.framework */,
+				97AEF0462164D2E200867943 /* EventKit.framework */,
+				97AEF0442164D2D700867943 /* MessageUI.framework */,
+				97AEF0422164D2CC00867943 /* Security.framework */,
+				97AEF0402164D2C100867943 /* UIKit.framework */,
+				97AEF03E2164D2B200867943 /* SystemConfiguration.framework */,
 				80579EF9371065446D9069DE /* Pods_UDeli.framework */,
 				5B3CA2331CF379E67D532213 /* Pods_UDeliTests.framework */,
 				7431641FDE90ECAFA4026927 /* Pods_UDeliUITests.framework */,
@@ -839,6 +891,10 @@
 				CODE_SIGN_ENTITLEMENTS = UDeli/UDeli.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6TYXA32383;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = UDeli/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -860,6 +916,10 @@
 				CODE_SIGN_ENTITLEMENTS = UDeli/UDeli.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6TYXA32383;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = UDeli/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
