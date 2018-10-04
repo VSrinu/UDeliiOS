@@ -74,4 +74,26 @@ struct OrdersModel {
             }
         }
     }
+    
+    // Get My Completed Orders
+    static func getMyCompletedOrdersDetails(acceptedby: Int, merchantId:Int, completion: @escaping (ConnectionResultAsArray) -> ()) {
+        Internet.isAvailable { (status, message) in
+            if status {
+                let merchantPredicate =  NSPredicate(format: "merchantid == \(merchantId)")
+                let listPredicate = NSPredicate(format: "status = \(OrderStatusType.Delivered.rawValue) || status = \(OrderStatusType.InProgress.rawValue)")
+                let acceptedPredicate = NSPredicate(format: "acceptedby = \(acceptedby)")
+                let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [merchantPredicate,listPredicate,acceptedPredicate])
+                tOrders.read(with: predicate) { (result, error) in
+                    if let err = error {
+                        completion(.failure(err.localizedDescription))
+                    } else if let items = result?.items {
+                        let response = items as NSArray
+                        response.count != 0 ? completion(.success(response)) : completion(.failure("No Orders to deliver."))
+                    }
+                }
+            } else {
+                completion(.failure(message))
+            }
+        }
+    }
 }

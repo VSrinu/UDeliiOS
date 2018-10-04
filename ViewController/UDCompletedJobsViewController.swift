@@ -13,6 +13,7 @@ class UDCompletedJobsViewController: UIViewController {
     @IBOutlet weak var toolBar: Toolbar!
     fileprivate var backButton: IconButton!
     override func viewDidLoad() {
+        super.viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
         self.loadInitialData()
     }
