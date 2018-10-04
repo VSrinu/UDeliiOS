@@ -34,7 +34,7 @@ class UDSidePanelViewController: UIViewController {
     }
     
     func loadTableView() {
-        self.settingsArray = [["icon": "ic_settings", "title": "Settings"],["icon": "ic_myJob", "title": "My Orders"],["icon": "ic_share", "title": "Share"], ["icon": "ic_feedBack", "title": "Feedback"], ["icon": "ic_aboutUs", "title": "About Us"], ["icon": "ic_logout", "title": "Log Out"]]
+        self.settingsArray = [["icon": "ic_settings", "title": "Settings"],["icon": "ic_myJob", "title": "My Orders"],["icon": "ic_completedJobs", "title": "Completed Jobs"],["icon": "ic_share", "title": "Share"], ["icon": "ic_feedBack", "title": "Feedback"], ["icon": "ic_aboutUs", "title": "About Us"], ["icon": "ic_logout", "title": "Log Out"]]
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 43
         self.tableView.tableFooterView = UIView()
@@ -94,12 +94,14 @@ extension UDSidePanelViewController: UITableViewDataSource, UITableViewDelegate 
             let viewController = storyboard.instantiateViewController(withIdentifier: "UDMyOrdersViewController") as! UDMyOrdersViewController
             self.navigationController?.pushViewController(viewController, animated: true)
         case 2:
-            print("Share")
+            print("completed jobs")
         case 3:
-            print("Feedback")
+            print("share")
         case 4:
-            print("about us")
+            print("Feedback")
         case 5:
+            print("About Us")
+        case 6:
             getLogoutAlert()
         default:
             break
