@@ -94,7 +94,9 @@ extension UDSidePanelViewController: UITableViewDataSource, UITableViewDelegate 
             let viewController = storyboard.instantiateViewController(withIdentifier: "UDMyOrdersViewController") as! UDMyOrdersViewController
             self.navigationController?.pushViewController(viewController, animated: true)
         case 2:
-            print("completed jobs")
+            let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "UDCompletedJobsViewController") as! UDCompletedJobsViewController
+            self.navigationController?.pushViewController(viewController, animated: true)
         case 3:
             print("share")
         case 4:

@@ -1602,7 +1602,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ckR-oi-Tzo">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ckR-oi-Tzo">
                                                     <rect key="frame" x="15" y="9" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="7rK-qE-II5"/>
@@ -2976,6 +2976,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xl0-jz-wcK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1385" y="2654"/>
+        </scene>
+        <!--Completed Jobs View Controller-->
+        <scene sceneID="gyQ-Wl-js3">
+            <objects>
+                <viewController storyboardIdentifier="UDCompletedJobsViewController" id="8Ki-iV-2B4" customClass="UDCompletedJobsViewController" customModule="UDeli" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uAK-bF-jed">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIj-1e-mDc" customClass="Toolbar" customModule="Material">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.72549019609999998" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="1as-AM-Qco"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Job Details"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" red="0.0" green="0.72549019609999998" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UIj-1e-mDc" firstAttribute="top" secondItem="cE0-bx-KUU" secondAttribute="top" id="KDH-yR-V85"/>
+                            <constraint firstItem="UIj-1e-mDc" firstAttribute="leading" secondItem="cE0-bx-KUU" secondAttribute="leading" id="auh-do-VXj"/>
+                            <constraint firstItem="UIj-1e-mDc" firstAttribute="trailing" secondItem="cE0-bx-KUU" secondAttribute="trailing" id="hCp-oG-okD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cE0-bx-KUU"/>
+                    </view>
+                    <connections>
+                        <outlet property="toolBar" destination="UIj-1e-mDc" id="99p-Gu-8WF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eFI-l8-wiV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-639" y="2653"/>
         </scene>
     </scenes>
     <resources>

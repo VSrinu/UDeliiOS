@@ -23,6 +23,7 @@
 		97AEF0552164D36C00867943 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0542164D36C00867943 /* libc++.tbd */; };
 		97AEF0592164D3D600867943 /* EnRouteApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0582164D3D600867943 /* EnRouteApi.framework */; };
 		97AEF05B2165049000867943 /* EnRouteWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEF05A2165048F00867943 /* EnRouteWrapper.swift */; };
+		97AEF05D2166453D00867943 /* UDCompletedJobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEF05C2166453D00867943 /* UDCompletedJobsViewController.swift */; };
 		97CB645B215A761700168FF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CB645A215A761700168FF7 /* AppDelegate.swift */; };
 		97CB6460215A761700168FF7 /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97CB645E215A761700168FF7 /* iPhoneStoryboard.storyboard */; };
 		97CB6463215A761700168FF7 /* UDeli.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97CB6461215A761700168FF7 /* UDeli.xcdatamodeld */; };
@@ -107,6 +108,7 @@
 		97AEF0542164D36C00867943 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		97AEF0582164D3D600867943 /* EnRouteApi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnRouteApi.framework; sourceTree = "<group>"; };
 		97AEF05A2165048F00867943 /* EnRouteWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnRouteWrapper.swift; sourceTree = "<group>"; };
+		97AEF05C2166453D00867943 /* UDCompletedJobsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDCompletedJobsViewController.swift; sourceTree = "<group>"; };
 		97CB6457215A761700168FF7 /* UDeli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDeli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CB645A215A761700168FF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97CB645F215A761700168FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				97CB64B1215A85D800168FF7 /* UDSignUpMobileViewController.swift */,
 				97CB64A9215A85D500168FF7 /* UDSignUpViewController.swift */,
 				97CB64AA215A85D500168FF7 /* UDWelcomeViewController.swift */,
+				97AEF05C2166453D00867943 /* UDCompletedJobsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				97CB64DB215A860E00168FF7 /* UDCustomViewControllerDelegates.swift in Sources */,
 				97CB64D7215A860E00168FF7 /* ConstantTools.swift in Sources */,
 				97CB64C2215A85DA00168FF7 /* UDSignUpMobileViewController.swift in Sources */,
+				97AEF05D2166453D00867943 /* UDCompletedJobsViewController.swift in Sources */,
 				97CB64C6215A85DA00168FF7 /* UDLoginViewController.swift in Sources */,
 				97CB64C5215A85DA00168FF7 /* UDMerchantSelectionViewController.swift in Sources */,
 				97CB64DE215A860E00168FF7 /* DesignableImageView.swift in Sources */,
