@@ -39,6 +39,11 @@ struct OrdersModel {
                 if let newItem = itemDict.mutableCopy() as? NSMutableDictionary {
                     newItem["acceptedby"] = acceptedby
                     newItem["status"] = oderStatus
+                    if oderStatus == String(OrderStatusType.Accepted.rawValue) {
+                        newItem["accepteddatetime"] = Date()
+                    } else if oderStatus == String(OrderStatusType.Delivered.rawValue) {
+                        newItem["delivereddatetime"] = Date()
+                    }
                     tOrders.update(newItem as [NSObject: AnyObject], completion: { (result, error) -> Void in
                         if let err = error {
                             completion(.failure(err.localizedDescription))

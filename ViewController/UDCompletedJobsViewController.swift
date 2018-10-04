@@ -28,8 +28,34 @@ class UDCompletedJobsViewController: UIViewController {
     }
     
     func loadInitialData() {
+        let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
+        userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
         prepareBackButton()
         prepareToolbar()
+        getMyCompletedJobs()
+    }
+    
+    func getMyCompletedJobs() {
+        let merchantId = userInfoDictionary.object(forKey: "merchantid") as? Int ?? 0
+        let userId = userInfoDictionary.object(forKey: "carrierid") as? Int ?? 0
+        OrdersModel.getMyCompletedOrdersDetails(acceptedby: userId, merchantId: merchantId) { connectionResult in
+            DispatchQueue.main.async(execute: {() -> Void in
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
+                //self.refreshControl.endRefreshing()
+                switch connectionResult {
+                case .success(let data):
+                    print(data)
+                    //self.myJobsArray = data
+                    //self.noDataLabel.isHidden = true
+                    //self.tableView.isHidden = false
+                    //self.tableView.reloadData()
+                case .failure(let error):
+                    //self.noDataLabel.isHidden = false
+                    //self.tableView.isHidden = true
+                    self.view.makeToast(error, position: .top)
+                }
+            })
+        }
     }
 }
 
