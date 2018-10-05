@@ -11,7 +11,11 @@ import Material
 
 class UDCompletedJobsViewController: UIViewController {
     @IBOutlet weak var toolBar: Toolbar!
+    //@IBOutlet weak var tableView: UITableView!
+    //@IBOutlet weak var noDataLabel: UILabel!
     fileprivate var backButton: IconButton!
+    //let refreshControl = UIRefreshControl()
+    var myJobsArray = NSArray()
     override func viewDidLoad() {
         super.viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
@@ -27,13 +31,26 @@ class UDCompletedJobsViewController: UIViewController {
         return .lightContent
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        //getMyCompletedJobs()
+    }
+    
     func loadInitialData() {
         let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
         userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
         prepareBackButton()
         prepareToolbar()
-        getMyCompletedJobs()
+        //self.tableView.rowHeight = UITableView.automaticDimension
+        //self.tableView.estimatedRowHeight = 43
+        //self.tableView.tableFooterView = UIView()
+        //refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        //self.tableView.addSubview(refreshControl)
+        //ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view,text: "fetching your job details")
     }
+    
+    /*@objc func didPullToRefresh() {
+        getMyCompletedJobs()
+    }*/
     
     func getMyCompletedJobs() {
         let merchantId = userInfoDictionary.object(forKey: "merchantid") as? Int ?? 0
@@ -44,8 +61,8 @@ class UDCompletedJobsViewController: UIViewController {
                 //self.refreshControl.endRefreshing()
                 switch connectionResult {
                 case .success(let data):
-                    print(data)
-                    //self.myJobsArray = data
+                    self.myJobsArray = data
+                    print(self.myJobsArray)
                     //self.noDataLabel.isHidden = true
                     //self.tableView.isHidden = false
                     //self.tableView.reloadData()
