@@ -8,6 +8,7 @@
 
 import UIKit
 import SideMenu
+import EnRouteApi
 
 class UDSidePanelViewController: UIViewController {
     @IBOutlet weak var userName: UILabel!
@@ -53,6 +54,7 @@ class UDSidePanelViewController: UIViewController {
     }
     
     func tapToLogout() {
+        EnRouteWrapper.instance.manager()?.logout(GlyEnRouteConstants.logout_REASON_USER_ACTION())
         resetUserValues()
         ConstantTools.sharedConstantTool.prepareDeviceInformation()
         ConstantTools.sharedConstantTool.getCurrentLocation()

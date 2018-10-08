@@ -11,6 +11,7 @@ import Material
 import SideMenu
 import FoldingCell
 import CoreLocation
+import EnRouteApi
 
 class UDLandingViewController: UIViewController {
     @IBOutlet weak var toolBar: Toolbar!
@@ -25,11 +26,14 @@ class UDLandingViewController: UIViewController {
     var cellHeights: [CGFloat] = []
     var jobListArray = NSArray()
     var distancefromstore = Double()
+    var glympseUsername = String()
+    var glympsePwd = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
         loadInitialData()
         setupSideMenu()
+        getGlympseUserDetails()
     }
     
     // MARK:- View Lifecycle
@@ -38,6 +42,10 @@ class UDLandingViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        EnRouteWrapper.instance.manager()?.overrideLoggingLevels(GlyCoreConstants.none(), debugLogLevel: GlyCoreConstants.info())
+        EnRouteWrapper.instance.manager()?.add(self)
+        EnRouteWrapper.instance.manager()?.setAuthenticationMode(GlyEnRouteConstants.auth_MODE_CREDENTIALS())
+        EnRouteWrapper.instance.manager()?.start()
         getUserData()
         let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
         userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
@@ -320,5 +328,52 @@ extension UDLandingViewController: UITableViewDataSource, UITableViewDelegate {
         let jobDict:NSDictionary = jobListArray[button.tag] as! NSDictionary
         viewController.jobDict = jobDict
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+// MARK:- Glympse
+extension UDLandingViewController {
+    func getGlympseUserDetails()  {
+        glympseUsername = userInfoDictionary.object(forKey: "glympseusername") as? String ?? ""
+        glympsePwd = userInfoDictionary.object(forKey: "glympsepwd") as? String ?? ""
+    }
+}
+
+// MARK:- GlyListener
+extension UDLandingViewController: GlyListener {
+    func eventsOccurred(_ source: GlySource!, listener: Int32, events: Int32, param1: GlyCommon!, param2: GlyCommon!) {
+        if GlyEnRouteEvents.listener_ENROUTE_MANAGER() == listener {
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_STARTED() ) {
+                print("En Route Event: ENROUTE_MANAGER_STARTED")
+            }
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_AUTHENTICATION_NEEDED() ) {
+                print("En Route Event: ENROUTE_MANAGER_AUTHENTICATION_NEEDED")
+                handleLogin()
+            }
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_LOGIN_COMPLETED() ) {
+                print("En Route Event: ENROUTE_MANAGER_LOGIN_COMPLETED")
+            }
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_SYNCED() ) {
+                print("En Route Event: ENROUTE_MANAGER_SYNCED")
+            }
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_LOGGED_OUT() ) {
+                print("En Route Event: ENROUTE_MANAGER_LOGGED_OUT")
+            }
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_STOPPED() ) {
+                print("En Route Event: ENROUTE_MANAGER_STOPPED")
+                handleStopped()
+            }
+        }
+    }
+    
+    func handleStopped() {
+        EnRouteWrapper.instance.manager()?.overrideLoggingLevels(GlyCoreConstants.none(), debugLogLevel: GlyCoreConstants.info())
+        EnRouteWrapper.instance.manager()?.add(self)
+        EnRouteWrapper.instance.manager()?.setAuthenticationMode(GlyEnRouteConstants.auth_MODE_CREDENTIALS())
+        EnRouteWrapper.instance.manager()?.start()
+    }
+    
+    func handleLogin() {
+        EnRouteWrapper.instance.manager()?.login(withCredentials: glympseUsername, password: glympsePwd)
     }
 }
