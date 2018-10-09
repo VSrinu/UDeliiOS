@@ -9,12 +9,16 @@
 import UIKit
 import Material
 import MapKit
+import EnRouteApi
 
-class UDMyJobDetailsViewController: UIViewController {
+class UDMyJobDetailsViewController: UIViewController, GlyListener {
     @IBOutlet weak var toolBar: Toolbar!
     @IBOutlet weak var tableView: UITableView!
     fileprivate var backButton: IconButton!
     var myJobDict = NSDictionary()
+    var glympseUsername = String()
+    var glympsePwd = String()
+    var glympsetaskid = Int()
     override func viewDidLoad() {
         super.viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
@@ -30,6 +34,18 @@ class UDMyJobDetailsViewController: UIViewController {
         return .lightContent
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        getGlympseUserDetails()
+        glympsetaskid = myJobDict.object(forKey: "glympsetaskid") as? Int ?? 0
+        EnRouteWrapper.instance.manager()?.add(self)
+        EnRouteWrapper.instance.manager()?.getTaskManager().add(self)
+    }
+    
+    func getGlympseUserDetails()  {
+        glympseUsername = userInfoDictionary.object(forKey: "glympseusername") as? String ?? ""
+        glympsePwd = userInfoDictionary.object(forKey: "glympsepwd") as? String ?? ""
+    }
+    
     func loadInitialData() {
         prepareBackButton()
         prepareToolbar()
@@ -37,6 +53,31 @@ class UDMyJobDetailsViewController: UIViewController {
         self.tableView.estimatedRowHeight = 43
         self.tableView.tableFooterView = UIView()
         self.tableView.reloadData()
+    }
+    
+    func eventsOccurred(_ source: GlySource!, listener: Int32, events: Int32, param1: GlyCommon!, param2: GlyCommon!) {
+        if GlyEnRouteEvents.listener_ENROUTE_MANAGER() == listener {
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_LOGGED_OUT() ) {
+                print("not login")
+            }
+        }
+        else if GlyEnRouteEvents.listener_TASKS() == listener {
+            if 0 != ( events & GlyEnRouteEvents.tasks_TASK_LIST_CHANGED() ) {
+                print("update Task")
+            }
+            if 0 != ( events & GlyEnRouteEvents.tasks_TASK_STARTED() ) {
+                print("update Task")
+            }
+            if 0 != ( events & GlyEnRouteEvents.tasks_TASK_START_FAILED() ) {
+                print("update Task")
+            }
+            if 0 != ( events & GlyEnRouteEvents.tasks_OPERATION_COMPLETED() ) {
+                print("update Task")
+            }
+            if 0 != ( events & GlyEnRouteEvents.tasks_OPERATION_COMPLETION_FAILED() ) {
+                print("update Task")
+            }
+        }
     }
     
     // MARK:- Button Actions
@@ -67,27 +108,29 @@ class UDMyJobDetailsViewController: UIViewController {
     
     @objc
     fileprivate func tapToAcceptJobs(button: UIButton) {
+        if glympsetaskid == 0 {
+            self.present(UIAlertController.alertWithTitle(title: "", message: "Your job in verify process. Please try later.", buttonTitle: "OK", handler: { action in self.updateLandingPage()}), animated: true)
+            return
+        }
+        let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager()?.findTask(byId: Int64(glympsetaskid)))!
+        updateStartTask(task:task)
+    }
+    
+    func updateStartTask(task:GlyTask) {
+        EnRouteWrapper.instance.manager()?.getTaskManager().startTask(with: task)
+        updateLiveTask(task:task)
+    }
+    
+    func updateLiveTask(task:GlyTask) {
+        EnRouteWrapper.instance.manager()?.getTaskManager().setTaskPhase(task, phase: GlyEnRouteConstants.phase_PROPERTY_LIVE())
         self.updateOrder(status: String(OrderStatusType.InProgress.rawValue))
-        //let address = myJobDict.object(forKey: "address") as? String ?? ""
-        //let city = myJobDict.object(forKey: "city") as? String ?? ""
-        //let state = myJobDict.object(forKey: "state") as? String ?? ""
-        //let zip = myJobDict.object(forKey: "zip") as? String ?? ""
-        //let fullAddress = "\(address)\(city),\(state),\(zip)"
-        /*let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(fullAddress) { (placemarks, error) in
-            if error == nil {
-                if let placemark = placemarks?[0] {
-                    let location = placemark.location!
-                    let customerNmae = self.myJobDict.object(forKey: "customername") as? String ?? ""
-                    let customerEmailId = self.myJobDict.object(forKey: "email") as? String ?? ""
-                    return
-                }
-            }
-        }*/
     }
     
     @objc
     fileprivate func tapToComplete(button: UIButton) {
+        let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager()?.findTask(byId: Int64(glympsetaskid)))!
+        let operation = task.getOperation()
+        EnRouteWrapper.instance.manager()?.getTaskManager().complete(operation)
         updateOrder(status: String(OrderStatusType.Delivered.rawValue))
     }
     
