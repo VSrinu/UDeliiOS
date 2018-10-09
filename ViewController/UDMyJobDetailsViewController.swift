@@ -66,13 +66,13 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
                 print("update Task")
             }
             if 0 != ( events & GlyEnRouteEvents.tasks_TASK_STARTED() ) {
-                print("update Task")
+                updateLiveTask()
             }
             if 0 != ( events & GlyEnRouteEvents.tasks_TASK_START_FAILED() ) {
-                print("update Task")
+                self.present(UIAlertController.alertWithTitle(title: "", message: "unable to start job. Please contact merchant for the details.", cancelButtonTitle: "OK"), animated: true)
             }
             if 0 != ( events & GlyEnRouteEvents.tasks_OPERATION_COMPLETED() ) {
-                self.updateOrder(status: String(OrderStatusType.InProgress.rawValue))
+                print("complete Task")
             }
             if 0 != ( events & GlyEnRouteEvents.tasks_OPERATION_COMPLETION_FAILED() ) {
                 print("update Task")
@@ -118,11 +118,12 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
     
     func updateStartTask(task:GlyTask) {
         EnRouteWrapper.instance.manager()?.getTaskManager().startTask(with: task)
-        updateLiveTask(task:task)
     }
     
-    func updateLiveTask(task:GlyTask) {
+    func updateLiveTask() {
+        let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager()?.findTask(byId: Int64(glympsetaskid)))!
         EnRouteWrapper.instance.manager()?.getTaskManager().setTaskPhase(task, phase: GlyEnRouteConstants.phase_PROPERTY_LIVE())
+        self.updateOrder(status: String(OrderStatusType.InProgress.rawValue))
     }
     
     @objc
@@ -130,7 +131,7 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
         let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager()?.findTask(byId: Int64(glympsetaskid)))!
         let operation = task.getOperation()
         EnRouteWrapper.instance.manager()?.getTaskManager().complete(operation)
-        updateOrder(status: String(OrderStatusType.Delivered.rawValue))
+        self.updateOrder(status: String(OrderStatusType.Delivered.rawValue))
     }
     
     func updateOrder(status: String) {
