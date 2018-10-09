@@ -72,7 +72,7 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
                 print("update Task")
             }
             if 0 != ( events & GlyEnRouteEvents.tasks_OPERATION_COMPLETED() ) {
-                print("update Task")
+                self.updateOrder(status: String(OrderStatusType.InProgress.rawValue))
             }
             if 0 != ( events & GlyEnRouteEvents.tasks_OPERATION_COMPLETION_FAILED() ) {
                 print("update Task")
@@ -123,7 +123,6 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
     
     func updateLiveTask(task:GlyTask) {
         EnRouteWrapper.instance.manager()?.getTaskManager().setTaskPhase(task, phase: GlyEnRouteConstants.phase_PROPERTY_LIVE())
-        self.updateOrder(status: String(OrderStatusType.InProgress.rawValue))
     }
     
     @objc
