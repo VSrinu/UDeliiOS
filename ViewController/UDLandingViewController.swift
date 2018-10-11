@@ -145,14 +145,21 @@ class UDLandingViewController: UIViewController {
                 switch connectionResult {
                 case .success(let data):
                     let orderlistArray = data
+                    var distanceSortArray = NSArray()
                     let userDistance = self.distancefromstore.milesToKilometers()
                     if userDistance == 0.0 {
-                        self.jobListArray = orderlistArray
+                        self.noDataLabel.isHidden = false
+                        self.noDataLabel.text = "Update your profile distance location to get Jobs"
+                        self.tableView.isHidden = true
                     } else {
                         let predicate = NSPredicate(format: "storetocustlocation <= %f", userDistance)
                         let newList = orderlistArray.filtered(using: predicate)
-                        self.jobListArray = newList as NSArray
+                        distanceSortArray = newList as NSArray
                     }
+                    let todaysDate = NSDate()
+                    let datePredicate = NSPredicate(format: "preferreddeliverytime >= %@", todaysDate)
+                    let dateNewList = distanceSortArray.filtered(using: datePredicate)
+                    self.jobListArray = dateNewList as NSArray
                     let descriptor: NSSortDescriptor =  NSSortDescriptor(key: "createdAt", ascending: true, selector: nil)
                     self.jobListArray = self.jobListArray.sortedArray(using: [descriptor]) as NSArray
                     self.tableReload(jobListArray:self.jobListArray)
