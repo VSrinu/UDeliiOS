@@ -1,5 +1,0 @@
-#include "core/GlympseKit/GlympseKit.h"
-#include "enroute/objc/GlyListener.h"
-#include "enroute/objc/GlySource.h"
-#include "enroute/objc/GlyCommonSource.h"
-#include "enroute/objc/GlyEnRouteApi.h"
