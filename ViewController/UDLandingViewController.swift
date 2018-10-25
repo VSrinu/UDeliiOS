@@ -156,10 +156,10 @@ class UDLandingViewController: UIViewController {
                         let newList = orderlistArray.filtered(using: predicate)
                         distanceSortArray = newList as NSArray
                     }
-                    let todaysDate = NSDate()
-                    let datePredicate = NSPredicate(format: "preferreddeliverytime >= %@", todaysDate)
-                    let dateNewList = distanceSortArray.filtered(using: datePredicate)
-                    self.jobListArray = dateNewList as NSArray
+                    //let todaysDate = NSDate()
+                    //let datePredicate = NSPredicate(format: "preferreddeliverytime >= %@", todaysDate)
+                    //let dateNewList = distanceSortArray.filtered(using: datePredicate)
+                    self.jobListArray = distanceSortArray as NSArray
                     let descriptor: NSSortDescriptor =  NSSortDescriptor(key: "createdAt", ascending: true, selector: nil)
                     self.jobListArray = self.jobListArray.sortedArray(using: [descriptor]) as NSArray
                     self.tableReload(jobListArray:self.jobListArray)
