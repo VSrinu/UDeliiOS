@@ -25,7 +25,6 @@ class UDLandingViewController: UIViewController {
     let kOpenCellHeight: CGFloat = 488
     var cellHeights: [CGFloat] = []
     var jobListArray = NSArray()
-    var distancefromstore = Double()
     var glympseUsername = String()
     var glympsePwd = String()
     override func viewDidLoad() {
@@ -49,7 +48,6 @@ class UDLandingViewController: UIViewController {
         getUserData()
         let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
         userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
-        distancefromstore = Double(userInfoDictionary.object(forKey: "distancefromstore") as? Int ?? 0)
         checkProfileUpdate()
         getJobList()
     }
@@ -144,22 +142,7 @@ class UDLandingViewController: UIViewController {
                 self.refreshControl.endRefreshing()
                 switch connectionResult {
                 case .success(let data):
-                    let orderlistArray = data
-                    var distanceSortArray = NSArray()
-                    let userDistance = self.distancefromstore.milesToKilometers()
-                    if userDistance == 0.0 {
-                        self.noDataLabel.isHidden = false
-                        self.noDataLabel.text = "Update your profile distance location to get Jobs"
-                        self.tableView.isHidden = true
-                    } else {
-                        let predicate = NSPredicate(format: "storetocustlocation <= %f", userDistance)
-                        let newList = orderlistArray.filtered(using: predicate)
-                        distanceSortArray = newList as NSArray
-                    }
-                    //let todaysDate = NSDate()
-                    //let datePredicate = NSPredicate(format: "preferreddeliverytime >= %@", todaysDate)
-                    //let dateNewList = distanceSortArray.filtered(using: datePredicate)
-                    self.jobListArray = distanceSortArray as NSArray
+                    self.jobListArray = data as NSArray
                     let descriptor: NSSortDescriptor =  NSSortDescriptor(key: "createdAt", ascending: true, selector: nil)
                     self.jobListArray = self.jobListArray.sortedArray(using: [descriptor]) as NSArray
                     self.tableReload(jobListArray:self.jobListArray)
