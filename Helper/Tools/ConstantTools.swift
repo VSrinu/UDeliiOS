@@ -110,6 +110,20 @@ class ConstantTools: NSObject {
         return dateFormate
     }
     
+    func mothFormate(date:Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM"
+        let dateFormate = dateFormatter.string(from: date)
+        return dateFormate
+    }
+    
+    func dayFormate(date:Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd"
+        let dateFormate = dateFormatter.string(from: date)
+        return dateFormate
+    }
+    
     func timeFormate(date:Date) -> String {
         let timeFormate = DateFormatter()
         timeFormate.dateFormat = "h:mm a"

@@ -74,36 +74,21 @@ class UDTableViewCell: TableViewCell {
     @IBOutlet weak var label: UILabel!
 }
 
-class UDLandingCell: FoldingCell {
-    @IBOutlet var jobId: UILabel!
-    @IBOutlet weak var deliveryDate: UILabel!
-    @IBOutlet weak var jobTitle: UILabel!
-    @IBOutlet weak var noOfBags: UILabel!
-    @IBOutlet weak var bagsKG: UILabel!
-    @IBOutlet weak var customerName: UILabel!
-    @IBOutlet weak var address: UILabel!
+class UDLandingCell: TableViewCell {
+    @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var jobIdLabel: UILabel!
     @IBOutlet weak var deliveryTime: UILabel!
-    @IBOutlet weak var envelopDeliveryDate: UILabel!
-    @IBOutlet weak var requestedDeadline: UILabel!
-    @IBOutlet weak var orderDetails: UILabel!
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var viewDetailsBtn: UIButton!
-    @IBOutlet weak var requestedDeadLineLabel: UILabel!
-    var number: Int = 0 {
-        didSet {
-            
-        }
-    }
+    @IBOutlet weak var deliveryMonth: UILabel!
+    @IBOutlet weak var deliveryDate: UILabel!
+    @IBOutlet weak var jobDetails: UILabel!
+    @IBOutlet weak var distanceFromStore: UILabel!
+    @IBOutlet weak var distanceFromeAddress: UILabel!
+    @IBOutlet weak var activeCarriers: UILabel!
     
     override func awakeFromNib() {
-        foregroundView.layer.cornerRadius = 10
-        foregroundView.layer.masksToBounds = true
+        cellView.layer.cornerRadius = 10
+        cellView.layer.masksToBounds = true
         super.awakeFromNib()
-    }
-    
-    override func animationDuration(_ itemIndex: NSInteger, type _: FoldingCell.AnimationType) -> TimeInterval {
-        let durations = [0.26, 0.2, 0.2]
-        return durations[itemIndex]
     }
 }
 

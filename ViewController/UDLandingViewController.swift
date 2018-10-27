@@ -9,7 +9,6 @@
 import UIKit
 import Material
 import SideMenu
-import FoldingCell
 import CoreLocation
 import EnRouteApi
 
@@ -21,9 +20,6 @@ class UDLandingViewController: UIViewController {
     fileprivate var notificationButton: IconButton!
     fileprivate var moreButton: IconButton!
     let refreshControl = UIRefreshControl()
-    let kCloseCellHeight: CGFloat = 179
-    let kOpenCellHeight: CGFloat = 488
-    var cellHeights: [CGFloat] = []
     var jobListArray = NSArray()
     var glympseUsername = String()
     var glympsePwd = String()
@@ -114,7 +110,6 @@ class UDLandingViewController: UIViewController {
                         self.getUserAlert()
                         self.noDataLabel.isHidden = false
                         self.noDataLabel.text = "Your Merchant have not approved to start the job."
-                        self.tableView.isHidden = true
                         return
                     }
                 case .failure(let error):
@@ -148,7 +143,6 @@ class UDLandingViewController: UIViewController {
                     self.tableReload(jobListArray:self.jobListArray)
                 case .failure(let error):
                     self.noDataLabel.isHidden = false
-                    self.tableView.isHidden = true
                     self.view.makeToast(error, position: .top)
                 }
             })
@@ -158,7 +152,6 @@ class UDLandingViewController: UIViewController {
     func tableReload(jobListArray:NSArray) {
         if jobListArray.count == 0 {
             self.noDataLabel.isHidden = false
-            self.tableView.isHidden = true
         } else {
             self.setup()
             self.noDataLabel.isHidden = true
@@ -168,8 +161,6 @@ class UDLandingViewController: UIViewController {
     }
     
     private func setup() {
-        cellHeights = Array(repeating: kCloseCellHeight, count: jobListArray.count)
-        self.tableView.estimatedRowHeight = kCloseCellHeight
         self.tableView.backgroundColor = #colorLiteral(red: 0, green: 0.7254901961, blue: 0.8980392157, alpha: 0.09754922945)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.tableFooterView = UIView()
@@ -222,100 +213,50 @@ extension UDLandingViewController {
 
 // MARK:- UITableViewDataSource
 extension UDLandingViewController: UITableViewDataSource, UITableViewDelegate {
+    internal func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobListArray.count
     }
     
-    internal func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard case let cell as UDLandingCell = cell else {
-            return
-        }
-        cell.backgroundColor = .clear
-        cell.requestedDeadline.isHidden = true
-        cell.requestedDeadLineLabel.isHidden = true
-        cellHeights[indexPath.row] == kCloseCellHeight ? cell.unfold(false, animated: false, completion: nil) : cell.unfold(true, animated: false, completion: nil)
-        let jobDict:NSDictionary = jobListArray[indexPath.row] as! NSDictionary
-        let orderId = jobDict.object(forKey: "orderid") as? Int ?? 0
-        cell.jobId.text = "JOB ID \n\(orderId)"
-        let preferreddeliverytime = jobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
-        let deliverDate = ConstantTools.sharedConstantTool.dateFormate(date: preferreddeliverytime)
-        cell.deliveryDate.text = deliverDate
-        cell.envelopDeliveryDate.text = deliverDate
-        let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
-        cell.deliveryTime.text = time
-        let customerName = jobDict.object(forKey: "customername") as? String ?? ""
-        cell.jobTitle.text = customerName
-        cell.customerName.text = customerName
-        let numberofbags = jobDict.object(forKey: "numberofbags") as? Int ?? 0
-        cell.noOfBags.text = "\(numberofbags)"
-        let totalweight = jobDict.object(forKey: "totalweight") as? Int ?? 0
-        cell.bagsKG.text = "\(totalweight) KG"
-        let city = jobDict.object(forKey: "city") as? String ?? ""
-        let state = jobDict.object(forKey: "state") as? String ?? ""
-        let zip = jobDict.object(forKey: "zip") as? String ?? ""
-        let address = "\(city),\(state),\(zip)"
-        cell.address.text = address
-        let totalitems = jobDict.object(forKey: "totalitems") as? Int ?? 0
-        let perishable = jobDict.object(forKey: "perishable") as? Bool ?? false
-        let fragile = jobDict.object(forKey: "fragile") as? Bool ?? false
-        var isperishable = String()
-        var isfragile = String()
-        perishable == true ? (isperishable = "YES") : (isperishable = "NO")
-        fragile == true ? (isfragile = "YES") : (isfragile = "NO")
-        cell.orderDetails.text = "Total items \(totalitems) Fragile: \(isfragile) Perishable: \(isperishable)"
-        ConstantTools.sharedConstantTool.getCoordinate(address: address, mapView: cell.mapView,customerName:address)
-        cell.viewDetailsBtn.tag = indexPath.row
-        cell.viewDetailsBtn.addTarget(self, action: #selector(tapToNavigateToViewDetails(button:)), for: .touchUpInside)
-    }
-    
-    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! FoldingCell
-        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
-        cell.durationsForExpandedState = durations
-        cell.durationsForCollapsedState = durations
-        return cell
-    }
-    
-    internal func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeights[indexPath.row]
-    }
-    
     internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        if section == 0{
+            return 6
+        }
+        return 0.0001
     }
     
     internal func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.0001
     }
     
-    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
-        if cell.isAnimating() {
-            return
-        }
-        var duration = 0.0
-        let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
-        if cellIsCollapsed {
-            cellHeights[indexPath.row] = kOpenCellHeight
-            cell.unfold(true, animated: true, completion: nil)
-            duration = 0.5
-        } else {
-            cellHeights[indexPath.row] = kCloseCellHeight
-            cell.unfold(false, animated: true, completion: nil)
-            duration = 0.8
-        }
-        
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }, completion: nil)
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "jobCell", for: indexPath) as! UDLandingCell
+        let jobDict:NSDictionary = jobListArray[indexPath.row] as! NSDictionary
+        let orderId = jobDict.object(forKey: "orderid") as? Int ?? 0
+        cell.jobIdLabel.text = "\(orderId)"
+        let preferreddeliverytime = jobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
+        let deliverDate = ConstantTools.sharedConstantTool.dayFormate(date: preferreddeliverytime)
+        cell.deliveryDate.text = deliverDate
+        let deliverMonth = ConstantTools.sharedConstantTool.mothFormate(date: preferreddeliverytime)
+        cell.deliveryMonth.text = deliverMonth
+        let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
+        cell.deliveryTime.text = time
+        let customerName = jobDict.object(forKey: "customername") as? String ?? ""
+        let city = jobDict.object(forKey: "city") as? String ?? ""
+        let storetocustlocation = jobDict.object(forKey: "storetocustlocation") as? Float ?? 0.0
+        cell.jobDetails.text = "Deliver to \(customerName) at \(city)"
+        cell.distanceFromStore.text = "Frome Store: \(storetocustlocation) Miles"
+        cell.distanceFromeAddress.text = "Frome your Address: 4 Miles"
+        return cell
     }
     
-    @objc
-    fileprivate func tapToNavigateToViewDetails(button: UIButton) {
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "UDJobDetailsViewController") as! UDJobDetailsViewController
-        let jobDict:NSDictionary = jobListArray[button.tag] as! NSDictionary
+        let jobDict:NSDictionary = jobListArray[indexPath.section] as! NSDictionary
         viewController.jobDict = jobDict
         self.navigationController?.pushViewController(viewController, animated: true)
     }
