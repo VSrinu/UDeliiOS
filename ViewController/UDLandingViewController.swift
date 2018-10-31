@@ -152,6 +152,7 @@ class UDLandingViewController: UIViewController {
     func tableReload(jobListArray:NSArray) {
         if jobListArray.count == 0 {
             self.noDataLabel.isHidden = false
+            self.tableView.reloadData()
         } else {
             self.setup()
             self.noDataLabel.isHidden = true
@@ -222,7 +223,7 @@ extension UDLandingViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0{
+        if section == 0 {
             return 6
         }
         return 0.0001
