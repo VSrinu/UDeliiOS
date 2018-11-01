@@ -22,4 +22,5 @@ public var msClientURL = MSClient(applicationURLString: "https://udelimobileapp.
 let tCarrier = msClientURL.table(withName: "tcarrier")
 let tmerchant = msClientURL.table(withName: "tmerchant")
 let tOrders = msClientURL.table(withName: "tOrders")
+let tOrderToCarriers = msClientURL.table(withName: "tOrderToCarriers")
 

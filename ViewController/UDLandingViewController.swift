@@ -247,19 +247,35 @@ extension UDLandingViewController: UITableViewDataSource, UITableViewDelegate {
         cell.deliveryTime.text = time
         let customerName = jobDict.object(forKey: "customername") as? String ?? ""
         let city = jobDict.object(forKey: "city") as? String ?? ""
-        let storetocustlocation = jobDict.object(forKey: "storetocustlocation") as? Float ?? 0.0
         cell.jobDetails.text = "Deliver to \(customerName) at \(city)"
-        cell.distanceFromStore.text = "Frome Store: \(storetocustlocation) Miles"
-        cell.distanceFromeAddress.text = "Frome your Address: 4 Miles"
+        cell.distanceFromStore.text = "Frome Store: \(jobDict.object(forKey: "storetocustlocation") as? Double ?? 0.0) Miles"
+        cell.distanceFromeAddress.text = "Frome your Address: \(jobDict.object(forKey: "carriertocustlocation") as? Double ?? 0.0) Miles"
+        cell.activeCarriers.text = "# of Active Carrires: \(jobDict.object(forKey: "carriercount") as? Int ?? 0)"
         return cell
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "UDJobDetailsViewController") as! UDJobDetailsViewController
         let jobDict:NSDictionary = jobListArray[indexPath.section] as! NSDictionary
-        viewController.jobDict = jobDict
-        self.navigationController?.pushViewController(viewController, animated: true)
+        getOrginalOrders(OrderId:jobDict.object(forKey: "orderid") as? Int ?? 0)
+    }
+    
+    func getOrginalOrders(OrderId: Int) {
+        ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view)
+        OrdersModel.getSingleOrdersDetails(orderid: OrderId) { connectionResult in
+            DispatchQueue.main.async(execute: {() -> Void in
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
+                self.refreshControl.endRefreshing()
+                switch connectionResult {
+                case .success(let data):
+                    let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "UDJobDetailsViewController") as! UDJobDetailsViewController
+                    viewController.jobDict = data
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                case .failure(let error):
+                    self.view.makeToast(error, position: .top)
+                }
+            })
+        }
     }
 }
 

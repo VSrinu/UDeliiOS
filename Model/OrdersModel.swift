@@ -14,10 +14,9 @@ struct OrdersModel {
         Internet.isAvailable { (status, message) in
             if status {
                 let merchantPredicate =  NSPredicate(format: "merchantid == \(merchantId)")
-                let listPredicate = NSPredicate(format: "status = \(OrderStatusType.None.rawValue)")
-                let acceptedPredicate = NSPredicate(format: "acceptedby = nil")
-                let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [merchantPredicate,listPredicate,acceptedPredicate])
-                tOrders.read(with: predicate) { (result, error) in
+                let acceptedPredicate = NSPredicate(format: "carrierid = \(acceptedby)")
+                let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [merchantPredicate,acceptedPredicate])
+                tOrderToCarriers.read(with: predicate) { (result, error) in
                     if let err = error {
                         completion(.failure(err.localizedDescription))
                     } else if let items = result?.items {
@@ -94,6 +93,26 @@ struct OrdersModel {
                     } else if let items = result?.items {
                         let response = items as NSArray
                         response.count != 0 ? completion(.success(response)) : completion(.failure("No Orders to deliver."))
+                    }
+                }
+            } else {
+                completion(.failure(message))
+            }
+        }
+    }
+    
+    // Get Single Orders
+    static func getSingleOrdersDetails(orderid: Int, completion: @escaping (ConnectionResultAsDictionary) -> ()) {
+        Internet.isAvailable { (status, message) in
+            if status {
+                let merchantPredicate =  NSPredicate(format: "orderid == \(orderid)")
+                tOrders.read(with: merchantPredicate) { (result, error) in
+                    if let err = error {
+                        completion(.failure(err.localizedDescription))
+                    } else if let items = result?.items {
+                        let response = items as NSArray
+                        let orders = response.firstObject as? NSDictionary ?? [:]
+                        completion(.success(orders))
                     }
                 }
             } else {
