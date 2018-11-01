@@ -8,6 +8,7 @@
 
 import UIKit
 import Material
+import EnRouteApi
 
 class UDMyOrdersViewController: UIViewController {
     @IBOutlet weak var toolBar: Toolbar!
@@ -32,6 +33,8 @@ class UDMyOrdersViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        EnRouteWrapper.instance.manager()?.add(self)
+        EnRouteWrapper.instance.manager()?.getTaskManager().add(self)
         getMyJobs()
     }
     
@@ -49,7 +52,12 @@ class UDMyOrdersViewController: UIViewController {
     }
     
     @objc func didPullToRefresh() {
+        EnRouteWrapper.instance.manager()?.refresh()
         getMyJobs()
+    }
+    
+    func taskListChanged() {
+        tableView.reloadData()
     }
     
     func getMyJobs() {
@@ -98,12 +106,15 @@ extension UDMyOrdersViewController {
 // MARK:- UITableViewDataSource
 extension UDMyOrdersViewController: UITableViewDataSource, UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myJobsArray.count
+        return (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().count())!
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myJobCell", for: indexPath) as! UDMyJobTableViewCell
-        let myJobDict:NSDictionary = myJobsArray[indexPath.row] as! NSDictionary
+        let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().object(at: indexPath.row))!
+        let predicate = NSPredicate(format: "glympsetaskid == \(task.getId())")
+        let tempArray = myJobsArray.filtered(using: predicate) as NSArray
+        let myJobDict = tempArray.firstObject as? NSDictionary ?? [:]
         let jobId = myJobDict.object(forKey: "orderid") as? Int ?? 0
         let jobTitle = myJobDict.object(forKey: "ordertitle") as? String ?? ""
         let jobDescribtion = myJobDict.object(forKey: "orderdetails") as? String ?? ""
@@ -113,10 +124,41 @@ extension UDMyOrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let myJobDict:NSDictionary = myJobsArray[indexPath.row] as! NSDictionary
+        let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().object(at: indexPath.row))!
+        let predicate = NSPredicate(format: "glympsetaskid == \(task.getId())")
+        let tempArray = myJobsArray.filtered(using: predicate) as NSArray
+        let myJobDict = tempArray.firstObject as? NSDictionary ?? [:]
         let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "UDMyJobDetailsViewController") as! UDMyJobDetailsViewController
         viewController.myJobDict = myJobDict
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+// MARK:- GlyListener
+extension UDMyOrdersViewController: GlyListener {
+    func eventsOccurred(_ source: GlySource!, listener: Int32, events: Int32, param1: GlyCommon!, param2: GlyCommon!) {
+        if GlyEnRouteEvents.listener_ENROUTE_MANAGER() == listener {
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_LOGGED_OUT() ) {
+                print("not giympse details")
+            }
+        }
+        else if GlyEnRouteEvents.listener_TASKS() == listener {
+            if 0 != ( events & GlyEnRouteEvents.tasks_TASK_LIST_CHANGED() ) {
+                taskListChanged()
+            }
+            if 0 != ( events & GlyEnRouteEvents.tasks_TASK_STARTED() ) {
+                taskListChanged()
+            }
+            if 0 != ( events & GlyEnRouteEvents.tasks_TASK_START_FAILED() ) {
+                taskListChanged()
+            }
+            if 0 != ( events & GlyEnRouteEvents.tasks_OPERATION_COMPLETED() ) {
+                taskListChanged()
+            }
+            if 0 != ( events & GlyEnRouteEvents.tasks_OPERATION_COMPLETION_FAILED() ) {
+                taskListChanged()
+            }
+        }
     }
 }
