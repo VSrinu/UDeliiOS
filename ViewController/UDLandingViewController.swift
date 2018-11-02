@@ -248,14 +248,14 @@ extension UDLandingViewController: UITableViewDataSource, UITableViewDelegate {
         let customerName = jobDict.object(forKey: "customername") as? String ?? ""
         let city = jobDict.object(forKey: "city") as? String ?? ""
         cell.jobDetails.text = "Deliver to \(customerName) at \(city)"
-        cell.distanceFromStore.text = "Frome Store: \(jobDict.object(forKey: "storetocustlocation") as? Double ?? 0.0) Miles"
-        cell.distanceFromeAddress.text = "Frome your Address: \(jobDict.object(forKey: "carriertocustlocation") as? Double ?? 0.0) Miles"
-        cell.activeCarriers.text = "# of Active Carrires: \(jobDict.object(forKey: "carriercount") as? Int ?? 0)"
+        cell.distanceFromStore.text = "From Store: \(jobDict.object(forKey: "storetocustlocation") as? Double ?? 0.0) Miles"
+        cell.distanceFromeAddress.text = "From your Address: \(jobDict.object(forKey: "carriertocustlocation") as? Double ?? 0.0) Miles"
+        cell.activeCarriers.text = "# of Active Carriers: \(jobDict.object(forKey: "carriercount") as? Int ?? 0)"
         return cell
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let jobDict:NSDictionary = jobListArray[indexPath.section] as! NSDictionary
+        let jobDict:NSDictionary = jobListArray[indexPath.row] as! NSDictionary
         getOrginalOrders(OrderId:jobDict.object(forKey: "orderid") as? Int ?? 0)
     }
     

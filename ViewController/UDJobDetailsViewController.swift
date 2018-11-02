@@ -176,7 +176,7 @@ extension UDJobDetailsViewController: UITableViewDataSource, UITableViewDelegate
             let zip = jobDict.object(forKey: "zip") as? String ?? ""
             let fullAddress = "\(city),\(state),\(zip)"
             cell.addressLabel.text = fullAddress
-            cell.distanceLabel.text = "Distance Frome Store: \(jobDict.object(forKey: "storetocustlocation") as? Int ?? 0)KM"
+            cell.distanceLabel.text = "Distance From Store: \(jobDict.object(forKey: "storetocustlocation") as? Int ?? 0)KM"
             return cell
         }
     }
