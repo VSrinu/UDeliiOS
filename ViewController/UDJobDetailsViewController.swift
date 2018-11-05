@@ -128,7 +128,7 @@ extension UDJobDetailsViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
+        return 0.0001
     }
     
     internal func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -139,8 +139,16 @@ extension UDJobDetailsViewController: UITableViewDataSource, UITableViewDelegate
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "jobDetailsCell", for: indexPath) as! UDJobDetailsTableViewCell
             cell.pulseAnimation = .none
-            cell.jobId.text = "Delivery Job#: \(jobDict.object(forKey: "orderid") as? Int ?? 0)"
-            cell.jobTitle.text = "Job Title: \(jobDict.object(forKey: "ordertitle") as? String ?? "")"
+            let customerName = jobDict.object(forKey: "customername") as? String ?? ""
+            let city = jobDict.object(forKey: "city") as? String ?? ""
+            let preferreddeliverytime = jobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
+            let deliverDate = ConstantTools.sharedConstantTool.dayFormate(date: preferreddeliverytime)
+            let deliverMonth = ConstantTools.sharedConstantTool.mothFormate(date: preferreddeliverytime)
+            let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
+            cell.jobId.text = "Deliver to \(customerName) at \(city) by \(deliverMonth) \(deliverDate) at \(time)"
+            let orderId = jobDict.object(forKey: "orderid") as? Int ?? 0
+            let orderTitle = jobDict.object(forKey: "ordertitle") as? String ?? ""
+            cell.jobTitle.text = "\(orderId): \(orderTitle)"
             cell.jobDetails.text = "\(jobDict.object(forKey: "orderdetails") as? String ?? "")"
             cell.jobAcceptBtn.addTarget(self, action: #selector(tapToAcceptJobs(button:)), for: .touchUpInside)
             cell.jobDismissBtn.addTarget(self, action: #selector(tapToDismissPage(button:)), for: .touchUpInside)
@@ -158,25 +166,16 @@ extension UDJobDetailsViewController: UITableViewDataSource, UITableViewDelegate
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "jobSectionCell", for: indexPath) as! UDJobDetailsTableViewCell
             cell.pulseAnimation = .none
-            cell.packageCountLabel.text = "Number of Packages: \(jobDict.object(forKey: "numberofbags") as? Int ?? 0)"
+            cell.packageCountLabel.text = "# of Packages: \(jobDict.object(forKey: "numberofbags") as? Int ?? 0)"
             let perishable = jobDict.object(forKey: "perishable") as? Bool ?? false
             let fragile = jobDict.object(forKey: "fragile") as? Bool ?? false
             var isperishable = String()
             var isfragile = String()
             perishable == true ? (isperishable = "YES") : (isperishable = "NO")
             fragile == true ? (isfragile = "YES") : (isfragile = "NO")
-            cell.fragileLabel.text = "Is Fragile: \(isfragile)"
-            cell.perishablesLabel.text = "Is Pershables: \(isperishable)"
-            let preferreddeliverytime = jobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
-            let deliverDate = ConstantTools.sharedConstantTool.dateFormate(date: preferreddeliverytime)
-            let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
-            cell.deliveryDateLabel.text = "Deliver by Date and Time: \(deliverDate) \(time)"
-            let city = jobDict.object(forKey: "city") as? String ?? ""
-            let state = jobDict.object(forKey: "state") as? String ?? ""
-            let zip = jobDict.object(forKey: "zip") as? String ?? ""
-            let fullAddress = "\(city),\(state),\(zip)"
-            cell.addressLabel.text = fullAddress
-            cell.distanceLabel.text = "Distance From Store: \(jobDict.object(forKey: "storetocustlocation") as? Int ?? 0)KM"
+            cell.fragileLabel.text = "Fragile: \(isfragile)"
+            cell.perishablesLabel.text = "Pershables: \(isperishable)"
+            cell.distanceLabel.text = "Weight: \(jobDict.object(forKey: "totalweight") as? Int ?? 0) lbs"
             return cell
         }
     }

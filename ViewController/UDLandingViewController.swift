@@ -37,10 +37,12 @@ class UDLandingViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        EnRouteWrapper.instance.manager()?.overrideLoggingLevels(GlyCoreConstants.none(), debugLogLevel: GlyCoreConstants.info())
-        EnRouteWrapper.instance.manager()?.add(self)
-        EnRouteWrapper.instance.manager()?.setAuthenticationMode(GlyEnRouteConstants.auth_MODE_CREDENTIALS())
-        EnRouteWrapper.instance.manager()?.start()
+        if glympseUsername != "" && glympsePwd != "" {
+            EnRouteWrapper.instance.manager()?.overrideLoggingLevels(GlyCoreConstants.none(), debugLogLevel: GlyCoreConstants.info())
+            EnRouteWrapper.instance.manager()?.add(self)
+            EnRouteWrapper.instance.manager()?.setAuthenticationMode(GlyEnRouteConstants.auth_MODE_CREDENTIALS())
+            EnRouteWrapper.instance.manager()?.start()
+        }
         getUserData()
         let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
         userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
@@ -295,7 +297,6 @@ extension UDLandingViewController: GlyListener {
                 print("En Route Event: ENROUTE_MANAGER_STARTED")
             }
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_AUTHENTICATION_NEEDED() ) {
-                print("En Route Event: ENROUTE_MANAGER_AUTHENTICATION_NEEDED")
                 handleLogin()
             }
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_LOGIN_COMPLETED() ) {
@@ -315,10 +316,22 @@ extension UDLandingViewController: GlyListener {
     }
     
     func handleStopped() {
-        EnRouteWrapper.instance.manager()?.overrideLoggingLevels(GlyCoreConstants.none(), debugLogLevel: GlyCoreConstants.info())
-        EnRouteWrapper.instance.manager()?.add(self)
-        EnRouteWrapper.instance.manager()?.setAuthenticationMode(GlyEnRouteConstants.auth_MODE_CREDENTIALS())
-        EnRouteWrapper.instance.manager()?.start()
+        self.present(UIAlertController.alertWithTitle(title: "", message: "Session has been Expired", buttonTitle: "OK", handler: { action in self.tapToLogOut()}), animated: true)
+    }
+    
+    func tapToLogOut() {
+        resetUserValues()
+        ConstantTools.sharedConstantTool.prepareDeviceInformation()
+        ConstantTools.sharedConstantTool.getCurrentLocation()
+        UIApplication.shared.registerForRemoteNotifications()
+        let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
+        let LGLoginView: UIViewController? = storyboard.instantiateViewController(withIdentifier: "UDLoginViewController")
+        self.navigationController?.pushViewController(LGLoginView!, animated: true)
+    }
+    
+    func resetUserValues() {
+        UserDefaults.standard.set(false, forKey: "login")
+        UserDefaults.standard.set(nil, forKey: "userInfo")
     }
     
     func handleLogin() {
