@@ -84,7 +84,7 @@ class UDForgotPasswordViewController: UIViewController {
     }
     
     func getAlert() {
-        self.present(UIAlertController.alertWithTitle(title: "", message: "your password has been updated", cancelButtonTitle: "OK"), animated: true)
+        self.present(UIAlertController.alertWithTitle(title: "", message: "Your password has been reset. Please remember to Logout and log back in.", cancelButtonTitle: "OK"), animated: true)
     }
     
     // MARK:- Target Action Buttons

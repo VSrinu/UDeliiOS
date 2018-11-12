@@ -50,7 +50,7 @@ class UDSidePanelViewController: UIViewController {
     }
     
     func getLogoutAlert() {
-        self.present(UIAlertController.alertWithTitle(title: "", message: "Are you sure to Logout", cancelButtonTitle: "Cancel", buttonTitle: "Logout", handler: { action in self.tapToLogout()}), animated: true)
+        self.present(UIAlertController.alertWithTitle(title: "", message: "Logging out once in a while is a good thing. Are you sure you want to logout now?", cancelButtonTitle: "Cancel", buttonTitle: "Logout", handler: { action in self.tapToLogout()}), animated: true)
     }
     
     func tapToLogout() {

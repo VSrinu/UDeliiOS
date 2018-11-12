@@ -65,7 +65,7 @@ class UDJobDetailsViewController: UIViewController {
     }
     
     func getAlert() {
-        self.present(UIAlertController.alertWithTitle(title: "Job Accepted", message: "We have accepted your. It will update in my orderList", buttonTitle: "OK", handler: { action in self.updateLandingPage()}), animated: true)
+        self.present(UIAlertController.alertWithTitle(title: "Job Accepted", message: "You have accepted a new job. See all your accepted jobs in the My Active Jobs list.", buttonTitle: "OK", handler: { action in self.updateLandingPage()}), animated: true)
     }
     
     func updateLandingPage() {

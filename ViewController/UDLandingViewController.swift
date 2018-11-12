@@ -122,7 +122,7 @@ class UDLandingViewController: UIViewController {
     }
     
     func getUserAlert() {
-        self.present(UIAlertController.alertWithTitle(title: "Merchant Approve", message: "Your Merchant have not approved to start the job. Please Contact your merchant to approve or further details", buttonTitle: "OK"), animated: true)
+        self.present(UIAlertController.alertWithTitle(title: "Merchant Approve", message: "Your request for participating as a Carrier with Merchant is currently being reviewed by the Merchant. We are very excited for you and thankyou very much for your patience. We will update you as soon as the review is complete.", buttonTitle: "OK"), animated: true)
     }
     
     func getJobList() {

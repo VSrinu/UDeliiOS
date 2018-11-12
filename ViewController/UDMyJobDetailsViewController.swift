@@ -144,7 +144,7 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
                 switch connectionResult {
                 case .success(let data):
                     print(data)
-                    self.getAlert()
+                    self.getAlert(status:status)
                 case .failure(let error):
                     self.view.makeToast(error, position: .top)
                 }
@@ -152,7 +152,7 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
         }
     }
     
-    func getAlert() {
+    func getAlert(status: String) {
         self.present(UIAlertController.alertWithTitle(title: "Job Updating", message: "Your job has been updated", buttonTitle: "OK", handler: { action in self.updateLandingPage()}), animated: true)
     }
     
