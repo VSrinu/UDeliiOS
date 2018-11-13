@@ -363,20 +363,16 @@ open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
                 return
         }
         
-        if let originalSuperview = originalSuperview,
-            let mainViewController = mainViewController,
-            sideMenuManager.menuDismissWhenBackgrounded {
+        if let originalSuperview = originalSuperview, let mainViewController = mainViewController {
             originalSuperview.addSubview(mainViewController.view)
         }
         
         if notification.name == UIApplication.didEnterBackgroundNotification {
-            if sideMenuManager.menuDismissWhenBackgrounded {
-                hideMenuStart().hideMenuComplete()
-                menuViewController?.dismiss(animated: false, completion: nil)
-            }
+            hideMenuStart().hideMenuComplete()
+            menuViewController?.dismiss(animated: false, completion: nil)
             return
         }
-			
+        
         UIView.animate(withDuration: sideMenuManager.menuAnimationDismissDuration,
                        delay: 0,
                        usingSpringWithDamping: sideMenuManager.menuAnimationUsingSpringWithDamping,
