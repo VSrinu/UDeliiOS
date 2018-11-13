@@ -121,10 +121,12 @@ open class FoldingCell: UITableViewCell {
         
         if animationType == .open {
             animationView?.subviews
+                .lazy
                 .compactMap { $0 as? RotatedView }
                 .forEach { $0.alpha = 0 }
         } else {
             animationView?.subviews
+                .lazy
                 .compactMap { $0 as? RotatedView }
                 .forEach {
                     if animationType == .open {
@@ -298,7 +300,7 @@ open class FoldingCell: UITableViewCell {
         return durations
     }
     
-    public func openAnimation(_ completion: (() -> Void)?) {
+    func openAnimation(_ completion: (() -> Void)?) {
         isUnfolded = true
         removeImageItemsFromAnimationView()
         addImageItemsToAnimationView()
@@ -345,7 +347,7 @@ open class FoldingCell: UITableViewCell {
         }
     }
     
-    public func closeAnimation(_ completion: (() -> Void)?) {
+    func closeAnimation(_ completion: (() -> Void)?) {
         isUnfolded = false
         removeImageItemsFromAnimationView()
         addImageItemsToAnimationView()
