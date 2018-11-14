@@ -216,10 +216,6 @@ extension UDLandingViewController {
 
 // MARK:- UITableViewDataSource
 extension UDLandingViewController: UITableViewDataSource, UITableViewDelegate {
-    internal func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobListArray.count
     }
@@ -258,26 +254,10 @@ extension UDLandingViewController: UITableViewDataSource, UITableViewDelegate {
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let jobDict:NSDictionary = jobListArray[indexPath.row] as! NSDictionary
-        getOrginalOrders(OrderId:jobDict.object(forKey: "orderid") as? Int ?? 0)
-    }
-    
-    func getOrginalOrders(OrderId: Int) {
-        ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view)
-        OrdersModel.getSingleOrdersDetails(orderid: OrderId) { connectionResult in
-            DispatchQueue.main.async(execute: {() -> Void in
-                ConstantTools.sharedConstantTool.hideMRIndicatorView()
-                self.refreshControl.endRefreshing()
-                switch connectionResult {
-                case .success(let data):
-                    let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
-                    let viewController = storyboard.instantiateViewController(withIdentifier: "UDJobDetailsViewController") as! UDJobDetailsViewController
-                    viewController.jobDict = data
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                case .failure(let error):
-                    self.view.makeToast(error, position: .top)
-                }
-            })
-        }
+        let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "UDJobDetailsViewController") as! UDJobDetailsViewController
+        viewController.jobDict = jobDict
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

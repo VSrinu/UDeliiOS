@@ -109,17 +109,38 @@ extension UDMyOrdersViewController: UITableViewDataSource, UITableViewDelegate {
         return (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().count())!
     }
     
+    internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 6
+        }
+        return 0.0001
+    }
+    
+    internal func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.0001
+    }
+    
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myJobCell", for: indexPath) as! UDMyJobTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myJobCell", for: indexPath) as! UDLandingCell
         let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().object(at: indexPath.row))!
         let predicate = NSPredicate(format: "glympsetaskid == \(task.getId())")
         let tempArray = myJobsArray.filtered(using: predicate) as NSArray
         let myJobDict = tempArray.firstObject as? NSDictionary ?? [:]
-        let jobId = myJobDict.object(forKey: "orderid") as? Int ?? 0
-        let jobTitle = myJobDict.object(forKey: "ordertitle") as? String ?? ""
-        let jobDescribtion = myJobDict.object(forKey: "orderdetails") as? String ?? ""
-        cell.title.text = "Job Id #: \(jobId) and Title: \(jobTitle)"
-        cell.subTitle.text = jobDescribtion
+        let orderId = myJobDict.object(forKey: "orderid") as? Int ?? 0
+        cell.jobIdLabel.text = "\(orderId)"
+        let preferreddeliverytime = myJobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
+        let deliverDate = ConstantTools.sharedConstantTool.dayFormate(date: preferreddeliverytime)
+        cell.deliveryDate.text = deliverDate
+        let deliverMonth = ConstantTools.sharedConstantTool.mothFormate(date: preferreddeliverytime)
+        cell.deliveryMonth.text = deliverMonth
+        let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
+        cell.deliveryTime.text = time
+        let customerName = myJobDict.object(forKey: "customername") as? String ?? ""
+        let city = myJobDict.object(forKey: "city") as? String ?? ""
+        cell.jobDetails.text = "Deliver to \(customerName) at \(city)"
+        cell.distanceFromStore.text = "From Store: \(myJobDict.object(forKey: "storetocustlocation") as? Double ?? 0.0) Miles"
+        cell.distanceFromeAddress.text = "From your Address: \(myJobDict.object(forKey: "carriertocustlocation") as? Double ?? 0.0) Miles"
+        cell.activeCarriers.text = "# of Active Carriers: \(myJobDict.object(forKey: "carriercount") as? Int ?? 0)"
         return cell
     }
     

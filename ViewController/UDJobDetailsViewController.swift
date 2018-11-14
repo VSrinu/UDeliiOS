@@ -47,7 +47,7 @@ class UDJobDetailsViewController: UIViewController {
     
     @objc
     fileprivate func tapToAcceptJobs(button: UIButton) {
-        let orderId = jobDict.object(forKey: "id") as? String ?? ""
+        let orderId = jobDict.object(forKey: "orderidstr") as? String ?? ""
         let acceptedby = userInfoDictionary.object(forKey: "carrierid") as? Int ?? 0
         ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view)
         OrdersModel.updateOrderStatus(acceptedby: acceptedby, oderStatus: String(OrderStatusType.Accepted.rawValue), orderId: orderId) { connectionResult in

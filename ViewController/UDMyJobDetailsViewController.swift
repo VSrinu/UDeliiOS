@@ -203,8 +203,16 @@ extension UDMyJobDetailsViewController: UITableViewDataSource, UITableViewDelega
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "jobDetailsCell", for: indexPath) as! UDJobDetailsTableViewCell
             cell.pulseAnimation = .none
-            cell.jobId.text = "Delivery Job#: \(myJobDict.object(forKey: "orderid") as? Int ?? 0)"
-            cell.jobTitle.text = "Job Title: \(myJobDict.object(forKey: "ordertitle") as? String ?? "")"
+            let customerName = myJobDict.object(forKey: "customername") as? String ?? ""
+            let city = myJobDict.object(forKey: "city") as? String ?? ""
+            let preferreddeliverytime = myJobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
+            let deliverDate = ConstantTools.sharedConstantTool.dayFormate(date: preferreddeliverytime)
+            let deliverMonth = ConstantTools.sharedConstantTool.mothFormate(date: preferreddeliverytime)
+            let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
+            cell.jobId.text = "Deliver to \(customerName) at \(city) by \(deliverMonth) \(deliverDate) at \(time)"
+            let orderId = myJobDict.object(forKey: "orderid") as? Int ?? 0
+            let orderTitle = myJobDict.object(forKey: "ordertitle") as? String ?? ""
+            cell.jobTitle.text = "\(orderId): \(orderTitle)"
             cell.jobDetails.text = "\(myJobDict.object(forKey: "orderdetails") as? String ?? "")"
             let orderStatus = myJobDict.object(forKey: "status") as? Int ?? 0
             cell.jobAcceptBtn.setTitle("Start the Job", for: .normal)
@@ -237,26 +245,16 @@ extension UDMyJobDetailsViewController: UITableViewDataSource, UITableViewDelega
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "jobSectionCell", for: indexPath) as! UDJobDetailsTableViewCell
             cell.pulseAnimation = .none
-            cell.packageCountLabel.text = "Number of Packages: \(myJobDict.object(forKey: "numberofbags") as? Int ?? 0)"
+            cell.packageCountLabel.text = "# of Packages: \(myJobDict.object(forKey: "numberofbags") as? Int ?? 0)"
             let perishable = myJobDict.object(forKey: "perishable") as? Bool ?? false
             let fragile = myJobDict.object(forKey: "fragile") as? Bool ?? false
             var isperishable = String()
             var isfragile = String()
             perishable == true ? (isperishable = "YES") : (isperishable = "NO")
             fragile == true ? (isfragile = "YES") : (isfragile = "NO")
-            cell.fragileLabel.text = "Is Fragile: \(isfragile)"
-            cell.perishablesLabel.text = "Is Pershables: \(isperishable)"
-            let preferreddeliverytime = myJobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
-            let deliverDate = ConstantTools.sharedConstantTool.dateFormate(date: preferreddeliverytime)
-            let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
-            cell.deliveryDateLabel.text = "Deliver by Date and Time: \(deliverDate) \(time)"
-            let address = myJobDict.object(forKey: "address") as? String ?? ""
-            let city = myJobDict.object(forKey: "city") as? String ?? ""
-            let state = myJobDict.object(forKey: "state") as? String ?? ""
-            let zip = myJobDict.object(forKey: "zip") as? String ?? ""
-            let fullAddress = "\(address)\(city),\(state),\(zip)"
-            cell.addressLabel.text = fullAddress
-            cell.distanceLabel.text = "Distance Frome Store: \(myJobDict.object(forKey: "storetocustlocation") as? Int ?? 0)KM"
+            cell.fragileLabel.text = "Fragile: \(isfragile)"
+            cell.perishablesLabel.text = "Pershables: \(isperishable)"
+            cell.distanceLabel.text = "Weight: \(myJobDict.object(forKey: "totalweight") as? Int ?? 0) lbs"
             return cell
         }
     }

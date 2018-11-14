@@ -65,8 +65,6 @@ class UDJobDetailsTableViewCell: TableViewCell {
     @IBOutlet weak var packageCountLabel: UILabel!
     @IBOutlet weak var fragileLabel: UILabel!
     @IBOutlet weak var perishablesLabel: UILabel!
-    @IBOutlet weak var deliveryDateLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
 }
 

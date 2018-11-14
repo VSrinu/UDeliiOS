@@ -8,7 +8,7 @@ target 'UDeli' do
     # Pods for UDeli
     pod 'MRProgress'
     pod 'Material'
-    pod 'IQKeyboardManagerSwift'
+    pod 'IQKeyboardManagerSwift', '~> 6.1.1'
     pod 'DLRadioButton'
     pod 'MicrosoftAzureMobile'
     pod 'Toast-Swift'
