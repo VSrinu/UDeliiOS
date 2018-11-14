@@ -11,10 +11,10 @@ import Material
 
 class UDCompletedJobsViewController: UIViewController {
     @IBOutlet weak var toolBar: Toolbar!
-    //@IBOutlet weak var tableView: UITableView!
-    //@IBOutlet weak var noDataLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noDataLabel: UILabel!
     fileprivate var backButton: IconButton!
-    //let refreshControl = UIRefreshControl()
+    let refreshControl = UIRefreshControl()
     var myJobsArray = NSArray()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class UDCompletedJobsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //getMyCompletedJobs()
+        getMyCompletedJobs()
     }
     
     func loadInitialData() {
@@ -40,17 +40,17 @@ class UDCompletedJobsViewController: UIViewController {
         userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
         prepareBackButton()
         prepareToolbar()
-        //self.tableView.rowHeight = UITableView.automaticDimension
-        //self.tableView.estimatedRowHeight = 43
-        //self.tableView.tableFooterView = UIView()
-        //refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
-        //self.tableView.addSubview(refreshControl)
-        //ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view,text: "fetching your job details")
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 43
+        self.tableView.tableFooterView = UIView()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
+        ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view,text: "fetching your job details")
     }
     
-    /*@objc func didPullToRefresh() {
+    @objc func didPullToRefresh() {
         getMyCompletedJobs()
-    }*/
+    }
     
     func getMyCompletedJobs() {
         let merchantId = userInfoDictionary.object(forKey: "merchantid") as? Int ?? 0
@@ -58,17 +58,16 @@ class UDCompletedJobsViewController: UIViewController {
         OrdersModel.getMyCompletedOrdersDetails(acceptedby: userId, merchantId: merchantId) { connectionResult in
             DispatchQueue.main.async(execute: {() -> Void in
                 ConstantTools.sharedConstantTool.hideMRIndicatorView()
-                //self.refreshControl.endRefreshing()
+                self.refreshControl.endRefreshing()
                 switch connectionResult {
                 case .success(let data):
                     self.myJobsArray = data
-                    print(self.myJobsArray)
-                    //self.noDataLabel.isHidden = true
-                    //self.tableView.isHidden = false
-                    //self.tableView.reloadData()
+                    self.noDataLabel.isHidden = true
+                    self.tableView.isHidden = false
+                    self.tableView.reloadData()
                 case .failure(let error):
-                    //self.noDataLabel.isHidden = false
-                    //self.tableView.isHidden = true
+                    self.noDataLabel.isHidden = false
+                    self.tableView.isHidden = true
                     self.view.makeToast(error, position: .top)
                 }
             })
@@ -94,4 +93,54 @@ extension UDCompletedJobsViewController {
     fileprivate func navigateBack(button: UIButton) {
         self.navigationController!.popViewController(animated: true)
     }
+}
+
+// MARK:- UITableViewDataSource
+extension UDCompletedJobsViewController: UITableViewDataSource, UITableViewDelegate {
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myJobsArray.count
+    }
+    
+    internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 6
+        }
+        return 0.0001
+    }
+    
+    internal func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.0001
+    }
+    
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myJobCell", for: indexPath) as! UDLandingCell
+        let jobDict:NSDictionary = myJobsArray[indexPath.row] as! NSDictionary
+        let orderId = jobDict.object(forKey: "orderid") as? Int ?? 0
+        cell.jobIdLabel.text = "\(orderId)"
+        let preferreddeliverytime = jobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
+        let deliverDate = ConstantTools.sharedConstantTool.dayFormate(date: preferreddeliverytime)
+        cell.deliveryDate.text = deliverDate
+        let deliverMonth = ConstantTools.sharedConstantTool.mothFormate(date: preferreddeliverytime)
+        cell.deliveryMonth.text = deliverMonth
+        let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
+        cell.deliveryTime.text = time
+        let customerName = jobDict.object(forKey: "customername") as? String ?? ""
+        let city = jobDict.object(forKey: "city") as? String ?? ""
+        cell.jobDetails.text = "Delivered to \(customerName) at \(city)"
+        cell.distanceFromStore.text = "From Store: \(jobDict.object(forKey: "storetocustlocation") as? Double ?? 0.0) Miles"
+        cell.distanceFromeAddress.text = "From your Address: \(jobDict.object(forKey: "carriertocustlocation") as? Double ?? 0.0) Miles"
+        cell.activeCarriers.text = "# of Active Carriers: \(jobDict.object(forKey: "carriercount") as? Int ?? 0)"
+        return cell
+    }
+    
+    /*internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().object(at: indexPath.row))!
+        let predicate = NSPredicate(format: "glympsetaskid == \(task.getId())")
+        let tempArray = myJobsArray.filtered(using: predicate) as NSArray
+        let myJobDict = tempArray.firstObject as? NSDictionary ?? [:]
+        let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "UDMyJobDetailsViewController") as! UDMyJobDetailsViewController
+        viewController.myJobDict = myJobDict
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }*/
 }
