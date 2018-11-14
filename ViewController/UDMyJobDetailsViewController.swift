@@ -24,7 +24,7 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
         setNeedsStatusBarAppearanceUpdate()
         self.loadInitialData()
     }
-
+    
     // MARK:- View Lifecycle
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -153,7 +153,13 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
     }
     
     func getAlert(status: String) {
-        self.present(UIAlertController.alertWithTitle(title: "Job Updating", message: "Your job has been updated", buttonTitle: "OK", handler: { action in self.updateLandingPage()}), animated: true)
+        var message = String()
+        if status == String(OrderStatusType.InProgress.rawValue) {
+            message = "You are Starting the new job. Drive carefully."
+        } else {
+            message = "Congratulations on completing the delivery. You can review the completed jobs in My completed jobs"
+        }
+        self.present(UIAlertController.alertWithTitle(title: "Job Updating", message: message, buttonTitle: "OK", handler: { action in self.updateLandingPage()}), animated: true)
     }
     
     func updateLandingPage() {
