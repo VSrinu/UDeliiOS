@@ -215,7 +215,11 @@ extension UDMyJobDetailsViewController: UITableViewDataSource, UITableViewDelega
             let deliverDate = ConstantTools.sharedConstantTool.dayFormate(date: preferreddeliverytime)
             let deliverMonth = ConstantTools.sharedConstantTool.mothFormate(date: preferreddeliverytime)
             let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
-            cell.jobId.text = "Deliver to \(customerName) at \(city) by \(deliverMonth) \(deliverDate) at \(time)"
+            let address = myJobDict.object(forKey: "address") as? String ?? ""
+            let state = myJobDict.object(forKey: "state") as? String ?? ""
+            let zip = myJobDict.object(forKey: "zip") as? String ?? ""
+            let customerMobileNo = myJobDict.object(forKey: "phonenumber") as? String ?? ""
+            cell.jobId.text = "Deliver to \(customerName) at \(address), \(city), \(state), \(zip) by \(deliverMonth) \(deliverDate) at \(time) \nCustomer Phone Number: \(customerMobileNo)"
             let orderId = myJobDict.object(forKey: "orderid") as? Int ?? 0
             let orderTitle = myJobDict.object(forKey: "ordertitle") as? String ?? ""
             cell.jobTitle.text = "\(orderId): \(orderTitle)"

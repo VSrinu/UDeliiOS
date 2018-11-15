@@ -140,7 +140,10 @@ extension UDMyOrdersViewController: UITableViewDataSource, UITableViewDelegate {
         cell.jobDetails.text = "Deliver to \(customerName) at \(city)"
         cell.distanceFromStore.text = "From Store: \(myJobDict.object(forKey: "storetocustlocation") as? Double ?? 0.0) Miles"
         cell.distanceFromeAddress.text = "From your Address: \(myJobDict.object(forKey: "carriertocustlocation") as? Double ?? 0.0) Miles"
-        cell.activeCarriers.text = "# of Active Carriers: \(myJobDict.object(forKey: "carriercount") as? Int ?? 0)"
+        let address = myJobDict.object(forKey: "address") as? String ?? ""
+        let state = myJobDict.object(forKey: "state") as? String ?? ""
+        let zip = myJobDict.object(forKey: "zip") as? String ?? ""
+        cell.activeCarriers.text = "Address: \(address), \(city), \(state), \(zip)"
         return cell
     }
     

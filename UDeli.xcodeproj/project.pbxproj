@@ -25,6 +25,7 @@
 		97AEF05B2165049000867943 /* EnRouteWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEF05A2165048F00867943 /* EnRouteWrapper.swift */; };
 		97AEF05D2166453D00867943 /* UDCompletedJobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEF05C2166453D00867943 /* UDCompletedJobsViewController.swift */; };
 		97BD2B442199D28200D9DADD /* EnRouteApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BD2B432199D28200D9DADD /* EnRouteApi.framework */; };
+		97BD2B48219D44AB00D9DADD /* oogioogiPNG.png in Resources */ = {isa = PBXBuildFile; fileRef = 97BD2B47219D44AB00D9DADD /* oogioogiPNG.png */; };
 		97CB645B215A761700168FF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CB645A215A761700168FF7 /* AppDelegate.swift */; };
 		97CB6460215A761700168FF7 /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97CB645E215A761700168FF7 /* iPhoneStoryboard.storyboard */; };
 		97CB6463215A761700168FF7 /* UDeli.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97CB6461215A761700168FF7 /* UDeli.xcdatamodeld */; };
@@ -111,6 +112,7 @@
 		97AEF05A2165048F00867943 /* EnRouteWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnRouteWrapper.swift; sourceTree = "<group>"; };
 		97AEF05C2166453D00867943 /* UDCompletedJobsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDCompletedJobsViewController.swift; sourceTree = "<group>"; };
 		97BD2B432199D28200D9DADD /* EnRouteApi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnRouteApi.framework; sourceTree = "<group>"; };
+		97BD2B47219D44AB00D9DADD /* oogioogiPNG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oogioogiPNG.png; sourceTree = "<group>"; };
 		97CB6457215A761700168FF7 /* UDeli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDeli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CB645A215A761700168FF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97CB645F215A761700168FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			children = (
 				9717D12A21842C4F00801342 /* rate-blue.png */,
 				97CB6492215A821A00168FF7 /* carrier-logo.png */,
+				97BD2B47219D44AB00D9DADD /* oogioogiPNG.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				97CB64A5215A83F500168FF7 /* countries.json in Resources */,
 				97CB6468215A761900168FF7 /* LaunchScreen.storyboard in Resources */,
 				97CB6493215A821A00168FF7 /* carrier-logo.png in Resources */,
+				97BD2B48219D44AB00D9DADD /* oogioogiPNG.png in Resources */,
 				9717D12B21842C5900801342 /* rate-blue.png in Resources */,
 				97CB6465215A761900168FF7 /* Assets.xcassets in Resources */,
 				97CB64A4215A83F500168FF7 /* CountryPicker.bundle in Resources */,

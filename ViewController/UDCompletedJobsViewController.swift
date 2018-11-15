@@ -129,7 +129,10 @@ extension UDCompletedJobsViewController: UITableViewDataSource, UITableViewDeleg
         cell.jobDetails.text = "Delivered to \(customerName) at \(city)"
         cell.distanceFromStore.text = "From Store: \(jobDict.object(forKey: "storetocustlocation") as? Double ?? 0.0) Miles"
         cell.distanceFromeAddress.text = "From your Address: \(jobDict.object(forKey: "carriertocustlocation") as? Double ?? 0.0) Miles"
-        cell.activeCarriers.text = "# of Active Carriers: \(jobDict.object(forKey: "carriercount") as? Int ?? 0)"
+        let address = jobDict.object(forKey: "address") as? String ?? ""
+        let state = jobDict.object(forKey: "state") as? String ?? ""
+        let zip = jobDict.object(forKey: "zip") as? String ?? ""
+        cell.activeCarriers.text = "Address: \(address), \(city), \(state), \(zip)"
         return cell
     }
     
