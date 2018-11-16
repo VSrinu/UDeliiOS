@@ -10,6 +10,7 @@
 		4FE00EA3FA018208B3DEFF14 /* Pods_UDeliUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7431641FDE90ECAFA4026927 /* Pods_UDeliUITests.framework */; };
 		74B3B8DB8D0D141C41ED9736 /* Pods_UDeliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3CA2331CF379E67D532213 /* Pods_UDeliTests.framework */; };
 		9717D12B21842C5900801342 /* rate-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9717D12A21842C4F00801342 /* rate-blue.png */; };
+		972B21DC219E861100C15612 /* UDCompletedJobDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972B21DB219E861100C15612 /* UDCompletedJobDetailsViewController.swift */; };
 		97AEF03F2164D2B200867943 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF03E2164D2B200867943 /* SystemConfiguration.framework */; };
 		97AEF0412164D2C100867943 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0402164D2C100867943 /* UIKit.framework */; };
 		97AEF0432164D2CC00867943 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0422164D2CC00867943 /* Security.framework */; };
@@ -97,6 +98,7 @@
 		80579EF9371065446D9069DE /* Pods_UDeli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UDeli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FCADB78D6A075C72F80C804 /* Pods-UDeli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UDeli.release.xcconfig"; path = "Pods/Target Support Files/Pods-UDeli/Pods-UDeli.release.xcconfig"; sourceTree = "<group>"; };
 		9717D12A21842C4F00801342 /* rate-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rate-blue.png"; sourceTree = "<group>"; };
+		972B21DB219E861100C15612 /* UDCompletedJobDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDCompletedJobDetailsViewController.swift; sourceTree = "<group>"; };
 		97AEF03E2164D2B200867943 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		97AEF0402164D2C100867943 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		97AEF0422164D2CC00867943 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -316,6 +318,7 @@
 				97CB64A9215A85D500168FF7 /* UDSignUpViewController.swift */,
 				97CB64AA215A85D500168FF7 /* UDWelcomeViewController.swift */,
 				97AEF05C2166453D00867943 /* UDCompletedJobsViewController.swift */,
+				972B21DB219E861100C15612 /* UDCompletedJobDetailsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				97CB64BC215A85DA00168FF7 /* UDMobileVerificationViewController.swift in Sources */,
 				97CB64C3215A85DA00168FF7 /* UDMyJobDetailsViewController.swift in Sources */,
 				97CB64BA215A85DA00168FF7 /* UDSignUpViewController.swift in Sources */,
+				972B21DC219E861100C15612 /* UDCompletedJobDetailsViewController.swift in Sources */,
 				97CB64C7215A85DA00168FF7 /* UDSidePanelViewController.swift in Sources */,
 				97CB64B7215A85DA00168FF7 /* UDCountryCodeViewController.swift in Sources */,
 				97CB649F215A82A000168FF7 /* OrdersModel.swift in Sources */,

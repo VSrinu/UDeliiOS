@@ -35,7 +35,7 @@ class UDSidePanelViewController: UIViewController {
     }
     
     func loadTableView() {
-        self.settingsArray = [["icon": "ic_settings", "title": "Settings"],["icon": "ic_myJob", "title": "My Orders"],["icon": "ic_completedJobs", "title": "Completed Jobs"],["icon": "ic_share", "title": "Share"], ["icon": "ic_feedBack", "title": "Feedback"], ["icon": "ic_aboutUs", "title": "About Us"], ["icon": "ic_logout", "title": "Log Out"]]
+        self.settingsArray = [["icon": "ic_settings", "title": "Settings"],["icon": "ic_myJob", "title": "My Orders"],["icon": "ic_completedJobs", "title": "Completed Orders"],["icon": "ic_share", "title": "Share"], ["icon": "ic_feedBack", "title": "Feedback"], ["icon": "ic_aboutUs", "title": "About Us"], ["icon": "ic_logout", "title": "Log Out"]]
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 43
         self.tableView.tableFooterView = UIView()

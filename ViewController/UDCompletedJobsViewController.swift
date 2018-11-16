@@ -136,14 +136,11 @@ extension UDCompletedJobsViewController: UITableViewDataSource, UITableViewDeleg
         return cell
     }
     
-    /*internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().object(at: indexPath.row))!
-        let predicate = NSPredicate(format: "glympsetaskid == \(task.getId())")
-        let tempArray = myJobsArray.filtered(using: predicate) as NSArray
-        let myJobDict = tempArray.firstObject as? NSDictionary ?? [:]
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let jobDict:NSDictionary = myJobsArray[indexPath.row] as! NSDictionary
         let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "UDMyJobDetailsViewController") as! UDMyJobDetailsViewController
-        viewController.myJobDict = myJobDict
+        let viewController = storyboard.instantiateViewController(withIdentifier: "UDCompletedJobDetailsViewController") as! UDCompletedJobDetailsViewController
+        viewController.myJobDict = jobDict
         self.navigationController?.pushViewController(viewController, animated: true)
-    }*/
+    }
 }

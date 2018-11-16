@@ -219,7 +219,7 @@ extension UDMyJobDetailsViewController: UITableViewDataSource, UITableViewDelega
             let state = myJobDict.object(forKey: "state") as? String ?? ""
             let zip = myJobDict.object(forKey: "zip") as? String ?? ""
             let customerMobileNo = myJobDict.object(forKey: "phonenumber") as? String ?? ""
-            cell.jobId.text = "Deliver to \(customerName) at \(address), \(city), \(state), \(zip) by \(deliverMonth) \(deliverDate) at \(time) \nCustomer Phone Number: \(customerMobileNo)"
+            cell.jobId.text = "Deliver to \(customerName) at\n\(address), \(city), \(state), \(zip)\n by \(deliverMonth) \(deliverDate) at \(time) \nCustomer Phone Number: \(customerMobileNo)"
             let orderId = myJobDict.object(forKey: "orderid") as? Int ?? 0
             let orderTitle = myJobDict.object(forKey: "ordertitle") as? String ?? ""
             cell.jobTitle.text = "\(orderId): \(orderTitle)"
