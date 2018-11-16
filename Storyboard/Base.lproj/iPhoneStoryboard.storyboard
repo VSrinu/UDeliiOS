@@ -2837,7 +2837,7 @@
                                     <constraint firstAttribute="height" constant="44" id="1as-AM-Qco"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Job Details"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Completed Orders"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
                                         <color key="value" red="0.0" green="0.72549019609999998" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
