@@ -47,7 +47,6 @@ class UDLandingViewController: UIViewController {
         let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
         userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
         checkProfileUpdate()
-        getJobList()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -109,10 +108,16 @@ class UDLandingViewController: UIViewController {
                     userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
                     let isCarrireActive = userInfoDictionary.object(forKey: "active") as? String ?? ""
                     if isCarrireActive != "1" {
+                        ConstantTools.sharedConstantTool.hideMRIndicatorView()
                         self.getUserAlert()
                         self.noDataLabel.isHidden = false
                         self.noDataLabel.text = "Your Merchant have not approved to start the job."
+                        self.tableView.isHidden = true
                         return
+                    } else {
+                        self.tableView.isHidden = false
+                        self.noDataLabel.isHidden = true
+                        self.getJobList()
                     }
                 case .failure(let error):
                     self.view.makeToast(error, position: .top)
