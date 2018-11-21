@@ -295,7 +295,7 @@ extension UDLandingViewController: GlyListener {
             }
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_STOPPED() ) {
                 print("En Route Event: ENROUTE_MANAGER_STOPPED")
-                handleStopped()
+                //handleStopped()
             }
         }
     }
