@@ -30,6 +30,9 @@ class UDLandingViewController: UIViewController {
         getGlympseUserDetails()
         loadInitialData()
         setupSideMenu()
+        DispatchQueue.main.async {
+            self.updateDeviceToken()
+        }
     }
     
     // MARK:- View Lifecycle
@@ -129,6 +132,22 @@ class UDLandingViewController: UIViewController {
     
     func getUserAlert() {
         self.present(UIAlertController.alertWithTitle(title: "Merchant Approve", message: "Your request for participating as a Carrier with Merchant is currently being reviewed by the Merchant. We are very excited for you and thankyou very much for your patience. We will update you as soon as the review is complete.", buttonTitle: "OK"), animated: true)
+    }
+    
+    func updateDeviceToken() {
+        let deviceToken = userInfoDictionary.object(forKey: "newDevicetoken") as? String ?? ""
+        ProfileUpdateModel.updateDeviceToken(devicetoken: deviceToken, userId: userInfoDictionary.object(forKey: "id") as? String ?? "") { connectionResult in
+            DispatchQueue.main.async(execute: {() -> Void in
+                switch connectionResult {
+                case .success(let data):
+                    userInfoDictionary.setValuesForKeys(data as! [String : Any])
+                    let userData = NSKeyedArchiver.archivedData(withRootObject: userInfoDictionary)
+                    UserDefaults.standard.set(userData, forKey: "userInfo")
+                case .failure(let error):
+                    self.view.makeToast(error, position: .top)
+                }
+            })
+        }
     }
     
     func getJobList() {

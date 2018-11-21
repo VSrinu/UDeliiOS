@@ -74,6 +74,7 @@ class ConstantTools: NSObject {
     func updateDeviceInformationWithDeviceToken(devicetoken:String) {
         userInfoDictionary = setDicitionaryValue()
         userInfoDictionary.setValue(devicetoken, forKey: "devicetoken")
+        userInfoDictionary.setValue(devicetoken, forKey: "newDevicetoken")
         let data = NSKeyedArchiver.archivedData(withRootObject: userInfoDictionary)
         UserDefaults.standard.set(data, forKey: "userInfo")
     }

@@ -163,4 +163,25 @@ struct ProfileUpdateModel {
             }
         }
     }
+    
+    //Update Device Tken
+    static func updateDeviceToken(devicetoken: String, userId:String, completion: @escaping (ConnectionResultAsDictionary) -> ()) {
+        Internet.isAvailable { (status, message) in
+            if status {
+                let itemDict: NSDictionary = ["id": userId]
+                if let newItem = itemDict.mutableCopy() as? NSMutableDictionary {
+                    newItem["devicetoken"] = devicetoken
+                    tCarrier.update(newItem as [NSObject: AnyObject], completion: { (result, error) -> Void in
+                        if let err = error {
+                            completion(.failure(err.localizedDescription))
+                        } else if let item = result {
+                            completion(.success(item as NSDictionary))
+                        }
+                    })
+                }
+            } else {
+                completion(.failure(message))
+            }
+        }
+    }
 }
