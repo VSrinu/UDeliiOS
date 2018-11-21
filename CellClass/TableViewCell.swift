@@ -15,7 +15,6 @@ class UDProfileTableViewCell: TableViewCell {
     var customDelegate: UDCustomViewControllerDelegates?
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
-    @IBOutlet weak var profileStatusSwitch: UISwitch!
     @IBOutlet weak var mobileRadioBtn: CheckButton!
     @IBOutlet weak var emailRadioBtn: CheckButton!
     @IBOutlet weak var storeDistanceBtn: RaisedButton!

@@ -16,19 +16,20 @@ class UDLandingViewController: UIViewController {
     @IBOutlet weak var toolBar: Toolbar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
+    @IBOutlet weak var switchStateLabel: UILabel!
     fileprivate var menuButton: IconButton!
-    fileprivate var notificationButton: IconButton!
-    fileprivate var moreButton: IconButton!
     let refreshControl = UIRefreshControl()
+    var SwitchControl = Switch()
     var jobListArray = NSArray()
     var glympseUsername = String()
     var glympsePwd = String()
+    var profilestatus = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
+        getGlympseUserDetails()
         loadInitialData()
         setupSideMenu()
-        getGlympseUserDetails()
     }
     
     // MARK:- View Lifecycle
@@ -46,6 +47,7 @@ class UDLandingViewController: UIViewController {
         getUserData()
         let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
         userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
+        profilestatus = userInfoDictionary.object(forKey: "profilestatus") as? String ?? "0"
         checkProfileUpdate()
     }
     
@@ -54,9 +56,8 @@ class UDLandingViewController: UIViewController {
     }
     
     func loadInitialData() {
-        prepareMoreButton()
         prepareMenuButton()
-        preparenotificationButton()
+        prepareSwitchButton()
         prepareToolbar()
         refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
@@ -193,28 +194,27 @@ class UDLandingViewController: UIViewController {
 
 // MARK:- ToolBar
 extension UDLandingViewController {
-    fileprivate func prepareMoreButton() {
-        moreButton = IconButton(image: Icon.cm.moreVertical, tintColor: .white)
-        moreButton.pulseColor = .white
-        moreButton.addTarget(self, action: #selector(tapToNavigateToProfile(button:)), for: .touchUpInside)
-    }
-    
     fileprivate func prepareMenuButton() {
         menuButton = IconButton(image: Icon.cm.menu, tintColor: .white)
         menuButton.pulseColor = .white
         menuButton.addTarget(self, action: #selector(tapToOpenSidePanel(button:)), for: .touchUpInside)
     }
     
-    fileprivate func preparenotificationButton() {
-        notificationButton = IconButton(image: Icon.cm.bell, tintColor: .white)
-        notificationButton.pulseColor = .white
-        notificationButton.addTarget(self, action: #selector(navigateNotification(button:)), for: .touchUpInside)
+    fileprivate func prepareSwitchButton() {
+        if profilestatus == "0" {
+            SwitchControl = Switch(state: .off, style: .dark, size: .large)
+        } else {
+            SwitchControl = Switch(state: .on, style: .dark, size: .large)
+        }
+        SwitchControl.buttonOnColor = #colorLiteral(red: 0, green: 0.4392156863, blue: 0.337254902, alpha: 1)
+        SwitchControl.trackOnColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+        SwitchControl.delegate = self
     }
     
     fileprivate func prepareToolbar() {
         toolBar.titleLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         toolBar.titleLabel.textAlignment = .left
-        toolBar.rightViews = [notificationButton,moreButton]
+        toolBar.rightViews = [SwitchControl]
         toolBar.leftViews = [menuButton]
     }
 }
@@ -321,5 +321,31 @@ extension UDLandingViewController: GlyListener {
     
     func handleLogin() {
         EnRouteWrapper.instance.manager()?.login(withCredentials: glympseUsername, password: glympsePwd)
+    }
+}
+
+extension UDLandingViewController: SwitchDelegate {
+    func switchDidChangeState(control: Switch, state: SwitchState) {
+        .on == state ? updateStatus(state: 1) : updateStatus(state: 0)
+    }
+    
+    func updateStatus(state:Int) {
+        if state == 0 {
+            switchStateLabel.text = "offline"
+        } else {
+            switchStateLabel.text = "online"
+        }
+        ProfileUpdateModel.updateStatus(profileStatus: state, userId: userInfoDictionary.object(forKey: "id") as? String ?? "") { connectionResult in
+            DispatchQueue.main.async(execute: {() -> Void in
+                switch connectionResult {
+                case .success(let data):
+                    userInfoDictionary.setValuesForKeys(data as! [String : Any])
+                    let userData = NSKeyedArchiver.archivedData(withRootObject: userInfoDictionary)
+                    UserDefaults.standard.set(userData, forKey: "userInfo")
+                case .failure(let error):
+                    self.view.makeToast(error, position: .top)
+                }
+            })
+        }
     }
 }

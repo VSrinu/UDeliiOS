@@ -62,28 +62,6 @@ class UDProfileViewController: UIViewController {
         }
     }
     
-    @objc func switchValueDidChange(_ sender: UISwitch) {
-        var profileStatus = Int()
-        switch sender.isOn {
-        case false:
-            profileStatus = 0
-        case true:
-            profileStatus = 1
-        }
-        ProfileUpdateModel.updateStatus(profileStatus: profileStatus, userId: userInfoDictionary.object(forKey: "id") as? String ?? "") { connectionResult in
-            DispatchQueue.main.async(execute: {() -> Void in
-                switch connectionResult {
-                case .success(let data):
-                    userInfoDictionary.setValuesForKeys(data as! [String : Any])
-                    let userData = NSKeyedArchiver.archivedData(withRootObject: userInfoDictionary)
-                    UserDefaults.standard.set(userData, forKey: "userInfo")
-                case .failure(let error):
-                    self.view.makeToast(error, position: .top)
-                }
-            })
-        }
-    }
-    
     //MARK: - Open the camera
     func openCamera(){
         if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera)){
@@ -186,9 +164,6 @@ extension UDProfileViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath) as! UDProfileTableViewCell
             cell.pulseAnimation = .none
             cell.customDelegate = self
-            let profilestatus = userInfoDictionary.object(forKey: "profilestatus") as? String ?? "0"
-            profilestatus == "0" || profilestatus == "" ? (cell.profileStatusSwitch.isOn = false) : (cell.profileStatusSwitch.isOn = true)
-            cell.profileStatusSwitch.addTarget(self, action: #selector(switchValueDidChange(_:)), for: .valueChanged)
             cell.storeDistanceBtn.addTarget(self, action: #selector(selectStoreDistance(button:)), for: .touchUpInside)
             let distancefromstore = userInfoDictionary.object(forKey: "distancefromstore") as? Int ?? 0
             if distancefromstore != 0 {
