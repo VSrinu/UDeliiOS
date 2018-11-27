@@ -27,6 +27,7 @@
 		97AEF05D2166453D00867943 /* UDCompletedJobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEF05C2166453D00867943 /* UDCompletedJobsViewController.swift */; };
 		97BD2B442199D28200D9DADD /* EnRouteApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BD2B432199D28200D9DADD /* EnRouteApi.framework */; };
 		97BD2B48219D44AB00D9DADD /* oogioogiPNG.png in Resources */ = {isa = PBXBuildFile; fileRef = 97BD2B47219D44AB00D9DADD /* oogioogiPNG.png */; };
+		97C9B24B21AD2033009EA3DA /* UDAboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C9B24A21AD2033009EA3DA /* UDAboutUsViewController.swift */; };
 		97CB645B215A761700168FF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CB645A215A761700168FF7 /* AppDelegate.swift */; };
 		97CB6460215A761700168FF7 /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97CB645E215A761700168FF7 /* iPhoneStoryboard.storyboard */; };
 		97CB6463215A761700168FF7 /* UDeli.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97CB6461215A761700168FF7 /* UDeli.xcdatamodeld */; };
@@ -115,6 +116,7 @@
 		97AEF05C2166453D00867943 /* UDCompletedJobsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDCompletedJobsViewController.swift; sourceTree = "<group>"; };
 		97BD2B432199D28200D9DADD /* EnRouteApi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnRouteApi.framework; sourceTree = "<group>"; };
 		97BD2B47219D44AB00D9DADD /* oogioogiPNG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oogioogiPNG.png; sourceTree = "<group>"; };
+		97C9B24A21AD2033009EA3DA /* UDAboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDAboutUsViewController.swift; sourceTree = "<group>"; };
 		97CB6457215A761700168FF7 /* UDeli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDeli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CB645A215A761700168FF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97CB645F215A761700168FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				97CB64AA215A85D500168FF7 /* UDWelcomeViewController.swift */,
 				97AEF05C2166453D00867943 /* UDCompletedJobsViewController.swift */,
 				972B21DB219E861100C15612 /* UDCompletedJobDetailsViewController.swift */,
+				97C9B24A21AD2033009EA3DA /* UDAboutUsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 			files = (
 				97CB64BF215A85DA00168FF7 /* AppNavigationDrawerController.swift in Sources */,
 				97CB64DB215A860E00168FF7 /* UDCustomViewControllerDelegates.swift in Sources */,
+				97C9B24B21AD2033009EA3DA /* UDAboutUsViewController.swift in Sources */,
 				97CB64D7215A860E00168FF7 /* ConstantTools.swift in Sources */,
 				97CB64C2215A85DA00168FF7 /* UDSignUpMobileViewController.swift in Sources */,
 				97AEF05D2166453D00867943 /* UDCompletedJobsViewController.swift in Sources */,

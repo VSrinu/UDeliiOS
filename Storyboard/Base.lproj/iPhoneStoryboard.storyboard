@@ -1051,7 +1051,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRw-Gu-9w4">
-                                        <rect key="frame" x="44" y="12" width="191" height="21"/>
+                                        <rect key="frame" x="44" y="12" width="52.5" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1062,7 +1062,7 @@
                                     <constraint firstAttribute="bottom" secondItem="rRw-Gu-9w4" secondAttribute="bottom" constant="11" id="9us-yF-BNU"/>
                                     <constraint firstItem="rRw-Gu-9w4" firstAttribute="leading" secondItem="LYO-SV-YWQ" secondAttribute="leading" constant="44" id="eW1-qF-kJ1"/>
                                     <constraint firstItem="rRw-Gu-9w4" firstAttribute="top" secondItem="LYO-SV-YWQ" secondAttribute="top" constant="12" id="hKd-bG-xdL"/>
-                                    <constraint firstAttribute="trailing" secondItem="rRw-Gu-9w4" secondAttribute="trailing" constant="140" id="lz0-mo-q4x"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rRw-Gu-9w4" secondAttribute="trailing" constant="20" symbolic="YES" id="lz0-mo-q4x"/>
                                     <constraint firstAttribute="height" constant="44" id="xEs-lQ-mgr"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -3317,6 +3317,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IyM-PZ-Rcx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="81" y="2653"/>
+        </scene>
+        <!--About Us View Controller-->
+        <scene sceneID="H7U-4X-DRV">
+            <objects>
+                <viewController storyboardIdentifier="UDAboutUsViewController" id="8I5-xA-eYt" customClass="UDAboutUsViewController" customModule="UDeli" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Y2-rK-uWx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oaV-YG-axe" customClass="Toolbar" customModule="Material">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.72549019609999998" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Tk1-Ok-qeb"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="About Us"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" red="0.0" green="0.72549019609999998" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvF-Kh-9mh">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oaV-YG-axe" firstAttribute="trailing" secondItem="vaM-UE-6Gh" secondAttribute="trailing" id="1jb-p4-7Gu"/>
+                            <constraint firstItem="oaV-YG-axe" firstAttribute="top" secondItem="vaM-UE-6Gh" secondAttribute="top" id="4UM-T4-xF0"/>
+                            <constraint firstItem="dvF-Kh-9mh" firstAttribute="trailing" secondItem="vaM-UE-6Gh" secondAttribute="trailing" id="4bl-o5-Rv9"/>
+                            <constraint firstItem="dvF-Kh-9mh" firstAttribute="top" secondItem="oaV-YG-axe" secondAttribute="bottom" id="Wj7-KV-iF3"/>
+                            <constraint firstItem="dvF-Kh-9mh" firstAttribute="leading" secondItem="vaM-UE-6Gh" secondAttribute="leading" id="c9w-Fx-hgu"/>
+                            <constraint firstItem="oaV-YG-axe" firstAttribute="leading" secondItem="vaM-UE-6Gh" secondAttribute="leading" id="egV-62-enM"/>
+                            <constraint firstItem="dvF-Kh-9mh" firstAttribute="bottom" secondItem="vaM-UE-6Gh" secondAttribute="bottom" id="pPJ-3M-HbZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vaM-UE-6Gh"/>
+                    </view>
+                    <connections>
+                        <outlet property="toolBar" destination="oaV-YG-axe" id="r7S-RX-Xvv"/>
+                        <outlet property="webView" destination="dvF-Kh-9mh" id="hDu-ju-9Af"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F2g-3V-Hd1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="901.60000000000002" y="2652.3238380809598"/>
         </scene>
     </scenes>
     <resources>

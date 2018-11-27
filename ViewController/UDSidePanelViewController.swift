@@ -104,7 +104,9 @@ extension UDSidePanelViewController: UITableViewDataSource, UITableViewDelegate 
         case 4:
             print("Feedback")
         case 5:
-            print("About Us")
+            let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "UDAboutUsViewController") as! UDAboutUsViewController
+            self.navigationController?.pushViewController(viewController, animated: true)
         case 6:
             getLogoutAlert()
         default:

@@ -300,28 +300,41 @@ extension UDLandingViewController: GlyListener {
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_STARTED() ) {
                 print("En Route Event: ENROUTE_MANAGER_STARTED")
             }
+            
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_AUTHENTICATION_NEEDED() ) {
                 handleLogin()
             }
+            
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_LOGIN_COMPLETED() ) {
                 print("En Route Event: ENROUTE_MANAGER_LOGIN_COMPLETED")
             }
+            
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_SYNCED() ) {
                 print("En Route Event: ENROUTE_MANAGER_SYNCED")
             }
+            
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_LOGGED_OUT() ) {
                 print("En Route Event: ENROUTE_MANAGER_LOGGED_OUT")
+                
             }
+            
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_STOPPED() ) {
                 print("En Route Event: ENROUTE_MANAGER_STOPPED")
-                //handleStopped()
+                handleStopped()
             }
         }
     }
     
     func handleStopped() {
-        self.present(UIAlertController.alertWithTitle(title: "", message: "Session has been Expired", buttonTitle: "OK", handler: { action in self.tapToLogOut()}), animated: true)
+        EnRouteWrapper.instance.manager()?.overrideLoggingLevels(GlyCoreConstants.none(), debugLogLevel: GlyCoreConstants.info())
+        EnRouteWrapper.instance.manager()?.add(self)
+        EnRouteWrapper.instance.manager()?.setAuthenticationMode(GlyEnRouteConstants.auth_MODE_CREDENTIALS())
+        EnRouteWrapper.instance.manager()?.start()
     }
+    
+    /*func handleStopped() {
+        self.present(UIAlertController.alertWithTitle(title: "", message: "Invalid credentials, please try again.", buttonTitle: "OK", handler: { action in self.tapToLogOut()}), animated: true)
+    }*/
     
     func tapToLogOut() {
         resetUserValues()
