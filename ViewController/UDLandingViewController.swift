@@ -225,8 +225,8 @@ extension UDLandingViewController {
         } else {
             SwitchControl = Switch(state: .on, style: .dark, size: .large)
         }
-        SwitchControl.buttonOnColor = #colorLiteral(red: 0, green: 0.4392156863, blue: 0.337254902, alpha: 1)
-        SwitchControl.trackOnColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+        SwitchControl.buttonOnColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        SwitchControl.trackOnColor = #colorLiteral(red: 0.1451823844, green: 0.9490196078, blue: 0.2762260474, alpha: 1)
         SwitchControl.delegate = self
     }
     
