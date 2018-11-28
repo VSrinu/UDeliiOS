@@ -54,7 +54,7 @@
                                     <action selector="tapToSignUp:" destination="7OM-d8-S60" eventType="touchUpInside" id="BIb-4C-7gf"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrier-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="FPD-Jz-ZUn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oogioogiPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="FPD-Jz-ZUn">
                                 <rect key="frame" x="67" y="149" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="LD4-Up-dUQ"/>
@@ -291,7 +291,7 @@
                                     <action selector="tapToNavigateBack:" destination="mIA-Fz-ojp" eventType="touchUpInside" id="s3Y-GH-0C5"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrier-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="h4i-M5-5C3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oogioogiPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="h4i-M5-5C3">
                                 <rect key="frame" x="67" y="126" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="0LZ-bk-nfe"/>
@@ -733,7 +733,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrier-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="aeb-51-VuQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oogioogiPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="aeb-51-VuQ">
                                 <rect key="frame" x="67" y="148" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="v1c-cP-7UY"/>
@@ -892,7 +892,7 @@
                                         <color key="textColor" red="0.0" green="0.51372549020000002" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrier-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8H-CT-bcR">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oogioogiPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8H-CT-bcR">
                                         <rect key="frame" x="68" y="158" width="240" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="cBh-Zr-sYf"/>
@@ -2094,7 +2094,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrier-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="tZu-HZ-pee">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oogioogiPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="tZu-HZ-pee">
                                 <rect key="frame" x="67" y="93" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="crK-0J-vQq"/>
@@ -3377,6 +3377,7 @@
         <image name="carrier-logo.png" width="949" height="626"/>
         <image name="edit" width="40" height="40"/>
         <image name="navigationpin" width="40" height="40"/>
+        <image name="oogioogiPNG.png" width="3000" height="1501"/>
         <image name="profilebg" width="480" height="400"/>
         <image name="rate-blue.png" width="39" height="39"/>
     </resources>
