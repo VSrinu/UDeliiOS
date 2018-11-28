@@ -33,8 +33,8 @@ class UDLoginViewController: UIViewController {
     }
     
     func setTextView() {
-        ConstantTools.sharedConstantTool.setTextBlackFieldColor(textField: phoneTxt)
-        ConstantTools.sharedConstantTool.setTextBlackFieldColor(textField: passwordTxt)
+        ConstantTools.sharedConstantTool.setTextFieldColor(textField: phoneTxt)
+        ConstantTools.sharedConstantTool.setTextFieldColor(textField: passwordTxt)
     }
     
     func loginCheck() {

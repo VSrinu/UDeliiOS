@@ -28,7 +28,6 @@
 		97BD2B442199D28200D9DADD /* EnRouteApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BD2B432199D28200D9DADD /* EnRouteApi.framework */; };
 		97BD2B48219D44AB00D9DADD /* oogioogiPNG.png in Resources */ = {isa = PBXBuildFile; fileRef = 97BD2B47219D44AB00D9DADD /* oogioogiPNG.png */; };
 		97C9B24B21AD2033009EA3DA /* UDAboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C9B24A21AD2033009EA3DA /* UDAboutUsViewController.swift */; };
-		97C9B24F21AEBBAB009EA3DA /* blueBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 97C9B24E21AEBBA9009EA3DA /* blueBG.jpg */; };
 		97CB645B215A761700168FF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CB645A215A761700168FF7 /* AppDelegate.swift */; };
 		97CB6460215A761700168FF7 /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97CB645E215A761700168FF7 /* iPhoneStoryboard.storyboard */; };
 		97CB6463215A761700168FF7 /* UDeli.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97CB6461215A761700168FF7 /* UDeli.xcdatamodeld */; };
@@ -118,7 +117,6 @@
 		97BD2B432199D28200D9DADD /* EnRouteApi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnRouteApi.framework; sourceTree = "<group>"; };
 		97BD2B47219D44AB00D9DADD /* oogioogiPNG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oogioogiPNG.png; sourceTree = "<group>"; };
 		97C9B24A21AD2033009EA3DA /* UDAboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDAboutUsViewController.swift; sourceTree = "<group>"; };
-		97C9B24E21AEBBA9009EA3DA /* blueBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blueBG.jpg; sourceTree = "<group>"; };
 		97CB6457215A761700168FF7 /* UDeli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDeli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CB645A215A761700168FF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97CB645F215A761700168FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
@@ -339,7 +337,6 @@
 		97CB648F215A81BE00168FF7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				97C9B24E21AEBBA9009EA3DA /* blueBG.jpg */,
 				9717D12A21842C4F00801342 /* rate-blue.png */,
 				97CB6492215A821A00168FF7 /* carrier-logo.png */,
 				97BD2B47219D44AB00D9DADD /* oogioogiPNG.png */,
@@ -556,7 +553,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97C9B24F21AEBBAB009EA3DA /* blueBG.jpg in Resources */,
 				97CB64A5215A83F500168FF7 /* countries.json in Resources */,
 				97CB6468215A761900168FF7 /* LaunchScreen.storyboard in Resources */,
 				97CB6493215A821A00168FF7 /* carrier-logo.png in Resources */,

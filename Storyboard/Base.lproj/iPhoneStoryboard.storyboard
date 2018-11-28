@@ -54,7 +54,7 @@
                                     <action selector="tapToSignUp:" destination="7OM-d8-S60" eventType="touchUpInside" id="BIb-4C-7gf"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oogioogiPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="FPD-Jz-ZUn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrier-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="FPD-Jz-ZUn">
                                 <rect key="frame" x="67" y="149" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="LD4-Up-dUQ"/>
@@ -291,7 +291,7 @@
                                     <action selector="tapToNavigateBack:" destination="mIA-Fz-ojp" eventType="touchUpInside" id="s3Y-GH-0C5"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oogioogiPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="h4i-M5-5C3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrier-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="h4i-M5-5C3">
                                 <rect key="frame" x="67" y="126" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="0LZ-bk-nfe"/>
@@ -733,10 +733,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueBG.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5vN-0i-yLh">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oogioogiPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="aeb-51-VuQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrier-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="aeb-51-VuQ">
                                 <rect key="frame" x="67" y="148" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="v1c-cP-7UY"/>
@@ -756,7 +753,7 @@
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -771,7 +768,7 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Password"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
                                         <real key="value" value="10"/>
@@ -813,7 +810,7 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="Forgot Password?">
                                             <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <font key="NSFont" metaFont="system" size="15"/>
                                                 <integer key="NSUnderline" value="1"/>
                                             </attributes>
@@ -826,7 +823,7 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="title" value="Forgot Password?"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
-                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -839,7 +836,7 @@
                                     <constraint firstAttribute="height" constant="30" id="c7F-Xb-pAl"/>
                                 </constraints>
                                 <state key="normal" title="Not registered ? Sign up here">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="tapToSignUp:" destination="SV6-FP-sYs" eventType="touchUpInside" id="Hq6-gS-ll7"/>
@@ -856,8 +853,6 @@
                             <constraint firstItem="aeb-51-VuQ" firstAttribute="leading" secondItem="i75-ld-3Ss" secondAttribute="leading" constant="67" id="Ly9-so-LEa"/>
                             <constraint firstItem="SqR-Ba-hTE" firstAttribute="leading" secondItem="i75-ld-3Ss" secondAttribute="leading" constant="16" id="OHZ-xb-5b6"/>
                             <constraint firstItem="SqR-Ba-hTE" firstAttribute="top" secondItem="uTA-rK-8RK" secondAttribute="bottom" constant="8" id="Qds-i9-Vqc"/>
-                            <constraint firstItem="5vN-0i-yLh" firstAttribute="leading" secondItem="i75-ld-3Ss" secondAttribute="leading" id="QkA-st-0n0"/>
-                            <constraint firstItem="i75-ld-3Ss" firstAttribute="bottom" secondItem="5vN-0i-yLh" secondAttribute="bottom" id="RkS-vz-vsP"/>
                             <constraint firstItem="oCa-6L-hRK" firstAttribute="leading" secondItem="i75-ld-3Ss" secondAttribute="leading" constant="16" id="S9u-gI-E2Y"/>
                             <constraint firstItem="aYE-8y-BRm" firstAttribute="top" secondItem="jFc-HJ-SUU" secondAttribute="bottom" constant="13" id="UHQ-Ty-XOe"/>
                             <constraint firstItem="i75-ld-3Ss" firstAttribute="trailing" secondItem="oCa-6L-hRK" secondAttribute="trailing" constant="16" id="YB2-Ov-OJl"/>
@@ -867,8 +862,6 @@
                             <constraint firstItem="uTA-rK-8RK" firstAttribute="leading" secondItem="i75-ld-3Ss" secondAttribute="leading" constant="16" id="pMN-Sp-snz"/>
                             <constraint firstItem="i75-ld-3Ss" firstAttribute="trailing" secondItem="SqR-Ba-hTE" secondAttribute="trailing" constant="16" id="x1E-6A-sHk"/>
                             <constraint firstItem="i75-ld-3Ss" firstAttribute="trailing" secondItem="aeb-51-VuQ" secondAttribute="trailing" constant="68" id="xCl-pB-4xi"/>
-                            <constraint firstItem="5vN-0i-yLh" firstAttribute="trailing" secondItem="i75-ld-3Ss" secondAttribute="trailing" id="xqm-xM-eNg"/>
-                            <constraint firstItem="5vN-0i-yLh" firstAttribute="top" secondItem="i75-ld-3Ss" secondAttribute="top" id="yo0-Bb-XsL"/>
                             <constraint firstItem="uTA-rK-8RK" firstAttribute="top" secondItem="aYE-8y-BRm" secondAttribute="bottom" constant="8" id="zzH-Bw-N4J"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i75-ld-3Ss"/>
@@ -880,7 +873,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bEb-ez-vfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-639.20000000000005" y="613.94302848575717"/>
+            <point key="canvasLocation" x="-639" y="614"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="2d2-sD-Tgm">
@@ -899,7 +892,7 @@
                                         <color key="textColor" red="0.0" green="0.51372549020000002" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oogioogiPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8H-CT-bcR">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrier-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8H-CT-bcR">
                                         <rect key="frame" x="68" y="158" width="240" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="cBh-Zr-sYf"/>
@@ -2101,7 +2094,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oogioogiPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="tZu-HZ-pee">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrier-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="tZu-HZ-pee">
                                 <rect key="frame" x="67" y="93" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="crK-0J-vQq"/>
@@ -3381,11 +3374,9 @@
         <image name="IN.png" width="40" height="30"/>
         <image name="avatar" width="40" height="40"/>
         <image name="back" width="35" height="35"/>
-        <image name="blueBG.jpg" width="2000" height="1333"/>
         <image name="carrier-logo.png" width="949" height="626"/>
         <image name="edit" width="40" height="40"/>
         <image name="navigationpin" width="40" height="40"/>
-        <image name="oogioogiPNG.png" width="3000" height="1501"/>
         <image name="profilebg" width="480" height="400"/>
         <image name="rate-blue.png" width="39" height="39"/>
     </resources>
