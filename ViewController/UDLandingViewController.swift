@@ -171,6 +171,7 @@ class UDLandingViewController: UIViewController {
                 case .failure(let error):
                     self.noDataLabel.isHidden = false
                     self.view.makeToast(error, position: .top)
+                    self.tableView.reloadData()
                 }
             })
         }
