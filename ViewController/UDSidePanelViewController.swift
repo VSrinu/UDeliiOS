@@ -1,6 +1,6 @@
 //
 //  UDSidePanelViewController.swift
-//  UDeli
+//  oogioogi
 //
 //  Created by ARXT Labs on 8/10/18.
 //  Copyright © 2018 ARXT Labs. All rights reserved.

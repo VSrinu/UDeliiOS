@@ -35,15 +35,15 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Udeli requires access to your phone’s camera.</string>
+	<string>OogiOogi requires access to your phone’s camera.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>UDeli need to access your location to show location based on delivery location.</string>
+	<string>OogiOogi need to access your location to show location based on delivery location.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>UDeli need to access your location to show location based on delivery location.</string>
+	<string>OogiOogi need to access your location to show location based on delivery location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>UDeli need to access your location to show location based on delivery location.</string>
+	<string>OogiOogi need to access your location to show location based on delivery location.</string>
 	<key>NSMotionUsageDescription</key>
-	<string>UDeli need to access your location to show location based on delivery location in motion use.</string>
+	<string>OogiOogi need to access your location to show location based on delivery location in motion use.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

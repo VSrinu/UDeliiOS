@@ -1,6 +1,6 @@
 //
 //  ForgotPasswordModel.swift
-//  UDeli
+//  oogioogi
 //
 //  Created by ARXT Labs on 8/6/18.
 //  Copyright © 2018 ARXT Labs. All rights reserved.

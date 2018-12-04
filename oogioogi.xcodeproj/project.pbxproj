@@ -117,17 +117,17 @@
 		97BD2B432199D28200D9DADD /* EnRouteApi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnRouteApi.framework; sourceTree = "<group>"; };
 		97BD2B47219D44AB00D9DADD /* oogioogiPNG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oogioogiPNG.png; sourceTree = "<group>"; };
 		97C9B24A21AD2033009EA3DA /* UDAboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDAboutUsViewController.swift; sourceTree = "<group>"; };
-		97CB6457215A761700168FF7 /* UDeli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDeli.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97CB6457215A761700168FF7 /* oogioogi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oogioogi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CB645A215A761700168FF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97CB645F215A761700168FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
 		97CB6462215A761700168FF7 /* UDeli.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UDeli.xcdatamodel; sourceTree = "<group>"; };
 		97CB6464215A761900168FF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97CB6467215A761900168FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97CB6469215A761900168FF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		97CB646E215A761900168FF7 /* UDeliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UDeliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97CB646E215A761900168FF7 /* oogioogiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = oogioogiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CB6472215A761900168FF7 /* UDeliTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDeliTests.swift; sourceTree = "<group>"; };
 		97CB6474215A761900168FF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		97CB6479215A761900168FF7 /* UDeliUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UDeliUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97CB6479215A761900168FF7 /* oogioogiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = oogioogiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CB647D215A761900168FF7 /* UDeliUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDeliUITests.swift; sourceTree = "<group>"; };
 		97CB647F215A761900168FF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97CB648B215A769500168FF7 /* UDeli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UDeli.entitlements; sourceTree = "<group>"; };
@@ -247,9 +247,9 @@
 		97CB6458215A761700168FF7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				97CB6457215A761700168FF7 /* UDeli.app */,
-				97CB646E215A761900168FF7 /* UDeliTests.xctest */,
-				97CB6479215A761900168FF7 /* UDeliUITests.xctest */,
+				97CB6457215A761700168FF7 /* oogioogi.app */,
+				97CB646E215A761900168FF7 /* oogioogiTests.xctest */,
+				97CB6479215A761900168FF7 /* oogioogiUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -436,9 +436,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		97CB6456215A761700168FF7 /* UDeli */ = {
+		97CB6456215A761700168FF7 /* oogioogi */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 97CB6482215A761900168FF7 /* Build configuration list for PBXNativeTarget "UDeli" */;
+			buildConfigurationList = 97CB6482215A761900168FF7 /* Build configuration list for PBXNativeTarget "oogioogi" */;
 			buildPhases = (
 				EB525F96AB0FE361C7238980 /* [CP] Check Pods Manifest.lock */,
 				97CB6453215A761700168FF7 /* Sources */,
@@ -451,14 +451,14 @@
 			);
 			dependencies = (
 			);
-			name = UDeli;
+			name = oogioogi;
 			productName = UDeli;
-			productReference = 97CB6457215A761700168FF7 /* UDeli.app */;
+			productReference = 97CB6457215A761700168FF7 /* oogioogi.app */;
 			productType = "com.apple.product-type.application";
 		};
-		97CB646D215A761900168FF7 /* UDeliTests */ = {
+		97CB646D215A761900168FF7 /* oogioogiTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 97CB6485215A761900168FF7 /* Build configuration list for PBXNativeTarget "UDeliTests" */;
+			buildConfigurationList = 97CB6485215A761900168FF7 /* Build configuration list for PBXNativeTarget "oogioogiTests" */;
 			buildPhases = (
 				E264F822E0180C7D7D4AE785 /* [CP] Check Pods Manifest.lock */,
 				97CB646A215A761900168FF7 /* Sources */,
@@ -470,14 +470,14 @@
 			dependencies = (
 				97CB6470215A761900168FF7 /* PBXTargetDependency */,
 			);
-			name = UDeliTests;
+			name = oogioogiTests;
 			productName = UDeliTests;
-			productReference = 97CB646E215A761900168FF7 /* UDeliTests.xctest */;
+			productReference = 97CB646E215A761900168FF7 /* oogioogiTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		97CB6478215A761900168FF7 /* UDeliUITests */ = {
+		97CB6478215A761900168FF7 /* oogioogiUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 97CB6488215A761900168FF7 /* Build configuration list for PBXNativeTarget "UDeliUITests" */;
+			buildConfigurationList = 97CB6488215A761900168FF7 /* Build configuration list for PBXNativeTarget "oogioogiUITests" */;
 			buildPhases = (
 				E108B8D23294A9FD5B77CDC2 /* [CP] Check Pods Manifest.lock */,
 				97CB6475215A761900168FF7 /* Sources */,
@@ -489,9 +489,9 @@
 			dependencies = (
 				97CB647B215A761900168FF7 /* PBXTargetDependency */,
 			);
-			name = UDeliUITests;
+			name = oogioogiUITests;
 			productName = UDeliUITests;
-			productReference = 97CB6479215A761900168FF7 /* UDeliUITests.xctest */;
+			productReference = 97CB6479215A761900168FF7 /* oogioogiUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -528,7 +528,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 97CB6452215A761700168FF7 /* Build configuration list for PBXProject "UDeli" */;
+			buildConfigurationList = 97CB6452215A761700168FF7 /* Build configuration list for PBXProject "oogioogi" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -541,9 +541,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				97CB6456215A761700168FF7 /* UDeli */,
-				97CB646D215A761900168FF7 /* UDeliTests */,
-				97CB6478215A761900168FF7 /* UDeliUITests */,
+				97CB6456215A761700168FF7 /* oogioogi */,
+				97CB646D215A761900168FF7 /* oogioogiTests */,
+				97CB6478215A761900168FF7 /* oogioogiUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -761,12 +761,12 @@
 /* Begin PBXTargetDependency section */
 		97CB6470215A761900168FF7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 97CB6456215A761700168FF7 /* UDeli */;
+			target = 97CB6456215A761700168FF7 /* oogioogi */;
 			targetProxy = 97CB646F215A761900168FF7 /* PBXContainerItemProxy */;
 		};
 		97CB647B215A761900168FF7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 97CB6456215A761700168FF7 /* UDeli */;
+			target = 97CB6456215A761700168FF7 /* oogioogi */;
 			targetProxy = 97CB647A215A761900168FF7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -979,7 +979,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UDeli.app/UDeli";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/oogioogi.app/oogioogi";
 			};
 			name = Debug;
 		};
@@ -1001,7 +1001,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UDeli.app/UDeli";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/oogioogi.app/oogioogi";
 			};
 			name = Release;
 		};
@@ -1050,7 +1050,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		97CB6452215A761700168FF7 /* Build configuration list for PBXProject "UDeli" */ = {
+		97CB6452215A761700168FF7 /* Build configuration list for PBXProject "oogioogi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				97CB6480215A761900168FF7 /* Debug */,
@@ -1059,7 +1059,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		97CB6482215A761900168FF7 /* Build configuration list for PBXNativeTarget "UDeli" */ = {
+		97CB6482215A761900168FF7 /* Build configuration list for PBXNativeTarget "oogioogi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				97CB6483215A761900168FF7 /* Debug */,
@@ -1068,7 +1068,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		97CB6485215A761900168FF7 /* Build configuration list for PBXNativeTarget "UDeliTests" */ = {
+		97CB6485215A761900168FF7 /* Build configuration list for PBXNativeTarget "oogioogiTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				97CB6486215A761900168FF7 /* Debug */,
@@ -1077,7 +1077,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		97CB6488215A761900168FF7 /* Build configuration list for PBXNativeTarget "UDeliUITests" */ = {
+		97CB6488215A761900168FF7 /* Build configuration list for PBXNativeTarget "oogioogiUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				97CB6489215A761900168FF7 /* Debug */,

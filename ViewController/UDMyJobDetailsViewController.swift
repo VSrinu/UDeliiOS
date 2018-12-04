@@ -1,6 +1,6 @@
 //
 //  UDMyJobDetailsViewController.swift
-//  UDeli
+//  oogioogi
 //
 //  Created by ARXT Labs on 9/5/18.
 //  Copyright © 2018 ARXT Labs. All rights reserved.

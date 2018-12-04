@@ -1,6 +1,6 @@
 //
 //  VerifyAPI.swift
-//  UDeli
+//  oogioogi
 //
 //  Created by ARXT Labs on 6/21/18.
 //  Copyright © 2018 ARXT Labs. All rights reserved.
@@ -91,7 +91,7 @@ struct VerifyAPI {
             "via": "sms",
             "country_code": countryCode,
             "phone_number": phoneNumber,
-            "message" : "Udeli sample message"
+            "message" : "oogioogi sample message"
         ]
         
         createRequest("phones/verification/start", "POST", parameters) {
