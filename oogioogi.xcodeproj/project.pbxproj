@@ -130,7 +130,7 @@
 		97CB6479215A761900168FF7 /* oogioogiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = oogioogiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CB647D215A761900168FF7 /* UDeliUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDeliUITests.swift; sourceTree = "<group>"; };
 		97CB647F215A761900168FF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		97CB648B215A769500168FF7 /* UDeli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UDeli.entitlements; sourceTree = "<group>"; };
+		97CB648B215A769500168FF7 /* oogioogi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = oogioogi.entitlements; sourceTree = "<group>"; };
 		97CB6492215A821A00168FF7 /* carrier-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "carrier-logo.png"; sourceTree = "<group>"; };
 		97CB6494215A829500168FF7 /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
 		97CB6495215A829500168FF7 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 				97CB648E215A818000168FF7 /* Storyboard */,
 				97CB648D215A816F00168FF7 /* ViewController */,
 				97CB648C215A816500168FF7 /* Helper */,
-				97CB6459215A761700168FF7 /* UDeli */,
+				97CB6459215A761700168FF7 /* oogioogi */,
 				97CB6471215A761900168FF7 /* UDeliTests */,
 				97CB647C215A761900168FF7 /* UDeliUITests */,
 				97CB6458215A761700168FF7 /* Products */,
@@ -254,10 +254,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		97CB6459215A761700168FF7 /* UDeli */ = {
+		97CB6459215A761700168FF7 /* oogioogi */ = {
 			isa = PBXGroup;
 			children = (
-				97CB648B215A769500168FF7 /* UDeli.entitlements */,
+				97CB648B215A769500168FF7 /* oogioogi.entitlements */,
 				97CB645A215A761700168FF7 /* AppDelegate.swift */,
 				97CB64A3215A83F500168FF7 /* countries.json */,
 				97CB64A2215A83F400168FF7 /* CountryPicker.bundle */,
@@ -266,7 +266,7 @@
 				97CB6469215A761900168FF7 /* Info.plist */,
 				97CB6461215A761700168FF7 /* UDeli.xcdatamodeld */,
 			);
-			path = UDeli;
+			path = oogioogi;
 			sourceTree = "<group>";
 		};
 		97CB6471215A761900168FF7 /* UDeliTests */ = {
@@ -913,7 +913,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = UDeli/UDeli.entitlements;
+				CODE_SIGN_ENTITLEMENTS = oogioogi/oogioogi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6TYXA32383;
 				ENABLE_BITCODE = NO;
@@ -921,7 +921,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = UDeli/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/oogioogi/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -940,7 +940,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = UDeli/UDeli.entitlements;
+				CODE_SIGN_ENTITLEMENTS = oogioogi/oogioogi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6TYXA32383;
 				ENABLE_BITCODE = NO;
@@ -948,7 +948,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = UDeli/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/oogioogi/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
