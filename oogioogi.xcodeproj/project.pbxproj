@@ -236,8 +236,8 @@
 				97CB648D215A816F00168FF7 /* ViewController */,
 				97CB648C215A816500168FF7 /* Helper */,
 				97CB6459215A761700168FF7 /* oogioogi */,
-				97CB6471215A761900168FF7 /* UDeliTests */,
-				97CB647C215A761900168FF7 /* UDeliUITests */,
+				97CB6471215A761900168FF7 /* oogioogiTests */,
+				97CB647C215A761900168FF7 /* oogioogiUITests */,
 				97CB6458215A761700168FF7 /* Products */,
 				31234FFD5B8635675FEC67BE /* Pods */,
 				E4EFD53C93A688AF8CD10856 /* Frameworks */,
@@ -269,22 +269,22 @@
 			path = oogioogi;
 			sourceTree = "<group>";
 		};
-		97CB6471215A761900168FF7 /* UDeliTests */ = {
+		97CB6471215A761900168FF7 /* oogioogiTests */ = {
 			isa = PBXGroup;
 			children = (
 				97CB6472215A761900168FF7 /* UDeliTests.swift */,
 				97CB6474215A761900168FF7 /* Info.plist */,
 			);
-			path = UDeliTests;
+			path = oogioogiTests;
 			sourceTree = "<group>";
 		};
-		97CB647C215A761900168FF7 /* UDeliUITests */ = {
+		97CB647C215A761900168FF7 /* oogioogiUITests */ = {
 			isa = PBXGroup;
 			children = (
 				97CB647D215A761900168FF7 /* UDeliUITests.swift */,
 				97CB647F215A761900168FF7 /* Info.plist */,
 			);
-			path = UDeliUITests;
+			path = oogioogiUITests;
 			sourceTree = "<group>";
 		};
 		97CB648C215A816500168FF7 /* Helper */ = {

@@ -1,6 +1,6 @@
 //
-//  UDeliUITests.swift
-//  UDeliUITests
+//  oogioogiUITests.swift
+//  oogioogiUITests
 //
 //  Created by ARXT Labs on 9/25/18.
 //  Copyright © 2018 ARXT Labs. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class UDeliUITests: XCTestCase {
+class oogioogiUITests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
