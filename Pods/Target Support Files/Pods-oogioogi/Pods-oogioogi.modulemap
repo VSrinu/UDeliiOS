@@ -1,0 +1,6 @@
+framework module Pods_oogioogi {
+  umbrella header "Pods-oogioogi-umbrella.h"
+
+  export *
+  module * { export * }
+}
