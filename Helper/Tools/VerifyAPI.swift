@@ -91,7 +91,7 @@ struct VerifyAPI {
             "via": "sms",
             "country_code": countryCode,
             "phone_number": phoneNumber,
-            "message" : "oogioogi sample message"
+            "message" : "oogioogi: your one time password: Do not share this OTP with anyone"
         ]
         
         createRequest("phones/verification/start", "POST", parameters) {
