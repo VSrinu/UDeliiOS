@@ -41,6 +41,7 @@ class UDLandingViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getGlympseUserDetails()
         if glympseUsername != "" && glympsePwd != "" {
             EnRouteWrapper.instance.manager()?.overrideLoggingLevels(GlyCoreConstants.none(), debugLogLevel: GlyCoreConstants.info())
             EnRouteWrapper.instance.manager()?.add(self)
