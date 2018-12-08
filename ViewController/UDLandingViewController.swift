@@ -122,7 +122,7 @@ class UDLandingViewController: UIViewController {
                         return
                     } else {
                         self.tableView.isHidden = false
-                        self.noDataLabel.isHidden = true
+                        //self.noDataLabel.isHidden = true
                         self.getJobList()
                     }
                 case .failure(let error):
@@ -173,7 +173,7 @@ class UDLandingViewController: UIViewController {
                 case .failure(let error):
                     self.noDataLabel.isHidden = false
                     self.view.makeToast(error, position: .top)
-                    self.tableView.isHidden = true
+                    self.tableView.reloadData()
                 }
             })
         }
@@ -182,11 +182,11 @@ class UDLandingViewController: UIViewController {
     func tableReload(jobListArray:NSArray) {
         if jobListArray.count == 0 {
             self.noDataLabel.isHidden = false
-            self.tableView.isHidden = true
+            //self.tableView.isHidden = true
         } else {
             self.setup()
             self.noDataLabel.isHidden = true
-            self.tableView.isHidden = false
+            //self.tableView.isHidden = false
         }
     }
     
