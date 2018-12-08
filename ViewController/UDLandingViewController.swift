@@ -48,6 +48,7 @@ class UDLandingViewController: UIViewController {
             EnRouteWrapper.instance.manager()?.setAuthenticationMode(GlyEnRouteConstants.auth_MODE_CREDENTIALS())
             EnRouteWrapper.instance.manager()?.start()
         }
+        jobListArray = []
         getUserData()
         let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
         userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
@@ -172,7 +173,7 @@ class UDLandingViewController: UIViewController {
                 case .failure(let error):
                     self.noDataLabel.isHidden = false
                     self.view.makeToast(error, position: .top)
-                    self.tableView.reloadData()
+                    self.tableView.isHidden = true
                 }
             })
         }
@@ -181,12 +182,11 @@ class UDLandingViewController: UIViewController {
     func tableReload(jobListArray:NSArray) {
         if jobListArray.count == 0 {
             self.noDataLabel.isHidden = false
-            self.tableView.reloadData()
+            self.tableView.isHidden = true
         } else {
             self.setup()
             self.noDataLabel.isHidden = true
             self.tableView.isHidden = false
-            self.tableView.reloadData()
         }
     }
     
@@ -194,6 +194,7 @@ class UDLandingViewController: UIViewController {
         self.tableView.backgroundColor = #colorLiteral(red: 0, green: 0.7254901961, blue: 0.8980392157, alpha: 0.09754922945)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.tableFooterView = UIView()
+        self.tableView.reloadData()
     }
     
     // MARK:- Target Action Buttons
