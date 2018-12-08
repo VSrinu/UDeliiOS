@@ -126,6 +126,7 @@ class UDLandingViewController: UIViewController {
                         self.getJobList()
                     }
                 case .failure(let error):
+                    ConstantTools.sharedConstantTool.hideMRIndicatorView()
                     self.view.makeToast(error, position: .top)
                 }
             })

@@ -49,8 +49,9 @@ class UDJobDetailsViewController: UIViewController {
     fileprivate func tapToAcceptJobs(button: UIButton) {
         let orderId = jobDict.object(forKey: "orderidstr") as? String ?? ""
         let acceptedby = userInfoDictionary.object(forKey: "carrierid") as? Int ?? 0
+        let checkOrderId = jobDict.object(forKey: "orderid") as? Int ?? 0
         ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view)
-        OrdersModel.updateOrderStatus(acceptedby: acceptedby, oderStatus: String(OrderStatusType.Accepted.rawValue), orderId: orderId) { connectionResult in
+        OrdersModel.acceptOrderStatus(acceptedby: acceptedby, oderStatus: String(OrderStatusType.Accepted.rawValue), orderId: orderId, checkOrderId: checkOrderId) { connectionResult in
             DispatchQueue.main.async(execute: {() -> Void in
                 ConstantTools.sharedConstantTool.hideMRIndicatorView()
                 switch connectionResult {
@@ -58,10 +59,14 @@ class UDJobDetailsViewController: UIViewController {
                     print(data)
                     self.getAlert()
                 case .failure(let error):
-                    self.view.makeToast(error, position: .top)
+                    self.getErrorAlert(message: error)
                 }
             })
         }
+    }
+    
+    func getErrorAlert(message:String) {
+        self.present(UIAlertController.alertWithTitle(title: "Job Accepted", message: message, buttonTitle: "OK", handler: { action in self.updateLandingPage()}), animated: true)
     }
     
     func getAlert() {

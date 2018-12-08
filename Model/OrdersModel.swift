@@ -31,6 +31,48 @@ struct OrdersModel {
     }
     
     // Update order status
+    static func acceptOrderStatus(acceptedby: Int, oderStatus: String, orderId:String, checkOrderId:Int, completion: @escaping (ConnectionResultAsDictionary) -> ()) {
+        Internet.isAvailable { (status, message) in
+            if status {
+                let statusPredicate =  NSPredicate(format: "status == \(OrderStatusType.Accepted.rawValue)")
+                let orderPredicate = NSPredicate(format: "orderid == \(checkOrderId)")
+                let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicate,orderPredicate])
+                tOrders.read(with: predicate) { (result, error) in
+                    if let err = error {
+                        completion(.failure(err.localizedDescription))
+                    } else if let items = result?.items {
+                        let response = items as NSArray
+                        if response.count == 0 {
+                            let itemDict: NSDictionary = ["id": orderId]
+                            if let newItem = itemDict.mutableCopy() as? NSMutableDictionary {
+                                newItem["acceptedby"] = acceptedby
+                                newItem["status"] = oderStatus
+                                if oderStatus == String(OrderStatusType.Accepted.rawValue) {
+                                    newItem["accepteddatetime"] = Date()
+                                } else if oderStatus == String(OrderStatusType.Delivered.rawValue) {
+                                    newItem["delivereddatetime"] = Date()
+                                }
+                                tOrders.update(newItem as [NSObject: AnyObject], completion: { (result, error) -> Void in
+                                    if let err = error {
+                                        completion(.failure(err.localizedDescription))
+                                    } else if let item = result {
+                                        completion(.success(item as NSDictionary))
+                                    }
+                                })
+                            }
+                        } else {
+                            completion(.failure("This order has been accepted by another carrier. Please find another order"))
+                        }
+                    } else {
+                        completion(.failure("This order has been accepted by another carrier. Please find another order"))
+                    }
+                }
+            } else {
+                completion(.failure(message))
+            }
+        }
+    }
+    
     static func updateOrderStatus(acceptedby: Int, oderStatus: String, orderId:String, completion: @escaping (ConnectionResultAsDictionary) -> ()) {
         Internet.isAvailable { (status, message) in
             if status {
