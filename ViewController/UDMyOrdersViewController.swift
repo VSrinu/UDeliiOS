@@ -129,11 +129,11 @@ extension UDMyOrdersViewController: UITableViewDataSource, UITableViewDelegate {
         let orderId = myJobDict.object(forKey: "orderid") as? Int ?? 0
         cell.jobIdLabel.text = "\(orderId)"
         let preferreddeliverytime = myJobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
-        let deliverDate = ConstantTools.sharedConstantTool.dayFormate(date: preferreddeliverytime)
+        let deliverDate = ConstantTools.sharedConstantTool.dayFormat(date: preferreddeliverytime)
         cell.deliveryDate.text = deliverDate
-        let deliverMonth = ConstantTools.sharedConstantTool.mothFormate(date: preferreddeliverytime)
+        let deliverMonth = ConstantTools.sharedConstantTool.monthFormat(date: preferreddeliverytime)
         cell.deliveryMonth.text = deliverMonth
-        let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
+        let time = ConstantTools.sharedConstantTool.timeFormat(date: preferreddeliverytime)
         cell.deliveryTime.text = time
         let customerName = myJobDict.object(forKey: "customername") as? String ?? ""
         let city = myJobDict.object(forKey: "city") as? String ?? ""

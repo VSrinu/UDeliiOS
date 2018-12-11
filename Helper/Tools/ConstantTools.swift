@@ -104,31 +104,31 @@ class ConstantTools: NSObject {
         return Dictionary
     }
     
-    func dateFormate(date:Date) -> String {
+    func dateFormat(date:Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd,yyyy"
-        let dateFormate = dateFormatter.string(from: date)
-        return dateFormate
+        let dateFormat = dateFormatter.string(from: date)
+        return dateFormat
     }
     
-    func mothFormate(date:Date) -> String {
+    func monthFormat(date:Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM"
-        let dateFormate = dateFormatter.string(from: date)
-        return dateFormate
+        let dateFormat = dateFormatter.string(from: date)
+        return dateFormat
     }
     
-    func dayFormate(date:Date) -> String {
+    func dayFormat(date:Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd"
-        let dateFormate = dateFormatter.string(from: date)
-        return dateFormate
+        let dateFormat = dateFormatter.string(from: date)
+        return dateFormat
     }
     
-    func timeFormate(date:Date) -> String {
-        let timeFormate = DateFormatter()
-        timeFormate.dateFormat = "h:mm a"
-        let time = timeFormate.string(from: date)
+    func timeFormat(date:Date) -> String {
+        let timeFormat = DateFormatter()
+        timeFormat.dateFormat = "h:mm a"
+        let time = timeFormat.string(from: date)
         return time
     }
     

@@ -86,9 +86,9 @@ extension UDCompletedJobDetailsViewController: UITableViewDataSource, UITableVie
             let customerName = myJobDict.object(forKey: "customername") as? String ?? ""
             let city = myJobDict.object(forKey: "city") as? String ?? ""
             let preferreddeliverytime = myJobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
-            let deliverDate = ConstantTools.sharedConstantTool.dayFormate(date: preferreddeliverytime)
-            let deliverMonth = ConstantTools.sharedConstantTool.mothFormate(date: preferreddeliverytime)
-            let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
+            let deliverDate = ConstantTools.sharedConstantTool.dayFormat(date: preferreddeliverytime)
+            let deliverMonth = ConstantTools.sharedConstantTool.monthFormat(date: preferreddeliverytime)
+            let time = ConstantTools.sharedConstantTool.timeFormat(date: preferreddeliverytime)
             let address = myJobDict.object(forKey: "address") as? String ?? ""
             let state = myJobDict.object(forKey: "state") as? String ?? ""
             let zip = myJobDict.object(forKey: "zip") as? String ?? ""

@@ -147,9 +147,9 @@ extension UDJobDetailsViewController: UITableViewDataSource, UITableViewDelegate
             let customerName = jobDict.object(forKey: "customername") as? String ?? ""
             let city = jobDict.object(forKey: "city") as? String ?? ""
             let preferreddeliverytime = jobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
-            let deliverDate = ConstantTools.sharedConstantTool.dayFormate(date: preferreddeliverytime)
-            let deliverMonth = ConstantTools.sharedConstantTool.mothFormate(date: preferreddeliverytime)
-            let time = ConstantTools.sharedConstantTool.timeFormate(date: preferreddeliverytime)
+            let deliverDate = ConstantTools.sharedConstantTool.dayFormat(date: preferreddeliverytime)
+            let deliverMonth = ConstantTools.sharedConstantTool.monthFormat(date: preferreddeliverytime)
+            let time = ConstantTools.sharedConstantTool.timeFormat(date: preferreddeliverytime)
             cell.jobId.text = "Deliver to \(customerName) at \(city) by \(deliverMonth) \(deliverDate) at \(time)"
             let orderId = jobDict.object(forKey: "orderid") as? Int ?? 0
             let orderTitle = jobDict.object(forKey: "ordertitle") as? String ?? ""
