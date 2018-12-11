@@ -211,6 +211,29 @@ extension ConstantTools:CLLocationManagerDelegate {
                 userInfoDictionary.setValue(location.coordinate.latitude, forKey: "latitude")
                 let data = NSKeyedArchiver.archivedData(withRootObject: userInfoDictionary)
                 UserDefaults.standard.set(data, forKey: "userInfo")
+                DispatchQueue.main.async {
+                    let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
+                    userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
+                    let carrierId = userInfoDictionary.object(forKey: "carrierid") as? Int ?? 0
+                    let id = userInfoDictionary.object(forKey: "id") as? String ?? ""
+                    if carrierId != 0 {
+                        print("\(location.coordinate.longitude)\(location.coordinate.latitude)")
+                        let latitude = String(location.coordinate.latitude)
+                        let longitude = String(location.coordinate.longitude)
+                        ProfileUpdateModel.updateUserLocation(userId: id, latitude: latitude, longitude: longitude) { connectionResult in
+                            DispatchQueue.main.async(execute: {() -> Void in
+                                switch connectionResult {
+                                case .success(let data):
+                                    userInfoDictionary.setValuesForKeys(data as! [String : Any])
+                                    let userData = NSKeyedArchiver.archivedData(withRootObject: userInfoDictionary)
+                                    UserDefaults.standard.set(userData, forKey: "userInfo")
+                                case .failure(let error):
+                                    print(error)
+                                }
+                            })
+                        }
+                    }
+                }
             }
         }
     }

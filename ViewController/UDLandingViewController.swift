@@ -41,6 +41,9 @@ class UDLandingViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            ConstantTools.sharedConstantTool.getCurrentLocation()
+        }
         getGlympseUserDetails()
         if glympseUsername != "" && glympsePwd != "" {
             EnRouteWrapper.instance.manager()?.overrideLoggingLevels(GlyCoreConstants.none(), debugLogLevel: GlyCoreConstants.info())
@@ -337,8 +340,8 @@ extension UDLandingViewController: GlyListener {
     }
     
     /*func handleStopped() {
-        self.present(UIAlertController.alertWithTitle(title: "", message: "Invalid credentials, please try again.", buttonTitle: "OK", handler: { action in self.tapToLogOut()}), animated: true)
-    }*/
+     self.present(UIAlertController.alertWithTitle(title: "", message: "Invalid credentials, please try again.", buttonTitle: "OK", handler: { action in self.tapToLogOut()}), animated: true)
+     }*/
     
     func tapToLogOut() {
         resetUserValues()
