@@ -7,7 +7,7 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
-  - IQKeyboardManagerSwift (6.1.1)
+  - IQKeyboardManagerSwift (6.2.0)
   - Material (2.16.4):
     - Material/Core (= 2.16.4)
   - Material/Core (2.16.4):
@@ -52,7 +52,7 @@ DEPENDENCIES:
   - FoldingCell
   - GoogleMaps
   - GooglePlaces
-  - IQKeyboardManagerSwift (~> 6.1.1)
+  - IQKeyboardManagerSwift
   - Material
   - MicrosoftAzureMobile
   - MRProgress
@@ -78,7 +78,7 @@ SPEC CHECKSUMS:
   FoldingCell: 352f0211a53f957b885a1b37d5ffa875da90bca5
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
-  IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
   MicrosoftAzureMobile: 82719f7f9e1e3389d5c2fe5f6be034c344004e12
   Motion: 153ba49692997888556c7a95207278a8b1f8be95
@@ -87,6 +87,6 @@ SPEC CHECKSUMS:
   SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: 34fcea01c62470636c29a8969e098c54a6370507
+PODFILE CHECKSUM: 413f41db2a7a9fe1b7e2e75bf8ee2de99da1f84a
 
 COCOAPODS: 1.5.3

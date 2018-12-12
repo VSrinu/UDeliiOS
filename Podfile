@@ -8,7 +8,7 @@ target 'oogioogi' do
     # Pods for oogioogi
     pod 'MRProgress'
     pod 'Material'
-    pod 'IQKeyboardManagerSwift', '~> 6.1.1'
+    pod 'IQKeyboardManagerSwift'
     pod 'MicrosoftAzureMobile'
     pod 'Toast-Swift'
     pod 'SideMenu'
