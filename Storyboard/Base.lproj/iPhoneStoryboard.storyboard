@@ -1435,7 +1435,7 @@
                                             <action selector="tapToNavigateBack:" destination="zhK-IC-JRt" eventType="touchUpInside" id="NtQ-3c-fN2"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="2iZ-DH-rld" customClass="DesignableImageView" customModule="UDeli">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="2iZ-DH-rld" customClass="DesignableImageView" customModule="oogioogi" customModuleProvider="target">
                                         <rect key="frame" x="137.5" y="41" width="100" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>

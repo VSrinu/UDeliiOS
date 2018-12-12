@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71E7F3F00ADEF6F67071B038 /* Pods_oogioogiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D13455B6C92B2A3D04AC554 /* Pods_oogioogiTests.framework */; };
 		9717D12B21842C5900801342 /* rate-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9717D12A21842C4F00801342 /* rate-blue.png */; };
 		972B21DC219E861100C15612 /* UDCompletedJobDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972B21DB219E861100C15612 /* UDCompletedJobDetailsViewController.swift */; };
 		97AEF03F2164D2B200867943 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF03E2164D2B200867943 /* SystemConfiguration.framework */; };
@@ -69,6 +70,7 @@
 		97CB64DC215A860E00168FF7 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CB64D2215A860E00168FF7 /* ColorScheme.swift */; };
 		97CB64DD215A860E00168FF7 /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CB64D4215A860E00168FF7 /* DesignableButton.swift */; };
 		97CB64DE215A860E00168FF7 /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CB64D5215A860E00168FF7 /* DesignableImageView.swift */; };
+		E2BF2D454041E0C6916CB6CA /* Pods_oogioogiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E02F6658BEED1BB67F75537 /* Pods_oogioogiUITests.framework */; };
 		FF14907EBCB97E2AADE2B9EA /* Pods_oogioogi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B95171020A407EF031B0EFB /* Pods_oogioogi.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,8 +92,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E02F6658BEED1BB67F75537 /* Pods_oogioogiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oogioogiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B95171020A407EF031B0EFB /* Pods_oogioogi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oogioogi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50573A68CD1E8250ED75F9D5 /* Pods-oogioogi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oogioogi.release.xcconfig"; path = "Pods/Target Support Files/Pods-oogioogi/Pods-oogioogi.release.xcconfig"; sourceTree = "<group>"; };
+		5D13455B6C92B2A3D04AC554 /* Pods_oogioogiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_oogioogiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		664340319B3D68B4195D0E79 /* Pods-oogioogiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oogioogiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oogioogiUITests/Pods-oogioogiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		68C390FEE225C0A8FB648C49 /* Pods-oogioogi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oogioogi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oogioogi/Pods-oogioogi.debug.xcconfig"; sourceTree = "<group>"; };
 		9717D12A21842C4F00801342 /* rate-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rate-blue.png"; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71E7F3F00ADEF6F67071B038 /* Pods_oogioogiTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2BF2D454041E0C6916CB6CA /* Pods_oogioogiUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +427,8 @@
 				97AEF0402164D2C100867943 /* UIKit.framework */,
 				97AEF03E2164D2B200867943 /* SystemConfiguration.framework */,
 				4B95171020A407EF031B0EFB /* Pods_oogioogi.framework */,
+				5D13455B6C92B2A3D04AC554 /* Pods_oogioogiTests.framework */,
+				0E02F6658BEED1BB67F75537 /* Pods_oogioogiUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -580,7 +588,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-oogioogi/Pods-oogioogi-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
 				"${BUILT_PRODUCTS_DIR}/FoldingCell/FoldingCell.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MRProgress/MRProgress.framework",
@@ -593,7 +600,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoldingCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MRProgress.framework",

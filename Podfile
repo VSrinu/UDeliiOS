@@ -9,7 +9,6 @@ target 'oogioogi' do
     pod 'MRProgress'
     pod 'Material'
     pod 'IQKeyboardManagerSwift', '~> 6.1.1'
-    pod 'DLRadioButton'
     pod 'MicrosoftAzureMobile'
     pod 'Toast-Swift'
     pod 'SideMenu'
