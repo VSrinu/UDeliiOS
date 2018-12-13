@@ -154,7 +154,9 @@ extension UDJobDetailsViewController: UITableViewDataSource, UITableViewDelegate
             let orderId = jobDict.object(forKey: "orderid") as? Int ?? 0
             let orderTitle = jobDict.object(forKey: "ordertitle") as? String ?? ""
             cell.jobTitle.text = "\(orderId): \(orderTitle)"
-            cell.jobDetails.text = "\(jobDict.object(forKey: "orderdetails") as? String ?? "")"
+            let pickupTime = jobDict.object(forKey: "pickupreadytimeoffset") as? Date ?? Date()
+            let pickupReadyTime = ConstantTools.sharedConstantTool.timeFormat(date: pickupTime)
+            cell.jobDetails.text = "\(jobDict.object(forKey: "orderdetails") as? String ?? "")\n Pickup Time: \(pickupReadyTime)"
             cell.jobAcceptBtn.addTarget(self, action: #selector(tapToAcceptJobs(button:)), for: .touchUpInside)
             cell.jobDismissBtn.addTarget(self, action: #selector(tapToDismissPage(button:)), for: .touchUpInside)
             return cell
