@@ -123,7 +123,6 @@ extension UDMyOrdersViewController: UITableViewDataSource, UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myJobCell", for: indexPath) as! UDLandingCell
         let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().object(at: indexPath.row))!
-        print(task.getId())
         let predicate = NSPredicate(format: "glympsetaskid == \(task.getId())")
         let tempArray = myJobsArray.filtered(using: predicate) as NSArray
         let myJobDict = tempArray.firstObject as? NSDictionary ?? [:]
