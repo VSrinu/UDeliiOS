@@ -267,7 +267,7 @@ extension UDLandingViewController: UITableViewDataSource, UITableViewDelegate {
         let jobDict:NSDictionary = jobListArray[indexPath.row] as! NSDictionary
         let orderId = jobDict.object(forKey: "orderid") as? Int ?? 0
         cell.jobIdLabel.text = "\(orderId)"
-        let preferreddeliverytime = jobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
+        let preferreddeliverytime = jobDict.object(forKey: "preferreddeliverytimeoffset") as? Date ?? Date()
         let deliverDate = ConstantTools.sharedConstantTool.dayFormat(date: preferreddeliverytime)
         cell.deliveryDate.text = deliverDate
         let deliverMonth = ConstantTools.sharedConstantTool.monthFormat(date: preferreddeliverytime)

@@ -123,12 +123,13 @@ extension UDMyOrdersViewController: UITableViewDataSource, UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myJobCell", for: indexPath) as! UDLandingCell
         let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().object(at: indexPath.row))!
+        print(task.getId())
         let predicate = NSPredicate(format: "glympsetaskid == \(task.getId())")
         let tempArray = myJobsArray.filtered(using: predicate) as NSArray
         let myJobDict = tempArray.firstObject as? NSDictionary ?? [:]
         let orderId = myJobDict.object(forKey: "orderid") as? Int ?? 0
         cell.jobIdLabel.text = "\(orderId)"
-        let preferreddeliverytime = myJobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
+        let preferreddeliverytime = myJobDict.object(forKey: "preferreddeliverytimeoffset") as? Date ?? Date()
         let deliverDate = ConstantTools.sharedConstantTool.dayFormat(date: preferreddeliverytime)
         cell.deliveryDate.text = deliverDate
         let deliverMonth = ConstantTools.sharedConstantTool.monthFormat(date: preferreddeliverytime)

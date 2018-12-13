@@ -211,7 +211,7 @@ extension UDMyJobDetailsViewController: UITableViewDataSource, UITableViewDelega
             cell.pulseAnimation = .none
             let customerName = myJobDict.object(forKey: "customername") as? String ?? ""
             let city = myJobDict.object(forKey: "city") as? String ?? ""
-            let preferreddeliverytime = myJobDict.object(forKey: "preferreddeliverytime") as? Date ?? Date()
+            let preferreddeliverytime = myJobDict.object(forKey: "preferreddeliverytimeoffset") as? Date ?? Date()
             let deliverDate = ConstantTools.sharedConstantTool.dayFormat(date: preferreddeliverytime)
             let deliverMonth = ConstantTools.sharedConstantTool.monthFormat(date: preferreddeliverytime)
             let time = ConstantTools.sharedConstantTool.timeFormat(date: preferreddeliverytime)
