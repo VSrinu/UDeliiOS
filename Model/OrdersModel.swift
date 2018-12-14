@@ -84,6 +84,8 @@ struct OrdersModel {
                         newItem["accepteddatetime"] = Date()
                     } else if oderStatus == String(OrderStatusType.Delivered.rawValue) {
                         newItem["delivereddatetime"] = Date()
+                    } else if oderStatus == String(OrderStatusType.InProgress.rawValue) {
+                        newItem["startorderdatetime"] = Date()
                     }
                     tOrders.update(newItem as [NSObject: AnyObject], completion: { (result, error) -> Void in
                         if let err = error {

@@ -223,7 +223,9 @@ extension UDMyJobDetailsViewController: UITableViewDataSource, UITableViewDelega
             let orderId = myJobDict.object(forKey: "orderid") as? Int ?? 0
             let orderTitle = myJobDict.object(forKey: "ordertitle") as? String ?? ""
             cell.jobTitle.text = "\(orderId): \(orderTitle)"
-            cell.jobDetails.text = "\(myJobDict.object(forKey: "orderdetails") as? String ?? "")"
+            let pickupTime = myJobDict.object(forKey: "pickupreadytimeoffset") as? Date ?? Date()
+            let pickupReadyTime = ConstantTools.sharedConstantTool.timeFormat(date: pickupTime)
+            cell.jobDetails.text = "\(myJobDict.object(forKey: "orderdetails") as? String ?? "")\n Pickup Time: \(pickupReadyTime)"
             let orderStatus = myJobDict.object(forKey: "status") as? Int ?? 0
             cell.jobAcceptBtn.setTitle("Start the Job", for: .normal)
             cell.jobDismissBtn.setTitle("Complete the Job", for: .normal)
