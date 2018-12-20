@@ -42,10 +42,10 @@ class UDMerchantSelectionViewController: UIViewController {
             return
         }
         for merchantDetails in merchantSelectionArray {
-            let carrierId = (merchantDetails as AnyObject).object(forKey: "merchantid") as? Int ?? 0
-            let userId = userInfoDictionary.object(forKey: "carrierid") as? Int ?? 0
+            let merchantId = (merchantDetails as AnyObject).object(forKey: "merchantid") as? Int ?? 0
+            let carrierId = userInfoDictionary.object(forKey: "carrierid") as? Int ?? 0
             ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view,text: "updating your details")
-            UDModel.addMerchantsOfCarrier(carrierId: carrierId, merchantId: userId) { connectionResult in
+            UDModel.addMerchantsOfCarrier(carrierId: carrierId, merchantId: merchantId) { connectionResult in
                 DispatchQueue.main.async(execute: {() -> Void in
                     ConstantTools.sharedConstantTool.hideMRIndicatorView()
                     switch connectionResult {
