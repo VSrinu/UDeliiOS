@@ -37,6 +37,10 @@ class UDMerchantSelectionViewController: UIViewController {
     }
     
     @IBAction func tapToUpdateMerchant(_ sender: Any) {
+        if merchantSelectionArray.count == 0 {
+            self.view.makeToast("Please select merchant to continue", position: .top)
+            return
+        }
         for merchantDetails in merchantSelectionArray {
             let carrierId = (merchantDetails as AnyObject).object(forKey: "merchantid") as? Int ?? 0
             let userId = userInfoDictionary.object(forKey: "carrierid") as? Int ?? 0
