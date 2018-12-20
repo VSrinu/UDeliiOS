@@ -24,4 +24,5 @@ let tCarrier = msClientURL.table(withName: "tcarrier")
 let tmerchant = msClientURL.table(withName: "tmerchant")
 let tOrders = msClientURL.table(withName: "tOrders")
 let tOrderToCarriers = msClientURL.table(withName: "tOrderToCarriers")
+let tCarrierToMerchants = msClientURL.table(withName: "tCarrierToMerchants")
 

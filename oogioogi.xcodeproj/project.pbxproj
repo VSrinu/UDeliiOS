@@ -10,6 +10,7 @@
 		71E7F3F00ADEF6F67071B038 /* Pods_oogioogiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D13455B6C92B2A3D04AC554 /* Pods_oogioogiTests.framework */; };
 		9717D12B21842C5900801342 /* rate-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9717D12A21842C4F00801342 /* rate-blue.png */; };
 		972B21DC219E861100C15612 /* UDCompletedJobDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972B21DB219E861100C15612 /* UDCompletedJobDetailsViewController.swift */; };
+		973BC21921CA90C400688A90 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 973BC21821CA90C400688A90 /* UserNotifications.framework */; };
 		97AEF03F2164D2B200867943 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF03E2164D2B200867943 /* SystemConfiguration.framework */; };
 		97AEF0412164D2C100867943 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0402164D2C100867943 /* UIKit.framework */; };
 		97AEF0432164D2CC00867943 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AEF0422164D2CC00867943 /* Security.framework */; };
@@ -100,6 +101,7 @@
 		68C390FEE225C0A8FB648C49 /* Pods-oogioogi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oogioogi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-oogioogi/Pods-oogioogi.debug.xcconfig"; sourceTree = "<group>"; };
 		9717D12A21842C4F00801342 /* rate-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rate-blue.png"; sourceTree = "<group>"; };
 		972B21DB219E861100C15612 /* UDCompletedJobDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDCompletedJobDetailsViewController.swift; sourceTree = "<group>"; };
+		973BC21821CA90C400688A90 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		97AEF03E2164D2B200867943 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		97AEF0402164D2C100867943 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		97AEF0422164D2CC00867943 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -177,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				973BC21921CA90C400688A90 /* UserNotifications.framework in Frameworks */,
 				97BD2B442199D28200D9DADD /* EnRouteApi.framework in Frameworks */,
 				97AEF0552164D36C00867943 /* libc++.tbd in Frameworks */,
 				97AEF0532164D35300867943 /* libz.tbd in Frameworks */,
@@ -305,7 +308,6 @@
 				97CB64AE215A85D700168FF7 /* AppNavigationDrawerController.swift */,
 				97CB64A6215A85D400168FF7 /* UDCountryCodeViewController.swift */,
 				97CB64A8215A85D500168FF7 /* UDDistanceSelectViewController.swift */,
-				97CB64AD215A85D600168FF7 /* UDEditProfileViewController.swift */,
 				97CB64A7215A85D400168FF7 /* UDForgotPasswordViewController.swift */,
 				97CB64B3215A85D900168FF7 /* UDJobDetailsViewController.swift */,
 				97CB64AF215A85D700168FF7 /* UDLandingViewController.swift */,
@@ -315,6 +317,7 @@
 				97CB64B2215A85D800168FF7 /* UDMyJobDetailsViewController.swift */,
 				97CB64AC215A85D600168FF7 /* UDMyOrdersViewController.swift */,
 				97CB64B0215A85D700168FF7 /* UDProfileViewController.swift */,
+				97CB64AD215A85D600168FF7 /* UDEditProfileViewController.swift */,
 				97CB64B6215A85DA00168FF7 /* UDSidePanelViewController.swift */,
 				97CB64B1215A85D800168FF7 /* UDSignUpMobileViewController.swift */,
 				97CB64A9215A85D500168FF7 /* UDSignUpViewController.swift */,
@@ -413,6 +416,7 @@
 		E4EFD53C93A688AF8CD10856 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				973BC21821CA90C400688A90 /* UserNotifications.framework */,
 				97BD2B432199D28200D9DADD /* EnRouteApi.framework */,
 				97AEF0542164D36C00867943 /* libc++.tbd */,
 				97AEF0522164D35300867943 /* libz.tbd */,

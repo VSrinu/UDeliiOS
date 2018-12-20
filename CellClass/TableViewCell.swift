@@ -71,6 +71,12 @@ class UDTableViewCell: TableViewCell {
     @IBOutlet weak var label: UILabel!
 }
 
+class UDMerchantSelectionTableViewCell: TableViewCell {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailsLabel: UILabel!
+    @IBOutlet weak var logo: UIImageView!
+}
+
 class UDLandingCell: TableViewCell {
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var jobIdLabel: UILabel!

@@ -987,29 +987,49 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="tableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="tableViewCell" id="RSF-no-Qrp" customClass="UDTableViewCell" customModule="oogioogi" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="tableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="tableViewCell" rowHeight="74" id="RSF-no-Qrp" customClass="UDMerchantSelectionTableViewCell" customModule="oogioogi" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RSF-no-Qrp" id="p7s-B4-1ML">
-                                            <rect key="frame" x="0.0" y="0.0" width="336" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="336" height="73.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEH-cl-Ujt">
-                                                    <rect key="frame" x="15" y="12" width="313" height="21"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrier-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Oj1-XD-N71">
+                                                    <rect key="frame" x="5" y="7" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="mpV-cB-4fF"/>
+                                                        <constraint firstAttribute="width" constant="60" id="r5B-eV-2dh"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCM-As-QEX">
+                                                    <rect key="frame" x="70" y="13" width="266" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wu-TG-8j5">
+                                                    <rect key="frame" x="70" y="42" width="266" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="xEH-cl-Ujt" firstAttribute="leading" secondItem="p7s-B4-1ML" secondAttribute="leadingMargin" id="Q2U-wb-iKG"/>
-                                                <constraint firstItem="xEH-cl-Ujt" firstAttribute="bottom" secondItem="p7s-B4-1ML" secondAttribute="bottomMargin" id="TMe-gT-Hec"/>
-                                                <constraint firstItem="xEH-cl-Ujt" firstAttribute="trailing" secondItem="p7s-B4-1ML" secondAttribute="trailingMargin" id="cz6-7q-ncy"/>
-                                                <constraint firstItem="xEH-cl-Ujt" firstAttribute="top" secondItem="p7s-B4-1ML" secondAttribute="topMargin" constant="1" id="ka9-qW-znY"/>
+                                                <constraint firstAttribute="trailing" secondItem="9wu-TG-8j5" secondAttribute="trailing" id="9Yr-vv-kA4"/>
+                                                <constraint firstItem="aCM-As-QEX" firstAttribute="leading" secondItem="Oj1-XD-N71" secondAttribute="trailing" constant="5" id="ABL-tQ-1pc"/>
+                                                <constraint firstAttribute="bottom" secondItem="9wu-TG-8j5" secondAttribute="bottom" constant="10.5" id="EQU-S6-blh"/>
+                                                <constraint firstItem="9wu-TG-8j5" firstAttribute="top" secondItem="aCM-As-QEX" secondAttribute="bottom" constant="8.5" id="UTk-6b-CL9"/>
+                                                <constraint firstItem="Oj1-XD-N71" firstAttribute="centerY" secondItem="p7s-B4-1ML" secondAttribute="centerY" id="YPb-Qc-cr7"/>
+                                                <constraint firstItem="Oj1-XD-N71" firstAttribute="leading" secondItem="p7s-B4-1ML" secondAttribute="leading" constant="5" id="gTY-bi-onw"/>
+                                                <constraint firstItem="9wu-TG-8j5" firstAttribute="leading" secondItem="Oj1-XD-N71" secondAttribute="trailing" constant="5" id="lax-Ws-qQR"/>
+                                                <constraint firstItem="aCM-As-QEX" firstAttribute="top" secondItem="p7s-B4-1ML" secondAttribute="top" constant="13" id="wMh-1P-J8z"/>
+                                                <constraint firstAttribute="trailing" secondItem="aCM-As-QEX" secondAttribute="trailing" id="z2B-Gg-Ztu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="label" destination="xEH-cl-Ujt" id="Pta-2x-Ucc"/>
+                                            <outlet property="detailsLabel" destination="9wu-TG-8j5" id="Ayg-8C-4Il"/>
+                                            <outlet property="logo" destination="Oj1-XD-N71" id="j7w-hX-2oz"/>
+                                            <outlet property="titleLabel" destination="aCM-As-QEX" id="p8B-DC-hO1"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1037,7 +1057,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2k-oT-M30" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="614"/>
+            <point key="canvasLocation" x="901.60000000000002" y="613.94302848575717"/>
         </scene>
         <!--Landing View Controller-->
         <scene sceneID="Ifd-dm-j5m">
