@@ -80,6 +80,7 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
         if GlyEnRouteEvents.listener_ENROUTE_MANAGER() == listener {
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_STARTED() ) {
                 print("En Route Event: ENROUTE_MANAGER_STARTED")
+                EnRouteWrapper.instance.manager()?.add(self)
                 EnRouteWrapper.instance.manager()?.getTaskManager().add(self)
                 ConstantTools.sharedConstantTool.hideMRIndicatorView()
             }
@@ -163,6 +164,7 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
     
     @objc
     fileprivate func tapToAcceptJobs(button: UIButton) {
+        EnRouteWrapper.instance.manager()?.add(self)
         EnRouteWrapper.instance.manager()?.getTaskManager().add(self)
         ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view)
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
@@ -189,6 +191,7 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
     
     @objc
     fileprivate func tapToComplete(button: UIButton) {
+        EnRouteWrapper.instance.manager()?.add(self)
         EnRouteWrapper.instance.manager()?.getTaskManager().add(self)
         ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view)
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
