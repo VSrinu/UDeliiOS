@@ -10,7 +10,6 @@ import UIKit
 import Material
 import SideMenu
 import CoreLocation
-import EnRouteApi
 
 class UDLandingViewController: UIViewController {
     @IBOutlet weak var toolBar: Toolbar!
@@ -27,7 +26,7 @@ class UDLandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
-        getGlympseUserDetails()
+        //getGlympseUserDetails()
         loadInitialData()
         setupSideMenu()
         DispatchQueue.main.async {
@@ -44,19 +43,18 @@ class UDLandingViewController: UIViewController {
         DispatchQueue.main.async {
             ConstantTools.sharedConstantTool.getCurrentLocation()
         }
-        getGlympseUserDetails()
-        if glympseUsername != "" && glympsePwd != "" {
+        //getGlympseUserDetails()
+        /*if glympseUsername != "" && glympsePwd != "" {
             EnRouteWrapper.instance.manager()?.overrideLoggingLevels(GlyCoreConstants.none(), debugLogLevel: GlyCoreConstants.info())
             EnRouteWrapper.instance.manager()?.add(self)
             EnRouteWrapper.instance.manager()?.setAuthenticationMode(GlyEnRouteConstants.auth_MODE_CREDENTIALS())
             EnRouteWrapper.instance.manager()?.start()
-        }
-        jobListArray = []
+        }*/
         getUserData()
         let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
         userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
         profilestatus = userInfoDictionary.object(forKey: "profilestatus") as? String ?? "0"
-        checkProfileUpdate()
+        //checkProfileUpdate()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -88,12 +86,12 @@ class UDLandingViewController: UIViewController {
         SideMenuManager.default.menuBlurEffectStyle = styles[2]
     }
     
-    func checkProfileUpdate() {
+    /*func checkProfileUpdate() {
         let merchantId = userInfoDictionary.object(forKey: "merchantid") as? Int ?? 0
         if merchantId == 0 {
             getAlert()
         }
-    }
+    }*/
     
     func getAlert() {
         self.present(UIAlertController.alertWithTitle(title: "", message: "Update Your profile to get Jobs form your merchant", buttonTitle: "OK", handler: { action in self.tapToProfile()}), animated: true)
@@ -115,19 +113,19 @@ class UDLandingViewController: UIViewController {
                     UserDefaults.standard.set(userData, forKey: "userInfo")
                     let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
                     userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
-                    let isCarrireActive = userInfoDictionary.object(forKey: "active") as? String ?? ""
-                    if isCarrireActive != "1" {
+                    //let isCarrireActive = userInfoDictionary.object(forKey: "active") as? String ?? ""
+                    /*if isCarrireActive != "1" {
                         ConstantTools.sharedConstantTool.hideMRIndicatorView()
                         self.getUserAlert()
                         self.noDataLabel.isHidden = false
                         self.noDataLabel.text = "Your Merchant have not approved to start the job."
                         self.tableView.isHidden = true
                         return
-                    } else {
+                    } else {*/
                         self.tableView.isHidden = false
                         //self.noDataLabel.isHidden = true
                         self.getJobList()
-                    }
+                    //}
                 case .failure(let error):
                     ConstantTools.sharedConstantTool.hideMRIndicatorView()
                     self.view.makeToast(error, position: .top)
@@ -157,14 +155,14 @@ class UDLandingViewController: UIViewController {
     }
     
     func getJobList() {
-        let isCarrireActive = userInfoDictionary.object(forKey: "active") as? String ?? ""
+        /*let isCarrireActive = userInfoDictionary.object(forKey: "active") as? String ?? ""
         if isCarrireActive != "1" {
             ConstantTools.sharedConstantTool.hideMRIndicatorView()
             return
-        }
-        let merchantId = userInfoDictionary.object(forKey: "merchantid") as? Int ?? 0
+        }*/
+        jobListArray = []
         let userId = userInfoDictionary.object(forKey: "carrierid") as? Int ?? 0
-        OrdersModel.getOrdersDetails(acceptedby: userId, merchantId: merchantId) { connectionResult in
+        OrdersModel.getOrdersDetails(acceptedby: userId) { connectionResult in
             DispatchQueue.main.async(execute: {() -> Void in
                 ConstantTools.sharedConstantTool.hideMRIndicatorView()
                 self.refreshControl.endRefreshing()
@@ -210,11 +208,6 @@ class UDLandingViewController: UIViewController {
     @objc
     fileprivate func tapToNavigateToProfile(button: UIButton) {
         tapToProfile()
-    }
-    
-    @objc
-    fileprivate func navigateNotification(button: UIButton) {
-        print("notification")
     }
 }
 
@@ -293,15 +286,15 @@ extension UDLandingViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 // MARK:- Glympse
-extension UDLandingViewController {
+/*extension UDLandingViewController {
     func getGlympseUserDetails()  {
         glympseUsername = userInfoDictionary.object(forKey: "glympseusername") as? String ?? ""
         glympsePwd = userInfoDictionary.object(forKey: "glympsepwd") as? String ?? ""
     }
-}
+}*/
 
 // MARK:- GlyListener
-extension UDLandingViewController: GlyListener {
+/*extension UDLandingViewController: GlyListener {
     func eventsOccurred(_ source: GlySource!, listener: Int32, events: Int32, param1: GlyCommon!, param2: GlyCommon!) {
         if GlyEnRouteEvents.listener_ENROUTE_MANAGER() == listener {
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_STARTED() ) {
@@ -361,7 +354,7 @@ extension UDLandingViewController: GlyListener {
     func handleLogin() {
         EnRouteWrapper.instance.manager()?.login(withCredentials: glympseUsername, password: glympsePwd)
     }
-}
+}*/
 
 extension UDLandingViewController: SwitchDelegate {
     func switchDidChangeState(control: Switch, state: SwitchState) {

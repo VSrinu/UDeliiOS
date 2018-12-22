@@ -35,7 +35,8 @@ class UDSidePanelViewController: UIViewController {
     }
     
     func loadTableView() {
-        self.settingsArray = [["icon": "ic_settings", "title": "Settings"],["icon": "ic_myJob", "title": "My Orders"],["icon": "ic_completedJobs", "title": "Completed Orders"],["icon": "ic_share", "title": "Share"], ["icon": "ic_feedBack", "title": "Feedback"], ["icon": "ic_aboutUs", "title": "About Us"], ["icon": "ic_logout", "title": "Log Out"]]
+        //self.settingsArray = [["icon": "ic_settings", "title": "Settings"],["icon": "ic_myJob", "title": "My Orders"],["icon": "ic_completedJobs", "title": "Completed Orders"],["icon": "ic_share", "title": "Share"], ["icon": "ic_feedBack", "title": "Feedback"], ["icon": "ic_aboutUs", "title": "About Us"], ["icon": "ic_logout", "title": "Log Out"]]
+        self.settingsArray = [["icon": "ic_settings", "title": "Settings"],["icon": "ic_myJob", "title": "My Orders"],["icon": "ic_completedJobs", "title": "Completed Orders"],["icon": "ic_share", "title": "Share"], ["icon": "ic_aboutUs", "title": "About Us"], ["icon": "ic_logout", "title": "Log Out"]]
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 43
         self.tableView.tableFooterView = UIView()
@@ -101,13 +102,13 @@ extension UDSidePanelViewController: UITableViewDataSource, UITableViewDelegate 
             self.navigationController?.pushViewController(viewController, animated: true)
         case 3:
             print("share")
+        /*case 4:
+            print("Feedback")*/
         case 4:
-            print("Feedback")
-        case 5:
             let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "UDAboutUsViewController") as! UDAboutUsViewController
             self.navigationController?.pushViewController(viewController, animated: true)
-        case 6:
+        case 5:
             getLogoutAlert()
         default:
             break

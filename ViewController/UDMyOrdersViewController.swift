@@ -8,7 +8,7 @@
 
 import UIKit
 import Material
-import EnRouteApi
+//import EnRouteApi
 
 class UDMyOrdersViewController: UIViewController {
     @IBOutlet weak var toolBar: Toolbar!
@@ -33,8 +33,8 @@ class UDMyOrdersViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        EnRouteWrapper.instance.manager()?.add(self)
-        EnRouteWrapper.instance.manager()?.getTaskManager().add(self)
+        //EnRouteWrapper.instance.manager()?.add(self)
+        //EnRouteWrapper.instance.manager()?.getTaskManager().add(self)
         getMyJobs()
     }
     
@@ -52,7 +52,7 @@ class UDMyOrdersViewController: UIViewController {
     }
     
     @objc func didPullToRefresh() {
-        EnRouteWrapper.instance.manager()?.refresh()
+        //EnRouteWrapper.instance.manager()?.refresh()
         getMyJobs()
     }
     
@@ -61,9 +61,8 @@ class UDMyOrdersViewController: UIViewController {
     }
     
     func getMyJobs() {
-        let merchantId = userInfoDictionary.object(forKey: "merchantid") as? Int ?? 0
         let userId = userInfoDictionary.object(forKey: "carrierid") as? Int ?? 0
-        OrdersModel.getMyOrdersDetails(acceptedby: userId, merchantId: merchantId) { connectionResult in
+        OrdersModel.getMyOrdersDetails(acceptedby: userId) { connectionResult in
             DispatchQueue.main.async(execute: {() -> Void in
                 ConstantTools.sharedConstantTool.hideMRIndicatorView()
                 self.refreshControl.endRefreshing()
@@ -106,7 +105,7 @@ extension UDMyOrdersViewController {
 // MARK:- UITableViewDataSource
 extension UDMyOrdersViewController: UITableViewDataSource, UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().count())!
+        return myJobsArray.count
     }
     
     internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -122,10 +121,7 @@ extension UDMyOrdersViewController: UITableViewDataSource, UITableViewDelegate {
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myJobCell", for: indexPath) as! UDLandingCell
-        let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().object(at: indexPath.row))!
-        let predicate = NSPredicate(format: "glympsetaskid == \(task.getId())")
-        let tempArray = myJobsArray.filtered(using: predicate) as NSArray
-        let myJobDict = tempArray.firstObject as? NSDictionary ?? [:]
+        let myJobDict:NSDictionary = myJobsArray[indexPath.row] as! NSDictionary
         let orderId = myJobDict.object(forKey: "orderid") as? Int ?? 0
         cell.jobIdLabel.text = "\(orderId)"
         let preferreddeliverytime = myJobDict.object(forKey: "preferreddeliverytimeoffset") as? Date ?? Date()
@@ -144,23 +140,30 @@ extension UDMyOrdersViewController: UITableViewDataSource, UITableViewDelegate {
         let state = myJobDict.object(forKey: "state") as? String ?? ""
         let zip = myJobDict.object(forKey: "zip") as? String ?? ""
         cell.activeCarriers.text = "Address: \(address), \(city), \(state), \(zip)"
+        /*let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().object(at: indexPath.row))!
+        let predicate = NSPredicate(format: "glympsetaskid == \(task.getId())")
+        let tempArray = myJobsArray.filtered(using: predicate) as NSArray
+        let myJobDict = tempArray.firstObject as? NSDictionary ?? [:]
+        */
         return cell
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().object(at: indexPath.row))!
-        let predicate = NSPredicate(format: "glympsetaskid == \(task.getId())")
-        let tempArray = myJobsArray.filtered(using: predicate) as NSArray
-        let myJobDict = tempArray.firstObject as? NSDictionary ?? [:]
+        let myJobDict:NSDictionary = myJobsArray[indexPath.row] as! NSDictionary
         let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "UDMyJobDetailsViewController") as! UDMyJobDetailsViewController
         viewController.myJobDict = myJobDict
         self.navigationController?.pushViewController(viewController, animated: true)
+        /*let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager().getTasks().object(at: indexPath.row))!
+        let predicate = NSPredicate(format: "glympsetaskid == \(task.getId())")
+        let tempArray = myJobsArray.filtered(using: predicate) as NSArray
+        let myJobDict = tempArray.firstObject as? NSDictionary ?? [:]
+        */
     }
 }
 
 // MARK:- GlyListener
-extension UDMyOrdersViewController: GlyListener {
+/*extension UDMyOrdersViewController: GlyListener {
     func eventsOccurred(_ source: GlySource!, listener: Int32, events: Int32, param1: GlyCommon!, param2: GlyCommon!) {
         if GlyEnRouteEvents.listener_ENROUTE_MANAGER() == listener {
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_LOGGED_OUT() ) {
@@ -185,4 +188,4 @@ extension UDMyOrdersViewController: GlyListener {
             }
         }
     }
-}
+}*/

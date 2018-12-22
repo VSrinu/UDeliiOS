@@ -35,15 +35,25 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            ConstantTools.sharedConstantTool.hideMRIndicatorView()
+        }
         getGlympseUserDetails()
-        glympsetaskid = myJobDict.object(forKey: "glympsetaskid") as? Int ?? 0
-        EnRouteWrapper.instance.manager()?.add(self)
-        EnRouteWrapper.instance.manager()?.getTaskManager().add(self)
     }
     
     func getGlympseUserDetails()  {
-        glympseUsername = userInfoDictionary.object(forKey: "glympseusername") as? String ?? ""
-        glympsePwd = userInfoDictionary.object(forKey: "glympsepwd") as? String ?? ""
+        EnRouteWrapper.instance.manager()?.logout(1)
+        glympseUsername = myJobDict.object(forKey: "glympseusername") as? String ?? ""
+        glympsePwd = myJobDict.object(forKey: "glympsepwd") as? String ?? ""
+        glympsetaskid = myJobDict.object(forKey: "glympsetaskid") as? Int ?? 0
+        if glympseUsername != "" && glympsePwd != "" {
+            ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view)
+            EnRouteWrapper.instance.manager()?.overrideLoggingLevels(GlyCoreConstants.none(), debugLogLevel: GlyCoreConstants.info())
+            EnRouteWrapper.instance.manager()?.add(self)
+            EnRouteWrapper.instance.manager()?.setAuthenticationMode(GlyEnRouteConstants.auth_MODE_CREDENTIALS())
+            EnRouteWrapper.instance.manager()?.start()
+        }
     }
     
     func loadInitialData() {
@@ -55,26 +65,71 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
         self.tableView.reloadData()
     }
     
+    func handleLogin() {
+        EnRouteWrapper.instance.manager()?.login(withCredentials: glympseUsername, password: glympsePwd)
+    }
+    
+    func handleStopped() {
+        EnRouteWrapper.instance.manager()?.overrideLoggingLevels(GlyCoreConstants.none(), debugLogLevel: GlyCoreConstants.info())
+        EnRouteWrapper.instance.manager()?.add(self)
+        EnRouteWrapper.instance.manager()?.setAuthenticationMode(GlyEnRouteConstants.auth_MODE_CREDENTIALS())
+        EnRouteWrapper.instance.manager()?.start()
+    }
+    
     func eventsOccurred(_ source: GlySource!, listener: Int32, events: Int32, param1: GlyCommon!, param2: GlyCommon!) {
         if GlyEnRouteEvents.listener_ENROUTE_MANAGER() == listener {
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_STARTED() ) {
+                print("En Route Event: ENROUTE_MANAGER_STARTED")
+                EnRouteWrapper.instance.manager()?.getTaskManager().add(self)
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
+            }
+            
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_AUTHENTICATION_NEEDED() ) {
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
+                handleLogin()
+            }
+            
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_LOGIN_COMPLETED() ) {
+                print("En Route Event: ENROUTE_MANAGER_LOGIN_COMPLETED")
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
+            }
+            
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_SYNCED() ) {
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
+                print("En Route Event: ENROUTE_MANAGER_SYNCED")
+            }
+            
             if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_LOGGED_OUT() ) {
-                print("not login")
+                print("En Route Event: ENROUTE_MANAGER_LOGGED_OUT")
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
+            }
+            
+            if 0 != ( events & GlyEnRouteEvents.enroute_MANAGER_STOPPED() ) {
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
+                print("En Route Event: ENROUTE_MANAGER_STOPPED")
+                handleStopped()
             }
         }
-        else if GlyEnRouteEvents.listener_TASKS() == listener {
+        
+         if GlyEnRouteEvents.listener_TASKS() == listener {
             if 0 != ( events & GlyEnRouteEvents.tasks_TASK_LIST_CHANGED() ) {
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
                 print("update Task")
             }
             if 0 != ( events & GlyEnRouteEvents.tasks_TASK_STARTED() ) {
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
                 updateLiveTask()
             }
             if 0 != ( events & GlyEnRouteEvents.tasks_TASK_START_FAILED() ) {
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
                 self.present(UIAlertController.alertWithTitle(title: "", message: "unable to start job. Please contact merchant for the details.", cancelButtonTitle: "OK"), animated: true)
             }
             if 0 != ( events & GlyEnRouteEvents.tasks_OPERATION_COMPLETED() ) {
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
                 print("complete Task")
             }
             if 0 != ( events & GlyEnRouteEvents.tasks_OPERATION_COMPLETION_FAILED() ) {
+                ConstantTools.sharedConstantTool.hideMRIndicatorView()
                 print("update Task")
             }
         }
@@ -108,12 +163,17 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
     
     @objc
     fileprivate func tapToAcceptJobs(button: UIButton) {
-        if glympsetaskid == 0 {
-            self.present(UIAlertController.alertWithTitle(title: "", message: "Your job in verify process. Please try later.", buttonTitle: "OK", handler: { action in self.updateLandingPage()}), animated: true)
-            return
+        EnRouteWrapper.instance.manager()?.getTaskManager().add(self)
+        ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            ConstantTools.sharedConstantTool.hideMRIndicatorView()
+            if self.glympsetaskid == 0 {
+                self.present(UIAlertController.alertWithTitle(title: "", message: "Your job in verify process. Please try later.", buttonTitle: "OK"), animated: true)
+                return
+            }
+            //let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager()?.findTask(byId: Int64(glympsetaskid)))!
+            self.updateLiveTask()
         }
-        let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager()?.findTask(byId: Int64(glympsetaskid)))!
-        updateStartTask(task:task)
     }
     
     func updateStartTask(task:GlyTask) {
@@ -122,16 +182,22 @@ class UDMyJobDetailsViewController: UIViewController, GlyListener {
     
     func updateLiveTask() {
         let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager()?.findTask(byId: Int64(glympsetaskid)))!
+        EnRouteWrapper.instance.manager()?.getTaskManager().startTask(with: task)
         EnRouteWrapper.instance.manager()?.getTaskManager().setTaskPhase(task, phase: GlyEnRouteConstants.phase_PROPERTY_LIVE())
         self.updateOrder(status: String(OrderStatusType.InProgress.rawValue))
     }
     
     @objc
     fileprivate func tapToComplete(button: UIButton) {
-        let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager()?.findTask(byId: Int64(glympsetaskid)))!
-        let operation = task.getOperation()
-        EnRouteWrapper.instance.manager()?.getTaskManager().complete(operation)
-        self.updateOrder(status: String(OrderStatusType.Delivered.rawValue))
+        EnRouteWrapper.instance.manager()?.getTaskManager().add(self)
+        ConstantTools.sharedConstantTool.showsMRIndicatorView(self.view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            ConstantTools.sharedConstantTool.hideMRIndicatorView()
+            let task:GlyTask = (EnRouteWrapper.instance.manager()?.getTaskManager()?.findTask(byId: Int64(self.glympsetaskid)))!
+            let operation = task.getOperation()
+            EnRouteWrapper.instance.manager()?.getTaskManager().complete(operation)
+            self.updateOrder(status: String(OrderStatusType.Delivered.rawValue))
+        }
     }
     
     func updateOrder(status: String) {
@@ -183,6 +249,7 @@ extension UDMyJobDetailsViewController {
     
     @objc
     fileprivate func navigateBack(button: UIButton) {
+        EnRouteWrapper.instance.manager()?.logout(1)
         self.navigationController!.popViewController(animated: true)
     }
 }
@@ -218,14 +285,14 @@ extension UDMyJobDetailsViewController: UITableViewDataSource, UITableViewDelega
             let address = myJobDict.object(forKey: "address") as? String ?? ""
             let state = myJobDict.object(forKey: "state") as? String ?? ""
             let zip = myJobDict.object(forKey: "zip") as? String ?? ""
+            let pickupTime = myJobDict.object(forKey: "pickupreadytimeoffset") as? Date ?? Date()
+            let pickupReadyTime = ConstantTools.sharedConstantTool.timeFormat(date: pickupTime)
             let customerMobileNo = myJobDict.object(forKey: "phonenumber") as? String ?? ""
-            cell.jobId.text = "Deliver to \(customerName) at\n\(address), \(city), \(state), \(zip)\n by \(deliverMonth) \(deliverDate) at \(time) \nCustomer Phone Number: \(customerMobileNo)"
+            cell.jobId.text = "Deliver to \(customerName) at\n\(address), \(city), \(state), \(zip)\n by \(deliverMonth) \(deliverDate) at \(time)\n Pickup Time: \(pickupReadyTime) \nCustomer Phone Number: \(customerMobileNo)"
             let orderId = myJobDict.object(forKey: "orderid") as? Int ?? 0
             let orderTitle = myJobDict.object(forKey: "ordertitle") as? String ?? ""
             cell.jobTitle.text = "\(orderId): \(orderTitle)"
-            let pickupTime = myJobDict.object(forKey: "pickupreadytimeoffset") as? Date ?? Date()
-            let pickupReadyTime = ConstantTools.sharedConstantTool.timeFormat(date: pickupTime)
-            cell.jobDetails.text = "\(myJobDict.object(forKey: "orderdetails") as? String ?? "")\n Pickup Time: \(pickupReadyTime)"
+            cell.jobDetails.text = "\(myJobDict.object(forKey: "orderdetails") as? String ?? "")"
             let orderStatus = myJobDict.object(forKey: "status") as? Int ?? 0
             cell.jobAcceptBtn.setTitle("Start the Job", for: .normal)
             cell.jobDismissBtn.setTitle("Complete the Job", for: .normal)

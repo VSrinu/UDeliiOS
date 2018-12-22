@@ -10,13 +10,11 @@ import Foundation
 
 struct OrdersModel {
     // Get Orders List
-    static func getOrdersDetails(acceptedby: Int, merchantId:Int, completion: @escaping (ConnectionResultAsArray) -> ()) {
+    static func getOrdersDetails(acceptedby: Int, completion: @escaping (ConnectionResultAsArray) -> ()) {
         Internet.isAvailable { (status, message) in
             if status {
-                let merchantPredicate =  NSPredicate(format: "merchantid == \(merchantId)")
                 let acceptedPredicate = NSPredicate(format: "carrierid = \(acceptedby)")
-                let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [merchantPredicate,acceptedPredicate])
-                tOrderToCarriers.read(with: predicate) { (result, error) in
+                tOrderToCarriers.read(with: acceptedPredicate) { (result, error) in
                     if let err = error {
                         completion(.failure(err.localizedDescription))
                     } else if let items = result?.items {
@@ -102,13 +100,12 @@ struct OrdersModel {
     }
     
     // Get MyOrders
-    static func getMyOrdersDetails(acceptedby: Int, merchantId:Int, completion: @escaping (ConnectionResultAsArray) -> ()) {
+    static func getMyOrdersDetails(acceptedby: Int, completion: @escaping (ConnectionResultAsArray) -> ()) {
         Internet.isAvailable { (status, message) in
             if status {
-                let merchantPredicate =  NSPredicate(format: "merchantid == \(merchantId)")
                 let listPredicate = NSPredicate(format: "status = \(OrderStatusType.Accepted.rawValue) || status = \(OrderStatusType.InProgress.rawValue)")
                 let acceptedPredicate = NSPredicate(format: "acceptedby = \(acceptedby)")
-                let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [merchantPredicate,listPredicate,acceptedPredicate])
+                let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [listPredicate,acceptedPredicate])
                 tOrders.read(with: predicate) { (result, error) in
                     if let err = error {
                         completion(.failure(err.localizedDescription))

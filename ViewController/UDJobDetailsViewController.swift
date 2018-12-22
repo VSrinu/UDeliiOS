@@ -150,13 +150,13 @@ extension UDJobDetailsViewController: UITableViewDataSource, UITableViewDelegate
             let deliverDate = ConstantTools.sharedConstantTool.dayFormat(date: preferreddeliverytime)
             let deliverMonth = ConstantTools.sharedConstantTool.monthFormat(date: preferreddeliverytime)
             let time = ConstantTools.sharedConstantTool.timeFormat(date: preferreddeliverytime)
-            cell.jobId.text = "Deliver to \(customerName) at \(city) by \(deliverMonth) \(deliverDate) at \(time)"
+            let pickupTime = jobDict.object(forKey: "pickupreadytimeoffset") as? Date ?? Date()
+            let pickupReadyTime = ConstantTools.sharedConstantTool.timeFormat(date: pickupTime)
+            cell.jobId.text = "Deliver to \(customerName) at \(city) by \(deliverMonth) \(deliverDate) at \(time)\n Pickup Time: \(pickupReadyTime)"
             let orderId = jobDict.object(forKey: "orderid") as? Int ?? 0
             let orderTitle = jobDict.object(forKey: "ordertitle") as? String ?? ""
             cell.jobTitle.text = "\(orderId): \(orderTitle)"
-            let pickupTime = jobDict.object(forKey: "pickupreadytimeoffset") as? Date ?? Date()
-            let pickupReadyTime = ConstantTools.sharedConstantTool.timeFormat(date: pickupTime)
-            cell.jobDetails.text = "\(jobDict.object(forKey: "orderdetails") as? String ?? "")\n Pickup Time: \(pickupReadyTime)"
+            cell.jobDetails.text = "\(jobDict.object(forKey: "orderdetails") as? String ?? "")"
             cell.jobAcceptBtn.addTarget(self, action: #selector(tapToAcceptJobs(button:)), for: .touchUpInside)
             cell.jobDismissBtn.addTarget(self, action: #selector(tapToDismissPage(button:)), for: .touchUpInside)
             return cell
