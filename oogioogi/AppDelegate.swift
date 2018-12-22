@@ -31,14 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if isLoginStatus {
             let data = UserDefaults.standard.object(forKey:"userInfo") as! Data
             userInfoDictionary = (NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary?)!
-            //let merchantId = userInfoDictionary.object(forKey: "merchantid") as? Int ?? 0
-            //if merchantId != 0 {
-                let MainStoryboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
+            let MainStoryboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
                 navViewController = MainStoryboard.instantiateViewController(withIdentifier: "UDLandingViewController")
-            /*} else {
-                let MainStoryboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
-                navViewController = MainStoryboard.instantiateViewController(withIdentifier: "UDWelcomeViewController")
-            }*/
         } else {
             let MainStoryboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
             navViewController = MainStoryboard.instantiateViewController(withIdentifier: "UDLoginViewController")

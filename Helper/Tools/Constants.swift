@@ -16,8 +16,8 @@ public var twilioAPIKey = "ZP10uzqGKbOF6L9yix58eg7hznwhy91f"
 public var googlePlaceAPIKey = "AIzaSyBOfkyB6Nrj1Pc5c0a18FglqZQstCDh1eQ"
 
  // MARK:- APPURL
-public var msClientURL = MSClient(applicationURLString: "https://udelimobileapp.azurewebsites.net")
-//public var msClientURL = MSClient(applicationURLString: "https://oogioogimobileapp.azurewebsites.net")
+//public var msClientURL = MSClient(applicationURLString: "https://udelimobileapp.azurewebsites.net")
+public var msClientURL = MSClient(applicationURLString: "https://oogioogimobileapp.azurewebsites.net")
 
 // MARK:- Table Name
 let tCarrier = msClientURL.table(withName: "tcarrier")

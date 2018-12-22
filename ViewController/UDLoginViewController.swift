@@ -68,17 +68,9 @@ class UDLoginViewController: UIViewController {
                     userInfoDictionary.setValuesForKeys(data.firstObject as! [String : Any])
                     let userData = NSKeyedArchiver.archivedData(withRootObject: userInfoDictionary)
                     UserDefaults.standard.set(userData, forKey: "userInfo")
-                    let userInfoDict = data.firstObject as? NSDictionary ?? [:]
-                    let checkMerchantId = userInfoDict.object(forKey: "merchantid") as? Int ?? 0
-                    if checkMerchantId != 0 {
-                        let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
-                        let viewController = storyboard.instantiateViewController(withIdentifier: "UDLandingViewController") as! UDLandingViewController
-                        self.navigationController?.pushViewController(viewController, animated: true)
-                    } else {
-                        let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
-                        let viewController = storyboard.instantiateViewController(withIdentifier: "UDWelcomeViewController") as! UDWelcomeViewController
-                        self.navigationController?.pushViewController(viewController, animated: true)
-                    }
+                    let storyboard = UIStoryboard(name: "iPhoneStoryboard", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "UDLandingViewController") as! UDLandingViewController
+                    self.navigationController?.pushViewController(viewController, animated: true)
                 case .failure(let error):
                     self.view.makeToast(error, position: .top)
                 }
