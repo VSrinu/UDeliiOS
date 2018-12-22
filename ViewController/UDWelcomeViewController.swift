@@ -28,7 +28,7 @@ class UDWelcomeViewController: UIViewController {
     }
     
     func loadInitialData() {
-        detailsLabel.text = "Thank you for Registration. Onces approved by admin you get email or message.Please finish final Steps"
+        detailsLabel.text = "Thank you for registering with OogiOogi. We have notified the merchant and your application is under review. Once approved, we will update you by Email & SMS. In the meantime, please specify your driving distance as a final step."
         getMerchantDetails()
     }
     
